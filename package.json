@@ -1,0 +1,37 @@
+{
+  "name": "grace-shopper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack -w & nodemon ./server/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "morgan": "^1.8.2",
+    "path": "^0.12.7",
+    "pg": "^6.2.3",
+    "pg-hstore": "^2.3.2",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "react-router": "^4.1.1",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0",
+    "sequelize": "^3.30.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "^0.28.4",
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.5",
+    "style-loader": "^0.18.2",
+    "webpack": "^2.6.1"
+  }
+}
