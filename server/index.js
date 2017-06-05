@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path')
 
-
+const db = require('./models/index.js');
 
 app.use(morgan('dev'));
 
@@ -27,7 +27,8 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
 
+
 app.listen(3000, function () {
   console.log("listening on port 3000");
-});
+})
 module.exports = app;
