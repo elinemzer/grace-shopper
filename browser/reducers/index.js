@@ -1,3 +1,3 @@
-function dummyReducer (state = {}, action) {
+export default function dummyReducer (state = {}, action) {
   return state;
 }
