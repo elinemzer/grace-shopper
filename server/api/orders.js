@@ -41,3 +41,5 @@ router.delete('/:orderId', function (req, res, next){
     res.sendStatus(204)
   })
 });
+
+module.exports = router;

@@ -2,7 +2,8 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default function AllProducts (props) {
-	const fish = props.products;
+	
+  const fish = props.products;
 	
   return (
   	<div>
@@ -11,13 +12,12 @@ export default function AllProducts (props) {
       {
         fish && fish.map(oneFish => (
           <div className="col-xs-4" key={ oneFish.id }>
-            <Link className="thumbnail" to={`/albums/${oneFish.id}`}>
+            <Link className="thumbnail" to={`/products/${oneFish.id}`}>
               <img src={ oneFish.imageUrl } />
               <div className="caption">
                 <h5>
-                  <span>{ oneFish.title }</span>
-                  <span>{ oneFish.description }</span>
-                  <span>From { oneFish.region }</span>
+                  <p>{ oneFish.title }</p>
+                  <p>From { oneFish.region }</p>
                 </h5>
               </div>
             </Link>

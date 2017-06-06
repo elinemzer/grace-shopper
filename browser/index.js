@@ -5,7 +5,7 @@ import { Router, Route, browserHistory, IndexRedirect, IndexRoute } from 'react-
 import store from './store';
 import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById } from './action-creators'
 import scss from '../index.scss';
-// import db from '../server/models';
+import axios from 'axios'
 
 
 import AppContainer from './containers/AppContainer'
@@ -59,8 +59,9 @@ const onOrderEnter = function (nextRouterState) {
 ReactDOM.render(
   <Provider store={store}>
   	<Router history = {browserHistory}>
-    <Route path='/landing' component = {Landing}> </Route>
+    <Route path='/landing' component = {Landing} />
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
+        <IndexRoute path='/products' component={ProductsContainer} />
         <Route path='/products' component={ProductsContainer} />
   	</Route>
 	  </Router>
