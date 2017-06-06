@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router';
 import store from './store';
-import scss from '../index.scss';
+// import scss from '../index.scss';
 // import db from '../server/models';
 
 import Landing from './components/Landing'
