@@ -1,8 +1,10 @@
 const db = require('../db');
-console.log(db);
 const Sequelize = require('sequelize');
+const reviews = require('./reviews')
+const orders = require('./orders')
+const products = require('./products')
 
-module.exports = db.define('user', {
+var users = db.define('user', {
 	email: {
 		type: Sequelize.STRING,
 		allowNull: false,
@@ -34,11 +36,11 @@ module.exports = db.define('user', {
 		allowNull: false,
 		defaultValue: false
 	}
-},
-{
-	// options
 })
-// users will have a one-to-one relationship with cart
-// (if a user is not logged in, adds things to cart, then logs in,
-// merge the single stored cart for that user with the local storage cart)
 
+
+// users.hasMany(reviews);
+// users.hasMany(orders);
+// users.belongsToMany(products, {through: 'cart'});
+
+module.exports = users;

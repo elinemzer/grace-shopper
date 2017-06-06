@@ -14,7 +14,3 @@ module.exports = db.define('review', {
 		type: Sequelize.TEXT
 	}
 })
-
-
-// many reviews to one product
-// many reviews to one user
