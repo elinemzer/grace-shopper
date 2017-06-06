@@ -13,6 +13,10 @@ export default class AppContainer extends Component {
     return (
       <div>
         <Navbar />
+        
+        <div className="col-xs-10">
+          { props.children }
+        </div>
       </div>
     )
   }
