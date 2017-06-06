@@ -20,7 +20,7 @@ import Landing from './components/Landing'
 // import OrderContainer from './containers/OrderContainer'
 // import OrdersContainer from './containers/OrdersContainer'
 // import ProductContainer from './containers/ProductContainer'
-// import ProductsContainer from './containers/ProductsContainer'
+import ProductsContainer from './containers/ProductsContainer'
 // import UserContainer from './containers/UserContainer'
 // import UsersContainer from './containers/UsersContainer'
 
@@ -59,10 +59,10 @@ const onOrderEnter = function (nextRouterState) {
 ReactDOM.render(
   <Provider store={store}>
   	<Router history = {browserHistory}>
-    <Route path='/landing' component = {Landing}>
-    </Route>
-  		<Route path='/' component = {AppContainer}>
-  		</Route>
+    <Route path='/landing' component = {Landing}> </Route>
+  	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
+        <Route path='/products' component={ProductsContainer} />
+  	</Route>
 	  </Router>
   </Provider>,
   document.getElementById('app') // make sure this is the same as the id of the div in your index.html
