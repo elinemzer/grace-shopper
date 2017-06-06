@@ -16,7 +16,10 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:reviewId', function (req, res, next){
-  res.send(req.review)
+  Reviews.findById(req.params.reviewId)
+  .then(reviewFound => {
+    res.send(reviewFound)
+  })
   .catch(next)
 });
 
