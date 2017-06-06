@@ -22,10 +22,14 @@ import UsersContainer from './containers/UsersContainer'
 ReactDOM.render(
   <Provider store={store}>
 <<<<<<< HEAD
+<<<<<<< HEAD
   <div>Hello world!</div>
   </Provider>
   ,
 =======
+=======
+
+>>>>>>> 669f13b5647875d1967aca204dcb9276c681321e
   	<Router history = {hashHistory}>
   		<Route path='/' component = {AppContainer} onEnter ={onAppEnter}>
   			<Route path='/products' component={ProductsContainer} />
@@ -41,6 +45,9 @@ ReactDOM.render(
   		</Route>
 	</Router>
   </Provider>,
+<<<<<<< HEAD
 >>>>>>> e5a8bb8c29209f3355baf8b5e2c34dfda107e921
+=======
+>>>>>>> 669f13b5647875d1967aca204dcb9276c681321e
   document.getElementById('app') // make sure this is the same as the id of the div in your index.html
 );
