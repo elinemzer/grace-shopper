@@ -8,6 +8,7 @@ module.exports = db.define('order', {
 	datePlaced: {
 		type: Sequelize.DATE
 	}
+
 })
 
 

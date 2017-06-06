@@ -5,6 +5,7 @@ const products = require('./products');
 const reviews = require('./reviews');
 const orders = require('./orders');
 const carts = require('./cart.js');
+const product_order = require('./product_order');
 const db = require('../db')
 
 // const db = new Sequelize(process.env.DATABASE_URL || 'postgres://localhost:5432/grace-shopper', {
@@ -14,6 +15,7 @@ const db = require('../db')
 // });
 
 
+
 // // create relationships here
 
 //product_order join table
@@ -21,12 +23,12 @@ orders.belongsToMany(products, {through: 'product_order'});
 products.belongsToMany(orders, {through: 'product_order'});
 
 //product_cart join table
-carts.belongsToMany(products, {through: 'product_cart'});
-products.belongsToMany(carts, {through: 'product_cart'});
+products.belongsToMany(users, {through: 'cart'});
+users.belongsToMany(products, {through: 'cart'});
 
 users.hasMany(reviews);
 users.hasMany(orders);
-users.hasOne(carts);
+// users.hasOne(carts);
 products.hasMany(reviews);
 
 var syncedDbPromise = db.sync();
