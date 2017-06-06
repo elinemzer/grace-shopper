@@ -5,8 +5,8 @@ export default function Landing () {
   return (
     <div>
       <div className="fullscreen-bg">
-        <video loop muted autoplay poster="img/videoframe.jpg" className="fullscreen-bg__video">
-            <source src="img/bgmv.mp4" type="video/mp4" />
+        <video loop muted autoPlay poster="img/videoframe.jpg" className="fullscreen-bg__video">
+            <source src="files/img/bgmv.mp4" type="video/mp4" />
         </video>
       </div>
       <div className="container-fluid">
@@ -14,7 +14,7 @@ export default function Landing () {
           <div className="col-lg-5">
           </div>
           <div className="col-lg-2">
-            <img src="img/logo.png" />
+            <img src="/files/img/logo.png" />
           </div>
           <div className="col-lg-5">
           </div>
