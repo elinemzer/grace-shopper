@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, browserHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-// import scss from '../index.scss';
+import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById } from './action-creators'
+import scss from '../index.scss';
 // import db from '../server/models';
 
 
@@ -24,9 +25,42 @@ import Landing from './components/Landing'
 // import UsersContainer from './containers/UsersContainer'
 
 
+const onAppEnter = function () {
+  Promise.all([
+    axios.get('api/users'),
+    axios.get('api/products'),
+    axios.get('api/orders')
+  ])
+  .then(responses => responses.map(r => r.data))
+  .then(([users, products, orders]) => {
+    store.dispatch(receiveUsers(users));
+    store.dispatch(receiveProducts(products));
+    store.dispatch(receiveOrders(orders));
+  })
+}
+
+const onUserEnter = function (nextRouterState) {
+  const userId = nextRouterState.params.userId;
+  store.dispatch(getUserById(userId));
+}
+
+const onProductEnter = function (nextRouterState) {
+  const productId = nextRouterState.params.productId;
+  store.dispatch(getProductById(productId));
+}
+
+const onOrderEnter = function (nextRouterState) {
+  const orderId = nextRouterState.params.orderId;
+  store.dispatch(getOrderById(orderId));
+}
+
+
+
 ReactDOM.render(
   <Provider store={store}>
   	<Router history = {browserHistory}>
+    <Route path='/landing' component = {Landing}>
+    </Route>
   		<Route path='/' component = {AppContainer}>
   		</Route>
 	  </Router>
