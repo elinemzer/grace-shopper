@@ -14,8 +14,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/api', require('./api'));
 
-
+// bundle needs this line
 app.use('/files', express.static(path.join(__dirname, '../public')));
+
+
+app.use(express.static(path.join(__dirname, '../node_modules')))
 
 app.get('/*', function (req, res) {
   res.sendFile(path.join(__dirname, '../index.html'))
