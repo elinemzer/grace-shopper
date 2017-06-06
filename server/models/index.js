@@ -29,13 +29,13 @@ users.hasMany(orders);
 users.hasOne(carts);
 products.hasMany(reviews);
 
-var syncedDbPromise = db.sync();
+// var syncedDbPromise = db.sync();
 
-syncedDbPromise.then(function () {
-  console.log('Sequelize models synced to PostgreSQL');
-});
+// syncedDbPromise.then(function () {
+//   console.log('Sequelize models synced to PostgreSQL');
+// });
 
-module.exports = syncedDbPromise;
+// module.exports = syncedDbPromise;
 
 
 // module.exports = db;

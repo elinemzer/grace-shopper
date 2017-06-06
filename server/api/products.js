@@ -14,8 +14,12 @@ router.get('/', function (req, res, next){
   .catch(next)
 });
 
+//needed a db query
 router.get('/:productId', function (req, res, next){
-  res.send(req.product)
+  Products.findById(req.params.productId)
+  .then(productFound => {
+    res.send(productFound)
+  })
   .catch(next)
 });
 
