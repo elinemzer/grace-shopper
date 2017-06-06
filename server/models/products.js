@@ -1,7 +1,10 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
+const reviews = require('./reviews');
+const users = require('./users');
+const orders = require('./orders');
 
-module.exports = db.define('product', {
+const products = db.define('product', {
 	title: {
 		type: Sequelize.STRING,
 		allowNull: false,
@@ -24,7 +27,9 @@ module.exports = db.define('product', {
 	}
 })
 
+// products.hasMany(reviews);
+// products.belongsToMany(users, {through: 'cart'});
+// products.belongsToMany(orders, {through: 'product_order'});
 
-// one product to many reviews
-// many products to many carts
-// many products to many orders
+
+module.exports = products;
