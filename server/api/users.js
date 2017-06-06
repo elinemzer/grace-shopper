@@ -16,7 +16,10 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:userId', function (req, res, next){
-  res.send(req.user)
+  Users.findById(req.params.userId)
+  .then(userFound => {
+    res.send(userFound)
+  })
   .catch(next)
 });
 // matches POST requests to /api/users/

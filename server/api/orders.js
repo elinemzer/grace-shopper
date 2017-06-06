@@ -16,7 +16,10 @@ router.get('/', function (req, res, next){
 });
 
 router.get('/:orderId', function (req, res, next){
-  res.send(req.order)
+  Orders.findById(req.params.orderId)
+  .then(orderFound => {
+    res.send(orderFound)
+  })
   .catch(next)
 });
 // matches POST requests to /api/orders/
