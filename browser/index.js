@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import scss from '../index.scss'
+import scss from '../index.scss';
+// import db from '../server/models';
 
 import AppContainer from './containers/AppContainer'
 import AdminOrdersContainer from './containers/AdminOrdersContainer'
@@ -20,6 +21,7 @@ import UsersContainer from './containers/UsersContainer'
 
 ReactDOM.render(
   <Provider store={store}>
+
   	<Router history = {hashHistory}>
   		<Route path='/' component = {AppContainer} onEnter ={onAppEnter}>
   			<Route path='/products' component={ProductsContainer} />
