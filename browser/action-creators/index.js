@@ -9,6 +9,7 @@ export const RECEIVE_PRODUCT = "RECEIVE_PRODUCT"
 export const RECEIVE_CART = "RECEIVE_CART"
 export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS"
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
+export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 
 export const receiveUsers = users => ({
   type: RECEIVE_USERS,
@@ -92,5 +93,16 @@ export const getReviewById = reviewId => {
     .then(response => {
       dispatch(receiveReview(response.data));
     });
+  }
+}
+
+
+export const updateUser = (userId, bodyObj) => {
+  return dispatch => {
+    axios.put(`/api/users/${userId}`, bodyObj)
+    .then(updatedUser => {
+      console.log("returned from axios: ", updatedUser)
+      dispatch(receiveUser(updatedUser.data))
+    })
   }
 }
