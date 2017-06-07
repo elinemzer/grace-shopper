@@ -12,9 +12,15 @@ export default class AppContainer extends Component {
   render () {
     return (
       <div>
+        <div className="fullscreen-bg">
+        <video loop muted autoPlay poster="img/videoframe.jpg" className="fullscreen-bg__video">
+            <source src="files/img/productbg.mp4" type="video/mp4" />
+        </video>
+      </div>
         <Navbar />
         
         <div className="col-xs-12">
+
           { this.props.children }
         </div>
       </div>
