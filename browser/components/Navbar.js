@@ -8,7 +8,7 @@ export default (props) => {
         <div className="col-lg-5">
         </div>
         <div className="col-lg-2" id="nav-logo">
-          <img src="files/img/logo.png" />
+          <Link to="/"><img src="files/img/logo.png" /></Link>
         </div>
         <div className="col-lg-5">
         </div>
