@@ -18,8 +18,9 @@ export default class AppContainer extends Component {
         </video>
       </div>
         <Navbar />
+        
+        <div className="col-xs-12">
 
-        <div className="col-xs-10">
           { this.props.children }
         </div>
       </div>
