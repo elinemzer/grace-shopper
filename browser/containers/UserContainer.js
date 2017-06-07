@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
-import { browserHistory } from 'react-router';
+import store from '../store'
+import {connect} from 'react-redux'
 import SingleUser from '../components/SingleUser'
 
-export default class UsersContainer extends Component {
-	constructor(props) {
-		super(props)
-	}
-
-	render() {
-		return (
-			<SingleUser />
-			)
+const mapStateToProps = function(state) {
+	return {
+		user: state.selectedUser
 	}
 }
+
+
+export default connect(mapStateToProps)(SingleUser)

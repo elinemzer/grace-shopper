@@ -59,7 +59,7 @@ export const receiveReview = review => ({
 
 export const getUserById = userId => {
   return dispatch => {
-    axios.get(`/api/user/${userId}`)
+    axios.get(`/api/users/${userId}`)
     .then(response => {
       dispatch(receiveUser(response.data));
     });
