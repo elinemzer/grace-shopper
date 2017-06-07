@@ -10,6 +10,12 @@ var users = db.define('user', {
 		allowNull: false,
 		unique: true
 	},
+	firstName: {
+		type: Sequelize.STRING
+	},
+	lastName: {
+		type: Sequelize.STRING
+	},
 	address1: {
 		type: Sequelize.STRING
 	},
