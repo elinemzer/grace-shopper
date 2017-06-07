@@ -11,7 +11,7 @@ export default class AppContainer extends Component {
 
   render () {
     return (
-      <div>
+      <div id="entire-container">
         <div className="fullscreen-bg">
         <video loop muted autoPlay poster="img/videoframe.jpg" className="fullscreen-bg__video">
             <source src="files/img/productbg.mp4" type="video/mp4" />
