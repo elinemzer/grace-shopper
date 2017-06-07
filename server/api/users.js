@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Users = require('../models/users');
 const Cart = require('../models/cart')
-
+const Products = require('../models/products')
 //taking supplied user id and attaching product object to request
 // router.param('user', function(req, res, next, id){
 //   Users.findById(id, { include: [Cart] })
@@ -12,7 +12,7 @@ const Cart = require('../models/cart')
 
 router.get('/:userId', function (req, res, next){
   console.log("getting user by id")
-  Users.findById(req.params.userId)
+  Users.findById(req.params.userId, {include: [Products]})
   .then(userFound => {
     console.log('userFound: ', userFound)
     res.send(userFound)
