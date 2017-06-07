@@ -12,9 +12,11 @@ const mapStateToProps = function(state) {
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-		submitEmail(value, userId) {
-			console.log("VAL: ", value);
+		submitEmail: (value, userId) => {
 			return dispatch(updateUser(userId, {'email': value}))
+		},
+		submitAddress: (bodyObj, userId) => {
+			return dispatch(updateUser(userId, bodyObj))
 		}
 	}
 }
