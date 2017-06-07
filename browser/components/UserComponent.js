@@ -10,7 +10,7 @@ export default (props) => {
 			users && users.map(user => {
 				return (
 					<div className="col-sm-6 text-center">
-				    <Link to={`/user/${user.id}`}>
+				    <Link to={`/users/${user.id}`}>
 					   	<ul className="list-group">
 						  <li className="list-group-item">User name: {user.firstName} {user.lastName}</li>
 						  <li className="list-group-item">User email: {user.email}</li>

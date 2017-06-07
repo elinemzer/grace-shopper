@@ -42,6 +42,7 @@ const onAppEnter = function () {
 }
 
 const onUserEnter = function (nextRouterState) {
+  console.log("entering!")
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
 }
@@ -67,7 +68,7 @@ ReactDOM.render(
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
-        <Route path='/user/:userId' component={UserContainer} />
+        <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
 
   	</Route>
 	  </Router>
