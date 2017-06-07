@@ -21,8 +21,8 @@ import Landing from './components/Landing'
 // import OrdersContainer from './containers/OrdersContainer'
 // import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
-// import UserContainer from './containers/UserContainer'
-// import UsersContainer from './containers/UsersContainer'
+import UserContainer from './containers/UserContainer'
+import UsersContainer from './containers/UsersContainer'
 
 
 const onAppEnter = function () {
@@ -63,6 +63,8 @@ ReactDOM.render(
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
         <IndexRoute path='/products' component={ProductsContainer} />
         <Route path='/products' component={ProductsContainer} />
+        <Route path='/admin' component={UsersContainer} />
+        <Route path='/user/:userId' component={UserContainer} />
   	</Route>
 	  </Router>
   </Provider>,
