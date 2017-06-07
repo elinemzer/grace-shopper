@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route, browserHistory, IndexRedirect, IndexRoute } from 'react-router'
+import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById } from './action-creators'
+import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios'
 
@@ -14,28 +14,30 @@ import Landing from './components/Landing'
 // import AppContainer from './containers/AppContainer'
 
 // import AdminOrdersContainer from './containers/AdminOrdersContainer'
-// import CartContainer from './containers/CartContainer'
+// import CartContainer from './containers/CartContainer'f
 // import CheckoutContainer from './containers/CheckoutContainer'
 // import LoginContainer from './containers/LoginContainer'
 // import OrderContainer from './containers/OrderContainer'
 // import OrdersContainer from './containers/OrdersContainer'
-// import ProductContainer from './containers/ProductContainer'
+import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
-// import UserContainer from './containers/UserContainer'
-// import UsersContainer from './containers/UsersContainer'
+import UserContainer from './containers/UserContainer'
+import UsersContainer from './containers/UsersContainer'
 
 
 const onAppEnter = function () {
   Promise.all([
     axios.get('api/users'),
     axios.get('api/products'),
-    axios.get('api/orders')
+    axios.get('api/orders'),
+    axios.get('api/reviews')
   ])
   .then(responses => responses.map(r => r.data))
-  .then(([users, products, orders]) => {
+  .then(([users, products, orders, reviews]) => {
     store.dispatch(receiveUsers(users));
     store.dispatch(receiveProducts(products));
     store.dispatch(receiveOrders(orders));
+    store.dispatch(receiveReviews(reviews))
   })
 }
 
@@ -58,15 +60,19 @@ const onOrderEnter = function (nextRouterState) {
 
 ReactDOM.render(
   <Provider store={store}>
-  	<Router history = {browserHistory}>
+  	<Router history = {hashHistory}>
     <Route path='/landing' component = {Landing} />
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
         <IndexRoute path='/products' component={ProductsContainer} />
         <Route path='/products' component={ProductsContainer} />
+        <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
+        <Route path='/admin' component={UsersContainer} />
+        <Route path='/user/:userId' component={UserContainer} />
+
   	</Route>
 	  </Router>
   </Provider>,
-  document.getElementById('app') // make sure this is the same as the id of the div in your index.html
+  document.getElementById('app') // make sure thisa is the same as the id of the div in your index.html
 );
 
 
