@@ -1,6 +1,6 @@
-import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS } from "../action-creators";
+import { RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
 
-import { receiveUser, receiveUsers, receiveProduct, receiveProducts, receiveOrder, receiveOrders, receiveCart } from "../action-creators";
+// import { receiveUser, receiveUsers, receiveProduct, receiveProducts, receiveOrder, receiveOrders, receiveCart, receiveReviews, receiveReview } from "../action-creators";
 
 const initialState = {
   users: [],
@@ -9,8 +9,11 @@ const initialState = {
   selectedUser: {},
   selectedProduct: {},
   selectOrder: {},
-  cart: []
+  cart: [],
+  reviews: [],
+  selectedReview: {}
 }
+
 export default function (state = initialState, action) {
 
   const newState = Object.assign({}, state);
@@ -39,6 +42,15 @@ export default function (state = initialState, action) {
 
     case RECEIVE_PRODUCT:
       newState.selectedProduct = action.product;
+      break;
+
+
+    case RECEIVE_REVIEWS:
+      newState.reviews = action.reviews;
+      break;
+
+    case RECEIVE_REVIEW:
+      newState.selectedReview = action.review;
       break;
 
     default:

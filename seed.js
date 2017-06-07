@@ -18,12 +18,12 @@ var data = {
 	    {email: "Yahoo@venus.jupiter", firstName: 'Dan', lastName: 'TheMan', address1: '102 One Hundred Two St', address2: '8', city:'Mars', state:'NJ', zipcode:'10563', isAdmin: 'false'},
   	],
   	products: [
-	    {title: "One Fish", description: 'lorem ipsum', region:'North America', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:27.50},
-	    {title: "Two Fish", description: 'lorem ipsum', region:'South America', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:3.99},
-	    {title: "Red Fish", description: 'lorem ipsum', region:'Asia', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:4000.99},
-	    {title: "Blue Fish", description: 'lorem ipsum', region:'Europe', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:.10},
-	    {title: "Orange Fish", description: 'lorem ipsum', region:'Africa', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:.90},
-	    {title: "Shark", description: 'lorem ipsum', region:'Australia', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:100.00},
+	    {title: "One Fish", description: 'A very smug blue fish with arms instead of fins', region:'North America', imageUrl:'https://s-media-cache-ak0.pinimg.com/originals/6e/a6/32/6ea63291143bd6e5122afd2450d85acc.jpg', price:27.50},
+	    {title: "Two Fish", description: 'More than one fish. Tried to get them to split this into two listings but they ignored me.', region:'South America', imageUrl:'http://abacus.bates.edu/~sross/pets/bethsfish.jpg', price:3.99},
+	    {title: "Red Fish", description: 'Not a fish. Please do not buy.', region:'Asia', imageUrl:'http://lorempixel.com/output/animals-q-c-640-480-5.jpg', price:4000.99},
+	    {title: "Blue Fish", description: 'This fish is deceased', region:'Europe', imageUrl:'https://media2.fdncms.com/clevescene/imager/afternoon-brew-dead-fish-beating-cops-apology-for-attempted-robbery-and/u/original/2325377/1297117167-dead-fish.jpg', price:.10},
+	    {title: "Orange Fish", description: 'Bought too many of these in the late 90s. Selling at steep discount.', region:'Africa', imageUrl:'https://pbs.twimg.com/profile_images/3509869132/6e66cb064de4b9ce3d13a544314c57db_400x400.jpeg', price:.90},
+	    {title: "Shark", description: 'My child drew this and wouldn\'t stop screaming until I put it on the site', region:'Australia', imageUrl:'https://68.media.tumblr.com/2b46544962f64861f565f614e33c58be/tumblr_n1zlzfNerc1r4khp7o2_500.png', price:100.00},
    ],
  	carts: [
 	    {userId: 1, productId: 2, quantity: 5},

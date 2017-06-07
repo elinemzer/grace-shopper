@@ -7,6 +7,8 @@ export const RECEIVE_USER = "RECEIVE_USER";
 export const RECEIVE_ORDER = "RECEIVE_ORDER";
 export const RECEIVE_PRODUCT = "RECEIVE_PRODUCT"
 export const RECEIVE_CART = "RECEIVE_CART"
+export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS"
+export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
 
 export const receiveUsers = users => ({
   type: RECEIVE_USERS,
@@ -44,9 +46,20 @@ export const receiveCart = cart => ({
 })
 
 
+export const receiveReviews = reviews => ({
+  type: RECEIVE_REVIEWS,
+  reviews
+})
+
+export const receiveReview = review => ({
+  type: RECEIVE_REVIEW,
+  review
+})
+
+
 export const getUserById = userId => {
   return dispatch => {
-    axios.get(`api/user/${userId}`)
+    axios.get(`/api/user/${userId}`)
     .then(response => {
       dispatch(receiveUser(response.data));
     });
@@ -55,8 +68,9 @@ export const getUserById = userId => {
 
 export const getProductById = productId => {
   return dispatch => {
-    axios.get(`api/product/${productId}`)
+    axios.get(`/api/products/${productId}`)
     .then(response => {
+      console.log(response.data)
       dispatch(receiveProduct(response.data));
     });
   }
@@ -64,9 +78,19 @@ export const getProductById = productId => {
 
 export const getOrderById = orderId => {
   return dispatch => {
-    axios.get(`api/order/${orderId}`)
+    axios.get(`/api/order/${orderId}`)
     .then(response => {
       dispatch(receiveOrder(response.data));
+    });
+  }
+}
+
+
+export const getReviewById = reviewId => {
+  return dispatch => {
+    axios.get(`/api/review/${reviewId}`)
+    .then(response => {
+      dispatch(receiveReview(response.data));
     });
   }
 }
