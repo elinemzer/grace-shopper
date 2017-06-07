@@ -28,7 +28,7 @@ export default function AllProducts (props) {
             <button className='btn btn-danger' id='product-remove'> X </button>
           </div>
           <div className="reviews col-xs-12">
-                {
+                { reviews &&
                   reviews.map((review) =>{
                     return <Review key={review.id}review={review} />
                   })

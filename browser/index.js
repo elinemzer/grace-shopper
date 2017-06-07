@@ -14,7 +14,7 @@ import Landing from './components/Landing'
 // import AppContainer from './containers/AppContainer'
 
 // import AdminOrdersContainer from './containers/AdminOrdersContainer'
-// import CartContainer from './containers/CartContainer'f
+import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
 // import LoginContainer from './containers/LoginContainer'
 // import OrderContainer from './containers/OrderContainer'
@@ -69,7 +69,7 @@ ReactDOM.render(
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
-
+        <Route path='/cart' component={CartContainer} />
   	</Route>
 	  </Router>
   </Provider>,

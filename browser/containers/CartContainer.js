@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import store from '../store';
-import Product from '../components/Product';
+import Cart from '../components/Cart';
 import {connect} from 'react-redux';
 
 
 const mapStateToProps = function(state){
 	return {
-		cart: state.cart
-		})
+		cart: state.selectedUser.products
+		}
 	}
-}
 
-export default connect(mapStateToProps)(Product)
+
+export default connect(mapStateToProps)(Cart)

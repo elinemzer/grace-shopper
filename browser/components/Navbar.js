@@ -43,7 +43,9 @@ export default (props) => {
               </li>
               <li><a href="#">Login</a></li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <span className="glyphicon glyphicon-shopping-cart"></span></a>
+                <Link to='/cart'>
+                  <span className="glyphicon glyphicon-shopping-cart" />
+                </Link>
                 <ul className="dropdown-menu">
                   <li><a href="#">Cart Item 1</a></li>
                   <li><a href="#">Cart Item 2</a></li>
