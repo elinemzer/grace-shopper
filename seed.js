@@ -10,12 +10,12 @@ var Product_Orders = require('./server/models/product_order')
 
 var data = {
 	users: [
-	    {email: "Mars@venus.jupiter", address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
-	    {email: "Space@venus.jupiter", address1: '123 Fake Stt', address2: '', city:'Loudon', state:'NH', zipcode:'10250', isAdmin: 'false'},
-	    {email: "Dogpound@venus.jupiter", address1: '45 Main Ct', address2: 'z12', city:'Austin', state:'TX', zipcode:'13063', isAdmin: 'true'},
-	    {email: "Hello@venus.jupiter", address1: '60 Star Cir', address2: '', city:'Orlando', state:'MD', zipcode:'21122', isAdmin: 'false'},
-	    {email: "Gmail@venus.jupiter", address1: '75 Chalice Dr', address2: 'y15', city:'Baja', state:'NM', zipcode:'30468', isAdmin: 'false'},
-	    {email: "Yahoo@venus.jupiter", address1: '102 One Hundred Two St', address2: '8', city:'Mars', state:'NJ', zipcode:'10563', isAdmin: 'false'},
+	    {email: "Mars@venus.jupiter", firstName: 'Eli', lastName: 'Nemzer', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
+	    {email: "Space@venus.jupiter", firstName: 'Danielle', lastName: 'Westerman', address1: '123 Fake Stt', address2: '', city:'Loudon', state:'NH', zipcode:'10250', isAdmin: 'false'},
+	    {email: "Dogpound@venus.jupiter", firstName: 'Emily', lastName: 'Acres', address1: '45 Main Ct', address2: 'z12', city:'Austin', state:'TX', zipcode:'13063', isAdmin: 'true'},
+	    {email: "Hello@venus.jupiter", firstName: 'Jeremy', lastName: 'Wicks', address1: '60 Star Cir', address2: '', city:'Orlando', state:'MD', zipcode:'21122', isAdmin: 'false'},
+	    {email: "Gmail@venus.jupiter", firstName: 'Hot-Geoff', lastName: 'Bass', address1: '75 Chalice Dr', address2: 'y15', city:'Baja', state:'NM', zipcode:'30468', isAdmin: 'false'},
+	    {email: "Yahoo@venus.jupiter", firstName: 'Dan', lastName: 'TheMan', address1: '102 One Hundred Two St', address2: '8', city:'Mars', state:'NJ', zipcode:'10563', isAdmin: 'false'},
   	],
   	products: [
 	    {title: "One Fish", description: 'A very smug blue fish with arms instead of fins', region:'North America', imageUrl:'https://s-media-cache-ak0.pinimg.com/originals/6e/a6/32/6ea63291143bd6e5122afd2450d85acc.jpg', price:27.50},
