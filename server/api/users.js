@@ -14,7 +14,6 @@ router.get('/:userId', function (req, res, next){
   console.log("getting user by id")
   Users.findById(req.params.userId)
   .then(userFound => {
-    console.log('userFound: ', userFound)
     res.send(userFound)
   })
   .catch(next)
@@ -27,8 +26,13 @@ router.post('/', function (req, res, next){
 });
 // matches PUT requests to /api/users/:userId
 router.put('/:userId', function (req, res, next){
-  req.user.update(req.body)
-  .then(userUpdated => res.send(userUpdated))
+  Users.findById(req.params.userId)
+  .then(userFound => {
+    return userFound.update(req.body)
+  })
+  .then(userUpdated => {
+    res.send(userUpdated)
+  })
   .catch(next)
 });
 // matches DELTE requests to /api/users/:userId
