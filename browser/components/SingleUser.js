@@ -4,6 +4,7 @@ import axios from 'axios'
 
 export default class SingleUser extends Component {
 
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -34,7 +35,7 @@ export default class SingleUser extends Component {
 		const user = this.props.user;
 
 		return(
-		<div>
+		<div className="default-container">
 			<h2>Account Details</h2>
 			<div className="panel panel-default col-md-6">
 			  <div className="panel-body">
@@ -75,5 +76,5 @@ export default class SingleUser extends Component {
 			</div>
 		</div>)
 	}
-
 }
+

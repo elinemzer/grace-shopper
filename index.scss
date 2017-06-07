@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth:400,400i');
+
+.fancy-type {
+    font-family: 'Amaranth', sans-serif;
+}
+
 .fullscreen-bg {
     position: fixed;
     top: 0;
@@ -41,7 +47,9 @@
 img {
     width: 100%
 }
+
 /* NavBar */
+
 #nav {
     color: white;
     background-color: #1c3151;
@@ -105,10 +113,9 @@ img {
 
 /* All products */
 
-#all-products {
+.default-container {
     color: #f2f2f2;
     margin: 150px 5%;
-
 }
 
 #product-tile a {
@@ -122,13 +129,43 @@ img {
     background: rgba(255, 255, 255, 0.3);
     border: 0px;
     font-style: italic;
+    font-family: 'Amaranth', sans-serif;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.7);
 }
 
-#product-tile a p{
+#product-tile a p {
     color: white;
 }
 
-#product-tile-title{
+#product-tile-title {
     font-size: 1.3em;
 }
 
+/* Single Product */
+
+#product-title {
+    margin: 30px 0px 15px 0px;
+}
+
+.region {
+    margin-bottom: 15px;
+}
+
+.price {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#product-add {
+    background-color: #1c3151;
+    border-color: #1c3151;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    margin-right: 5px;
+}
+
+#product-add:hover {
+    background-color: #1c3151;
+    border-color: #1c3151;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    margin-right: 5px;
+}

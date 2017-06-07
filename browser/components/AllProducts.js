@@ -6,8 +6,8 @@ export default function AllProducts (props) {
   const fish = props.products;
 
   return (
-  	<div id="all-products" className="container-fluid">
-      <h3>Pick a tropical fish</h3>
+  	<div className="container-fluid default-container">
+      <h2 className="fancy-type" >Pick a tropical fish</h2>
       <div className="row">
       {
         fish && fish.map(oneFish => (
