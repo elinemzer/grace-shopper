@@ -19,7 +19,7 @@ export default (props) => {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><a href="#">Shop for Fish</a></li>
+              <li><a href="/">Shop for Fish</a></li>
               <li className="dropdown">
                 <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Region <span className="caret"></span></a>
                 <ul className="dropdown-menu">
@@ -41,7 +41,7 @@ export default (props) => {
                   <button id="search-btn" type="submit" className="btn btn-default">Submit</button>
                 </form>
               </li>
-              <li><a href="#">Login</a></li>
+              <li><a className="yellow" href="#">Login</a></li>
               <li className="dropdown">
                 <Link to='/cart'>
                   <span className="glyphicon glyphicon-shopping-cart" />
