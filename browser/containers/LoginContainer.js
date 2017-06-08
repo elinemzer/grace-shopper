@@ -55,17 +55,17 @@ class LoginContainer extends Component{
 	loginUser(event) {
 		event.preventDefault()
 		this.props.loginUser({email: this.state.email, password: this.state.password})
-		hashHistory.push('/')
+		hashHistory.push('/home')
 	}
 
 	signUpUser(event) {
 		event.preventDefault()
-		this.props.signUpUser({email: this.state.email, password: this.state.password})
-		hashHistory.push('/')
+		this.props.signUpUser({email: this.state.email, lastName: this.state.lastName, firstName: this.state.firstName, password: this.state.password})
+		hashHistory.push('/home')
 	}
 
 	render(){
-		return(<Login loginUser={this.loginUser} signUpUser={this.signUpUser} handleEmail={this.handleEmail} handlePassword={this.handlePassword} />
+		return(<Login loginUser={this.loginUser} handleLast={this.handleLast} handleFirst={this.handleFirst} signUpUser={this.signUpUser} handleEmail={this.handleEmail} handlePassword={this.handlePassword} />
 		)
 	}
 
@@ -94,7 +94,9 @@ const mapDispatchToProps = function(dispatch) {
 		signUpUser: (user) => {
 			axios.post('/api/login/signup',{
 				email:user.email,
-				password:user.password
+				password:user.password,
+				firstName: user.firstName,
+				lastName: user.lastName
 			})
 			.then((result) => {
 				return dispatch(loginUser(result.data))
