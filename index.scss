@@ -1,7 +1,18 @@
-@import url('https://fonts.googleapis.com/css?family=Amaranth:400,400i');
+@import url('https://fonts.googleapis.com/css?family=Hind:700|Open+Sans:400,400i');
+$color-yellow: #ffc338;
+$color-navy: #1c3151;;
+
+* {
+    font-family: 'Open Sans', sans-serif;
+}
 
 .fancy-type {
-    font-family: 'Amaranth', sans-serif;
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+}
+
+.yellow {
+    color: $color-yellow !important;
 }
 
 .fullscreen-bg {
@@ -52,9 +63,9 @@ img {
 
 #nav {
     color: white;
-    background-color: #1c3151;
+    background-color: $color-navy;
     border: 0px white;
-    height: 75px;
+    height: 100px;
     width: 101%;
     margin-bottom: 50px;
     margin-top: -5px;
@@ -67,13 +78,15 @@ img {
 }
 
 #nav a {
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
     color: white;
-    margin-top: 10px;
+    margin-top: 25px;
     font-size: 1.3em;
 }
 
 #search {
-    margin-top: 17px;
+    margin-top: 32px;
 }
 
 #search-input {
@@ -86,21 +99,23 @@ img {
     margin-left: 5px;
     border-color: white;
     color: white;
+    text-transform: uppercase;
+    font-family: 'Hind', sans-serif;
 }
 
 #search-btn:hover {
-    color: #1c3151;
-    font-style: italic;
-    background: rgba(255, 255, 255, 0.9)
+    color: $color-yellow;
+    background: $color-navy;
+    box-shadow: inset 0px 0px 30px rgba(0,0,0,0.4);
 }
 
 #nav-logo {
-    background: #1c3151;
+    background: $color-navy;
     position: fixed;
     top: 0;
     left: 43%;
-    width: 140px;
-    height: 140px;
+    width: 160px;
+    height: 160px;
     border-radius: 100%;
     border: 1px white;
     z-index: 2;
