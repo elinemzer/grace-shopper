@@ -8,9 +8,9 @@ const Orders = require('../models/orders')
 
 
 router.get('/:userId', function (req, res, next){
-  console.log("getting user by id")
-  Users.findById(req.params.userId)
+  Users.findById(req.params.userId, {include: [{model: Orders, include: [Products]}]})
   .then(userFound => {
+    console.log('userFound: ', userFound)
     res.send(userFound)
   })
   .catch(next)
