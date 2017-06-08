@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
-  console.log('rendering navbar')
   return (
     <div>
       <div className="row">
@@ -49,6 +48,7 @@ export default (props) => {
                 <li><Link to='/user'>
                     <p className="yellow">{props.user.firstName}'s Account</p>
                     </Link>
+                  <button onClick = {props.logoutUser} className ='btn-danger'>Log Out </button>
                 </li>
                 :
                 <li><Link to='/login'>

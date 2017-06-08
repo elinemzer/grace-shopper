@@ -12,8 +12,14 @@ export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS"
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
 export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
+export const LOGOUT_USER = 'LOGOUT_USER'
 
 /* ACTION CREATORS */
+export const logoutUser = user =>({
+  type: LOGOUT_USER,
+  user: {}
+})
+
 export const loginUser = user => ({
   type: LOGIN_USER,
   user
