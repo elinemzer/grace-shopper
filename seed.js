@@ -73,6 +73,7 @@ var data = {
 	Users.hasMany(Reviews);
 	Users.hasMany(Orders);
 	Products.hasMany(Reviews);
+	Reviews.belongsTo(Users);
 
 
 db.sync({force:true})
