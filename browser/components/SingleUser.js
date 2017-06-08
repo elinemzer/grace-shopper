@@ -90,7 +90,7 @@ export default class SingleUser extends Component {
 		};
 
 		const user = this.props.user;
-		// console.log("USER ORDERS: ", user.orders)
+		console.log("USER ORDERS: ", user.orders)
 
 		return(
 		<div>
@@ -149,10 +149,11 @@ export default class SingleUser extends Component {
 			  </div>
 			</div>
 
+			<h3>Order History</h3>
 			<div className="panel panel-default col-md-6">
-				<h3>Order History</h3>
 				{
-					(user.orders) ? user.orders.map(order => {
+					console.log(this.state.orders)
+					(this.state.orders) ? user.orders.map(order => {
 						<ul class="list-group">
 						  <li class="list-group-item">Order placed on {order.datePlaced} </li>
 						  <li class="list-group-item">Dapibus ac facilisis in</li>
