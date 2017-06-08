@@ -10,9 +10,15 @@ export const RECEIVE_PRODUCT = "RECEIVE_PRODUCT"
 export const RECEIVE_CART = "RECEIVE_CART"
 export const RECEIVE_REVIEWS = "RECEIVE_REVIEWS"
 export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
+export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 
 /* ACTION CREATORS */
+export const loginUser = user => ({
+  type: LOGIN_USER,
+  user
+})
+
 export const receiveUsers = users => ({
   type: RECEIVE_USERS,
   users

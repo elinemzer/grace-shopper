@@ -4,7 +4,7 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const db = require('./db');
-
+const Users = require('./models/users')
 //passport for our db session
 const passport = require('passport');
 
@@ -45,7 +45,7 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser((id, done) => {
-  User.findById(id)
+  Users.findById(id)
     .then(user => done(null, user))
     .catch(done);
 });

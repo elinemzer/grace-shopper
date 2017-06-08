@@ -9,15 +9,17 @@ router.post('/login', (req, res, next) => {
   })
     .then(user => {
       if (!user) res.status(401).send('User not found');
-      else if (!user.hasMatchingPassword(req.body.password)) {
+      else if (!user.correctPassword(req.body.password)) {
         res.status(401).send('Incorrect password')
       } else {
+        req.session.userId = user.id
         req.login(user, err => {
           if (err) next(err);
           else res.json(user);
         });
       }
     })
+
     .catch(next);
 });
 
@@ -28,6 +30,15 @@ router.post('/signup', (req, res, next) => {
         if (err) next(err);
         else res.json(user);
       });
+    })
+    .then((user)=>{
+      if(!user){
+        res.sendStatus(401);
+      } else {
+        req.session.userId = user.id
+        res.sendStatus(200)
+      }
+
     })
     .catch(next);
 });
