@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 import Navbar from '../components/Navbar'
+import {connect} from 'react-redux';
 
-export default class AppContainer extends Component {
+class AppContainer extends Component {
 
   constructor(props){
     super(props);
@@ -17,7 +18,7 @@ export default class AppContainer extends Component {
             <source src="files/img/productbg.mp4" type="video/mp4" />
         </video>
       </div>
-        <Navbar />
+        <Navbar user={this.props.loggedInUser} />
         
         <div className="col-xs-12">
 
@@ -27,3 +28,12 @@ export default class AppContainer extends Component {
     )
   }
 }
+
+
+const mapStateToProps = function(state){
+  return {
+    loggedInUser: state.loggedInUser
+    }
+}
+
+export default connect(mapStateToProps)(AppContainer)

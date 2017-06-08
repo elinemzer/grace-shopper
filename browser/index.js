@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import { loginUser, receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios'
 
@@ -16,7 +16,7 @@ import Landing from './components/Landing'
 // import AdminOrdersContainer from './containers/AdminOrdersContainer'
 import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
-// import LoginContainer from './containers/LoginContainer'
+import LoginContainer from './containers/LoginContainer'
 // import OrderContainer from './containers/OrderContainer'
 // import OrdersContainer from './containers/OrdersContainer'
 import ProductContainer from './containers/ProductContainer'
@@ -30,14 +30,16 @@ const onAppEnter = function () {
     axios.get('api/users'),
     axios.get('api/products'),
     axios.get('api/orders'),
-    axios.get('api/reviews')
+    axios.get('api/reviews'),
+    axios.get('/api/auth/me')
   ])
   .then(responses => responses.map(r => r.data))
-  .then(([users, products, orders, reviews]) => {
+  .then(([users, products, orders, reviews, loggedInUser]) => {
     store.dispatch(receiveUsers(users));
     store.dispatch(receiveProducts(products));
     store.dispatch(receiveOrders(orders));
-    store.dispatch(receiveReviews(reviews))
+    store.dispatch(receiveReviews(reviews));
+    store.dispatch(loginUser(loggedInUser))
   })
 }
 
@@ -70,6 +72,7 @@ ReactDOM.render(
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart' component={CartContainer} />
+        <Route path='/login' component={LoginContainer} />
   	</Route>
 	  </Router>
   </Provider>,

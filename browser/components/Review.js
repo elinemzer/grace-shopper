@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function AllProducts (props) {
+export default function AllReviews (props) {
 	
   const review = props.review;
 	

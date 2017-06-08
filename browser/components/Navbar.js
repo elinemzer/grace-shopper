@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
+  console.log('rendering navbar')
   return (
     <div>
       <div className="row">
@@ -41,7 +42,19 @@ export default (props) => {
                   <button id="search-btn" type="submit" className="btn btn-default">Submit</button>
                 </form>
               </li>
-              <li><a href="#">Login</a></li>
+              {
+                props.user &&
+                props.user.email?
+                <li><Link to='/user'> 
+                    <p>{props.user.firstName}'s Account</p> 
+                    </Link>
+                </li>
+                :
+                <li><Link to='/login'> 
+                    <p>Login</p> 
+                    </Link>
+                </li>
+              }
               <li className="dropdown">
                 <Link to='/cart'>
                   <span className="glyphicon glyphicon-shopping-cart" />
