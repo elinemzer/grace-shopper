@@ -14,7 +14,8 @@ export default class SingleUser extends Component {
 			address2: this.props.user.address2,
 			city: this.props.user.city,
 			state:this.props.user.state,
-			zipcode: this.props.user.zipcode
+			zipcode: this.props.user.zipcode,
+			orders: this.props.user.orders
 		}
 		this.editEmailClick = this.editEmailClick.bind(this);
 		this.submitEmailButton = this.submitEmailButton.bind(this);
@@ -89,6 +90,7 @@ export default class SingleUser extends Component {
 		};
 
 		const user = this.props.user;
+		// console.log("USER ORDERS: ", user.orders)
 
 		return(
 		<div>
@@ -144,13 +146,24 @@ export default class SingleUser extends Component {
 					</div>
 			    
 			    }
-
-
-
-			    
-
-
 			  </div>
+			</div>
+
+			<div className="panel panel-default col-md-6">
+				<h3>Order History</h3>
+				{
+					(user.orders) ? user.orders.map(order => {
+						<ul class="list-group">
+						  <li class="list-group-item">Order placed on {order.datePlaced} </li>
+						  <li class="list-group-item">Dapibus ac facilisis in</li>
+						  <li class="list-group-item">Morbi leo risus</li>
+						  <li class="list-group-item">Porta ac consectetur ac</li>
+						  <li class="list-group-item">Vestibulum at eros</li>
+						</ul>
+					})
+					: <h4>No past orders!</h4>					
+				}
+
 			</div>
 		</div>)
 	}
