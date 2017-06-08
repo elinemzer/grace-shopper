@@ -16,7 +16,6 @@ export default class SingleUser extends Component {
 			city: this.props.user.city,
 			state: this.props.user.state,
 			zipcode: this.props.user.zipcode,
-			orders: this.props.userOrders
 		}
 		this.editEmailClick = this.editEmailClick.bind(this);
 		this.submitEmailButton = this.submitEmailButton.bind(this);
@@ -28,7 +27,6 @@ export default class SingleUser extends Component {
 		this.onChangeState = this.onChangeState.bind(this);
 		this.onChangeZipcode = this.onChangeZipcode.bind(this);
 		this.submitAddressButton = this.submitAddressButton.bind(this);
-		console.log("orders on local state: ", this.state.orders)
 	}
 
 
@@ -74,12 +72,14 @@ export default class SingleUser extends Component {
 		};
 
 		const user = this.props.user;
-		console.log("USER ORDERS: ", user.orders)
+		console.log('userOrder: ', user.Orders)
 
 		return(
 		<div className="default-container">
+		<div className="row">
+		<div className="col-md-6">
 			<h2>Account Details</h2>
-			<div className="panel panel-default col-md-6">
+			<div className="panel panel-default">
 			  <div className="panel-body" style={{color: '#1c3151' }}>
 			    <h4>Name: {user.firstName} {user.lastName}</h4>
 			    {
@@ -98,60 +98,61 @@ export default class SingleUser extends Component {
 					</span>
 					</div>
 			    }
-
 			    {
 			    	(!this.state.editAddress) ?
 			    	<div>
-			    	<h4>Shipping Address:  <span onClick={this.editAddressClick} style={editStyle}> edit </span> </h4>
-					    <h5> {user.address1} </h5>
-					    {(user.address2) ? <h5> {user.address2} </h5> : null}
-					    <h5> {user.city}, {user.state} {user.zipcode} </h5>
-			    	</div> :
-
-			    	<div>
-			    	<h4>Shipping Address: </h4>
-			    	<span className="input-group">
-			    		<form onSubmit={this.submitAddressButton} >
-						  <p>Address Line 1</p>
-						  <input id="a1" type="text" className="form-control col-md-2" onChange={this.onChangeAddress1} defaultValue={user.address1} aria-describedby="basic-addon1" />
-						  <p>Address Line 2</p>
-						  <input id="a2" type="text" className="form-control col-md-2" onChange={this.onChangeAddress2} defaultValue={user.address2} aria-describedby="basic-addon1" />
-						  <p>City</p>
-						  <input id="city" type="text" className="form-control col-md-2" onChange={this.onChangeCity} defaultValue={user.city} aria-describedby="basic-addon1" />
-						  <p>State</p>
-						  <input id="state" type="text" className="form-control col-md-2" onChange={this.onChangeState} defaultValue={user.state} aria-describedby="basic-addon1" />
-						  <p>Zipcode</p>
-						  <input id="zip" type="text" className="form-control col-md-2" onChange={this.onChangeZipcode} defaultValue={user.zipcode} aria-describedby="basic-addon1" />
-						  <span className="input-group-btn">
-					        <button className="btn btn-default" type="submit">Change Address</button>
-					      </span>
-					      </form>
-					</span>
+				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} style={editStyle}> edit </span> </h4>
+						    <h5> {user.address1} </h5>
+						    {(user.address2) ? <h5> {user.address2} </h5> : null}
+						    <h5> {user.city}, {user.state} {user.zipcode} </h5>
+				    </div>
+						: <div>
+					    	<h4>Shipping Address: </h4>
+					    	<span className="input-group">
+					    		<form onSubmit={this.submitAddressButton} >
+									  <p>Address Line 1</p>
+									  <input id="a1" type="text" className="form-control col-md-2" onChange={this.onChangeAddress1} defaultValue={user.address1} aria-describedby="basic-addon1" />
+									  <p>Address Line 2</p>
+									  <input id="a2" type="text" className="form-control col-md-2" onChange={this.onChangeAddress2} defaultValue={user.address2} aria-describedby="basic-addon1" />
+									  <p>City</p>
+									  <input id="city" type="text" className="form-control col-md-2" onChange={this.onChangeCity} defaultValue={user.city} aria-describedby="basic-addon1" />
+									  <p>State</p>
+									  <input id="state" type="text" className="form-control col-md-2" onChange={this.onChangeState} defaultValue={user.state} aria-describedby="basic-addon1" />
+									  <p>Zipcode</p>
+									  <input id="zip" type="text" className="form-control col-md-2" onChange={this.onChangeZipcode} defaultValue={user.zipcode} aria-describedby="basic-addon1" />
+										  <span className="input-group-btn">
+									        <button className="btn btn-default" type="submit">Change Address</button>
+								      </span>
+							    </form>
+							</span>
 					</div>
-
 			    }
 			  </div>
+				</div>
 			</div>
 
-			<h2>Order History</h2>
-			<div className="panel panel-default col-md-6">
 
+			<div className="col-md-6">
+			<h2>Order History</h2>
+				<div className="panel panel-default">
+				  <div className="panel-body" style={{color: '#1c3151' }}>
+					{
+						(user.Orders) ? user.Orders.map((order, idx1) => {
+							return (
+								<ul key={idx1} className="list-group">
+								<li className="list-group-item"><h3>Order Placed On: {order.datePlaced.slice(0,10)} </h3></li>
+								  {order.Products.map((product, idx) => {
+											return (<li key={idx} className="list-group-item"><span className="col-md-4">Your Fish: {product.title} </span><span className="col-md-4">Quantity: {product.Product_order.quantity}</span><span className="col-md-4">Price: {product.Product_order.price}</span></li>)
+										})
+									}
+								</ul>)
+						})
+						: <h4>No past orders!</h4>
+					}
+    		</div>
+    	</div>
+			</div>
 			</div>
 		</div>)
 	}
 }
-
-// {
-// 	(this.state.orders) ? user.orders.map(order => {
-// 		return (
-// 			<ul class="list-group">
-// 			<li class="list-group-item">Order placed on {order.datePlaced} </li>
-// 			<li class="list-group-item">Dapibus ac facilisis in</li>
-// 			<li class="list-group-item">Morbi leo risus</li>
-// 			<li class="list-group-item">Porta ac consectetur ac</li>
-// 			<li class="list-group-item">Vestibulum at eros</li>
-// 			</ul>
-// 		)
-// 	})
-// 	: <h4>No past orders!</h4>
-// }

@@ -67,7 +67,7 @@ ReactDOM.render(
   	<Router history = {hashHistory}>
     <Route path='/landing' component = {Landing} />
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
-        <IndexRoute path='/products' component={ProductsContainer} />
+        <IndexRoute component={ProductsContainer} />
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
