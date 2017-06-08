@@ -9,7 +9,7 @@ $color-darkyellow: #e2b42d;
 
 .default-container {
     color: #f2f2f2;
-    margin: 200px 5%;
+    margin: 180px 5%;
 }
 
 .fancy-type {
@@ -19,7 +19,7 @@ $color-darkyellow: #e2b42d;
 
 .yellow {
     color: $color-yellow !important;
-      font-family: 'Hind', sans-serif;
+    font-family: 'Hind', sans-serif;
     text-transform: uppercase;
 }
 
@@ -177,12 +177,19 @@ img {
 
 /* All products */
 
+#products-title {
+    text-align: center;
+    font-size: 3em;
+    margin-bottom: 15px;
+}
 
 #product-tile a {
+    margin-top: 15px;
     background: rgba(255, 255, 255, 0.3);
     border: 0px;
     text-decoration: none;
     box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    min-height: 510px;
 }
 
 #product-tile a:hover {
@@ -222,26 +229,50 @@ img {
     margin-bottom: 15px;
 }
 
+#field-notes {
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+}
+
+.description {
+    line-height: 1.5;
+}
+
 .price {
     margin-top: 30px;
-    margin-bottom: 15px;
+    margin-bottom: 25px;
+    font-size: 1.5em;
 }
 
 #product-add {
-    background-color: #1c3151;
-    border-color: #1c3151;
+    background-color: $color-darkyellow;
     box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
-    margin-right: 5px;
+    min-height: 40px;
+    min-width: 40px;
 }
 
 #product-add:hover {
-    background-color: #1c3151;
-    border-color: #1c3151;
+    box-shadow: inset 0px 0px 20px rgba(0,0,0, 0.3);
+}
+
+#product-delete {
+    margin-left: 5px;
+    background-color: #D9534F;
     box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
-    margin-right: 5px;
+    min-height: 40px;
+    min-width: 40px;
+}
+
+#product-delete:hover {
+    box-shadow: inset 0px 0px 20px rgba(0,0,0, 0.3);
+}
+
+#single-product-img {
+    border-radius: 5px;
 }
 
 /* Home */
+
 #home-page img{
     width: 108%;
     margin-left: -5%;
@@ -288,4 +319,57 @@ img {
     font-size: 1.3em;
     font-family: 'Hind', sans-serif;
     text-transform: uppercase;
+}
+
+/* LOGIN */
+
+.signup-names {
+    display: inline-block;
+    width: 49%;
+}
+
+.signup {
+    text-align: right;
+}
+
+
+.form-title {
+    margin-bottom: 0px;
+}
+
+.form-subtitle {
+    margin-top: 0px;
+    text-transform: uppercase;
+    font-size: 2.2em;
+    color: $color-yellow;
+}
+
+.login-btn {
+    margin-top: 15px;
+    background-color: $color-yellow;
+    border: none;
+    border-radius: 3px !important;
+    text-transform: uppercase;
+}
+
+.login-btn:hover {
+    background-color: $color-darkyellow;
+    color: white;
+}
+
+.line {
+    border-right: 1px white;
+}
+
+.login-container {
+    color: #f2f2f2;
+    margin: 180px 10%;
+}
+
+#last-name {
+    margin-left: 2%;
+}
+
+.form-spacing {
+    margin-top: 15px;
 }

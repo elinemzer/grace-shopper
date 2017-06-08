@@ -1,4 +1,4 @@
-import { LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
+import { LOGOUT_USER, LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
 
 // import { receiveUser, receiveUsers, receiveProduct, receiveProducts, receiveOrder, receiveOrders, receiveCart, receiveReviews, receiveReview } from "../action-creators";
 
@@ -20,6 +20,10 @@ export default function (state = initialState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
+
+    case LOGOUT_USER:
+      newState.loggedInUser = action.user;
+      break;
 
     case RECEIVE_USERS:
       newState.users = action.users;

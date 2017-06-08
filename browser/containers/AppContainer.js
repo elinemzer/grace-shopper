@@ -3,7 +3,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import Navbar from '../components/Navbar'
 import {connect} from 'react-redux';
-
+import { logoutUser} from '../action-creators'
 class AppContainer extends Component {
 
   constructor(props){
@@ -18,7 +18,7 @@ class AppContainer extends Component {
             <source src="files/img/productbg.mp4" type="video/mp4" />
         </video>
       </div>
-        <Navbar user={this.props.loggedInUser} />
+        <Navbar logoutUser={this.props.logoutUser} user={this.props.loggedInUser} />
         
         <div className="col-xs-12">
 
@@ -36,4 +36,17 @@ const mapStateToProps = function(state){
     }
 }
 
-export default connect(mapStateToProps)(AppContainer)
+const mapDispatchToProps = function(dispatch) {
+  return {
+    logoutUser: () => {
+      console.log('logout user clicked')
+      axios.post('/api/login/logout')
+      .then(()=>{
+        return dispatch(logoutUser())
+      })
+
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppContainer)
