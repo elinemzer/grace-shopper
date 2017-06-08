@@ -14,7 +14,8 @@ export default function Landing () {
           <div className="col-lg-5">
           </div>
           <div className="col-lg-2">
-            <img src="/files/img/logo.png" />
+            <img className="landing-img" src="/files/img/logo.png" />
+            <Link to="/"><h3 id="landing-shop">Shop Fish</h3></Link>
           </div>
           <div className="col-lg-5">
           </div>
