@@ -30,6 +30,14 @@ export default class SingleUser extends Component {
 	}
 
 
+  calculateOrderTotal(order) {
+		let total = 0;
+		order.Products.map(product => {
+			total += product.Product_order.price * product.Product_order.quantity
+		})
+		return total.toFixed(2);
+	}
+
 	editEmailClick() {this.setState({'editEmail': true});}
 
 	editAddressClick() {this.setState({'editAddress': true})}
@@ -78,7 +86,7 @@ export default class SingleUser extends Component {
 		<div className="default-container">
 		<div className="row">
 		<div className="col-md-6">
-			<h2>Account Details</h2>
+			<h2 className="fancy-type"> Account Details</h2>
 			<div className="panel panel-default">
 			  <div className="panel-body" style={{color: '#1c3151' }}>
 			    <h4>Name: {user.firstName} {user.lastName}</h4>
@@ -133,7 +141,7 @@ export default class SingleUser extends Component {
 
 
 			<div className="col-md-6">
-			<h2>Order History</h2>
+			<h2 className="fancy-type">Order History</h2>
 				<div className="panel panel-default">
 				  <div className="panel-body" style={{color: '#1c3151' }}>
 					{
@@ -142,9 +150,10 @@ export default class SingleUser extends Component {
 								<ul key={idx1} className="list-group">
 								<li className="list-group-item"><h3>Order Placed On: {order.datePlaced.slice(0,10)} </h3></li>
 								  {order.Products.map((product, idx) => {
-											return (<li key={idx} className="list-group-item"><span className="col-md-4">Your Fish: {product.title} </span><span className="col-md-4">Quantity: {product.Product_order.quantity}</span><span className="col-md-4">Price: {product.Product_order.price}</span></li>)
+											return (<li key={idx} className="list-group-item"><p><span className="col-md-4" style={{'text-align': 'left'}}>{product.title} </span><span className="col-md-4" style={{'text-align': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'text-align': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
 										})
 									}
+									<li className="list-group-item" style={{'text-align': 'right'}}><p>Order Total: ${this.calculateOrderTotal(order)} </p></li>
 								</ul>)
 						})
 						: <h4>No past orders!</h4>
