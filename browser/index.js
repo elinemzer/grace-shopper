@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import { receiveProducts, receiveUsers, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import { receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios'
 
@@ -45,6 +45,7 @@ const onUserEnter = function (nextRouterState) {
   console.log("entering!")
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
+  // store.dispatch(getUsersOrders(userId));
 }
 
 const onProductEnter = function (nextRouterState) {

@@ -2,7 +2,7 @@ const db = require('../db');
 const Sequelize = require('sequelize');
 const products = require('./products')
 
-const orders = db.define('order', {
+const orders = db.define('Order', {
 	status: {
 		type: Sequelize.ENUM('Created', 'Processing', 'Cancelled', 'Completed')
 	},
