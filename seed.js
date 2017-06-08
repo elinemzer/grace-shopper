@@ -10,12 +10,12 @@ var Product_Orders = require('./server/models/product_order')
 
 var data = {
 	users: [
-	    {email: "Mars@venus.jupiter", firstName: 'Eli', lastName: 'Nemzer', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
-	    {email: "Space@venus.jupiter", firstName: 'Danielle', lastName: 'Westerman', address1: '123 Fake Stt', address2: '', city:'Loudon', state:'NH', zipcode:'10250', isAdmin: 'false'},
-	    {email: "Dogpound@venus.jupiter", firstName: 'Emily', lastName: 'Acres', address1: '45 Main Ct', address2: 'z12', city:'Austin', state:'TX', zipcode:'13063', isAdmin: 'true'},
-	    {email: "Hello@venus.jupiter", firstName: 'Jeremy', lastName: 'Wicks', address1: '60 Star Cir', address2: '', city:'Orlando', state:'MD', zipcode:'21122', isAdmin: 'false'},
-	    {email: "Gmail@venus.jupiter", firstName: 'Hot-Geoff', lastName: 'Bass', address1: '75 Chalice Dr', address2: 'y15', city:'Baja', state:'NM', zipcode:'30468', isAdmin: 'false'},
-	    {email: "Yahoo@venus.jupiter", firstName: 'Dan', lastName: 'TheMan', address1: '102 One Hundred Two St', address2: '8', city:'Mars', state:'NJ', zipcode:'10563', isAdmin: 'false'},
+	    {email: "Mars@venus.jupiter", password: "123", firstName: 'Eli', lastName: 'Nemzer', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
+	    {email: "Space@venus.jupiter", password: "123", firstName: 'Danielle', lastName: 'Westerman', address1: '123 Fake Stt', address2: '', city:'Loudon', state:'NH', zipcode:'10250', isAdmin: 'false'},
+	    {email: "Dogpound@venus.jupiter", password: "123", firstName: 'Emily', lastName: 'Acres', address1: '45 Main Ct', address2: 'z12', city:'Austin', state:'TX', zipcode:'13063', isAdmin: 'true'},
+	    {email: "Hello@venus.jupiter", password: "123", firstName: 'Jeremy', lastName: 'Wicks', address1: '60 Star Cir', address2: '', city:'Orlando', state:'MD', zipcode:'21122', isAdmin: 'false'},
+	    {email: "Gmail@venus.jupiter", password: "123", firstName: 'Hot-Geoff', lastName: 'Bass', address1: '75 Chalice Dr', address2: 'y15', city:'Baja', state:'NM', zipcode:'30468', isAdmin: 'false'},
+	    {email: "Yahoo@venus.jupiter", password: "123", firstName: 'Dan', lastName: 'TheMan', address1: '102 One Hundred Two St', address2: '8', city:'Mars', state:'NJ', zipcode:'10563', isAdmin: 'false'},
   	],
   	products: [
 	    {title: "One Fish", description: 'A very smug blue fish with arms instead of fins', region:'North America', imageUrl:'https://s-media-cache-ak0.pinimg.com/originals/6e/a6/32/6ea63291143bd6e5122afd2450d85acc.jpg', price:27.50},
@@ -28,9 +28,9 @@ var data = {
  	carts: [
 	    {userId: 1, productId: 2, quantity: 5},
 	    {userId: 2, productId: 1, quantity: 3},
-	    {userId: 4, productId: 3, quantity: 2}, 
+	    {userId: 4, productId: 3, quantity: 2},
 	    {userId: 5, productId: 2, quantity: 2},
-	    {userId: 3, productId: 1, quantity: 10}, 
+	    {userId: 3, productId: 1, quantity: 10},
 	    {userId: 2, productId: 2, quantity: 1},
 
   	],
@@ -63,8 +63,8 @@ var data = {
    ]
 };
 
-    Orders.belongsToMany(Products, {through: 'product_order'});
-    Products.belongsToMany(Orders, {through: 'product_order'});
+  Orders.belongsToMany(Products, {through: 'product_order'});
+  Products.belongsToMany(Orders, {through: 'product_order'});
 
 
 	Products.belongsToMany(Users, {through: 'cart'});
@@ -72,36 +72,35 @@ var data = {
 
 	Users.hasMany(Reviews);
 	Users.hasMany(Orders);
-
 	Products.hasMany(Reviews);
 
 
 db.sync({force:true})
-.then(function () {
+.then(function() {
   console.log("Dropped old data, now inserting data");
   const creatingUsers = Promise.map(data.users, function (user) {
     return Users.create(user);
   });
-  const creatingProducts= Promise.map(data.products, function (item) {
+  return Promise.all(creatingUsers)
+})
+.then(function () {
+  const creatingProducts = Promise.map(data.products, function (item) {
     return Products.create(item);
   })
-  const creatingCarts= Promise.map(data.carts, function (item) {
+  const creatingCarts = Promise.map(data.carts, function (item) {
     return Carts.create(item);
   })
-  const creatingOrders= Promise.map(data.orders, function (item) {
+  const creatingOrders = Promise.map(data.orders, function (item) {
     return Orders.create(item);
   })
-  const creatingReviews= Promise.map(data.reviews, function (item) {
+  const creatingReviews = Promise.map(data.reviews, function (item) {
     return Reviews.create(item);
   })
-  const creatingProduct_Orders= Promise.map(data.product_order, function (item) {
+  const creatingProduct_Orders = Promise.map(data.product_order, function (item) {
     return Product_Orders.create(item);
   })
-
-
-  return Promise.all([creatingUsers, creatingProducts,
-  						creatingCarts, creatingOrders,
-  						creatingReviews, creatingProduct_Orders]);
+    return Promise.all([creatingProducts, creatingOrders, creatingCarts, creatingReviews, creatingProduct_Orders
+    ]);
 })
 .then(function () {
   console.log('Finished inserting data');
