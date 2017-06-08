@@ -14,9 +14,9 @@ export default class SingleUser extends Component {
 			address1: this.props.user.address1,
 			address2: this.props.user.address2,
 			city: this.props.user.city,
-			state:this.props.user.state,
+			state: this.props.user.state,
 			zipcode: this.props.user.zipcode,
-			orders: this.props.user.orders
+			orders: this.props.userOrders
 		}
 		this.editEmailClick = this.editEmailClick.bind(this);
 		this.submitEmailButton = this.submitEmailButton.bind(this);
@@ -28,22 +28,18 @@ export default class SingleUser extends Component {
 		this.onChangeState = this.onChangeState.bind(this);
 		this.onChangeZipcode = this.onChangeZipcode.bind(this);
 		this.submitAddressButton = this.submitAddressButton.bind(this);
+		console.log("orders on local state: ", this.state.orders)
 	}
 
 
-	editEmailClick() {
-		this.setState({'editEmail': true});
-	}
+	editEmailClick() {this.setState({'editEmail': true});}
 
-	editAddressClick() {
-		this.setState({'editAddress': true})
-	}
+	editAddressClick() {this.setState({'editAddress': true})}
 
 	submitEmailButton(evt) {
 		evt.preventDefault();
 		this.props.submitEmail(this.state.email, this.props.user.id);
 		this.setState({'editEmail': false})
-
 	}
 
 	submitAddressButton(evt) {
@@ -57,32 +53,19 @@ export default class SingleUser extends Component {
 		}
 		this.props.submitAddress(bodyObj, this.props.user.id);
 		this.setState({'editAddress': false})
-
 	}
 
-	onChangeEmail(evt) {
-		this.setState({'email': evt.target.value})
-	}
+	onChangeEmail(evt) {this.setState({'email': evt.target.value})}
 
-	onChangeAddress1(evt) {
-		this.setState({'address1': evt.target.value})
-	}
+	onChangeAddress1(evt) {this.setState({'address1': evt.target.value})}
 
-	onChangeAddress2(evt) {
-		this.setState({'address2': evt.target.value})
-	}
+	onChangeAddress2(evt) {this.setState({'address2': evt.target.value})}
 
-	onChangeCity(evt) {
-		this.setState({'city': evt.target.value})
-	}
+	onChangeCity(evt) {this.setState({'city': evt.target.value})}
 
-	onChangeState(evt) {
-		this.setState({'state': evt.target.value})
-	}
+	onChangeState(evt) {this.setState({'state': evt.target.value})}
 
-	onChangeZipcode(evt) {
-		this.setState({'zipcode': evt.target.value})
-	}
+	onChangeZipcode(evt) {this.setState({'zipcode': evt.target.value})}
 
 	render() {
 		const editStyle = {
@@ -97,12 +80,12 @@ export default class SingleUser extends Component {
 		<div className="default-container">
 			<h2>Account Details</h2>
 			<div className="panel panel-default col-md-6">
-			  <div className="panel-body">
+			  <div className="panel-body" style={{color: '#1c3151' }}>
 			    <h4>Name: {user.firstName} {user.lastName}</h4>
 			    {
 			    	(!this.state.editEmail) ?
-			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} style={editStyle}> edit </span> </h4> 
-			    	: 
+			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} style={editStyle}> edit </span> </h4>
+			    	:
 			    	<div>
 			    	<h4>Email: </h4>
 			    	<span className="input-group">
@@ -123,7 +106,7 @@ export default class SingleUser extends Component {
 					    <h5> {user.address1} </h5>
 					    {(user.address2) ? <h5> {user.address2} </h5> : null}
 					    <h5> {user.city}, {user.state} {user.zipcode} </h5>
-			    	</div> : 
+			    	</div> :
 
 			    	<div>
 			    	<h4>Shipping Address: </h4>
@@ -145,29 +128,30 @@ export default class SingleUser extends Component {
 					      </form>
 					</span>
 					</div>
-			    
+
 			    }
 			  </div>
 			</div>
 
-			<h3>Order History</h3>
+			<h2>Order History</h2>
 			<div className="panel panel-default col-md-6">
-				{
-					console.log(this.state.orders)
-					(this.state.orders) ? user.orders.map(order => {
-						<ul class="list-group">
-						  <li class="list-group-item">Order placed on {order.datePlaced} </li>
-						  <li class="list-group-item">Dapibus ac facilisis in</li>
-						  <li class="list-group-item">Morbi leo risus</li>
-						  <li class="list-group-item">Porta ac consectetur ac</li>
-						  <li class="list-group-item">Vestibulum at eros</li>
-						</ul>
-					})
-					: <h4>No past orders!</h4>					
-				}
 
 			</div>
 		</div>)
 	}
 }
 
+// {
+// 	(this.state.orders) ? user.orders.map(order => {
+// 		return (
+// 			<ul class="list-group">
+// 			<li class="list-group-item">Order placed on {order.datePlaced} </li>
+// 			<li class="list-group-item">Dapibus ac facilisis in</li>
+// 			<li class="list-group-item">Morbi leo risus</li>
+// 			<li class="list-group-item">Porta ac consectetur ac</li>
+// 			<li class="list-group-item">Vestibulum at eros</li>
+// 			</ul>
+// 		)
+// 	})
+// 	: <h4>No past orders!</h4>
+// }

@@ -1,5 +1,6 @@
 import axios from "axios";
 
+/* CONSTANTS - ACTION TYPES */
 export const RECEIVE_USERS = "RECEIVE_USERS";
 export const RECEIVE_ORDERS = "RECEIVE_ORDERS";
 export const RECEIVE_PRODUCTS = "RECEIVE_PRODUCTS"
@@ -12,6 +13,7 @@ export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
 export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 
+/* ACTION CREATORS */
 export const loginUser = user => ({
   type: LOGIN_USER,
   user
@@ -63,7 +65,7 @@ export const receiveReview = review => ({
   review
 })
 
-
+/* ASYNC THUNK ACTION CREATORS */
 export const getUserById = userId => {
   return dispatch => {
     axios.get(`/api/users/${userId}`)
@@ -116,3 +118,11 @@ export const updateUser = (userId, bodyObj) => {
   }
 }
 
+// export const getUsersOrders = userId => {
+//   return dispatch => {
+//     axios.get(`/api/orders/users/${userId}`)
+//     .then(ordersForUser => {
+//       dispatch(receiveOrders(ordersForUser.data))
+//     })
+//   }
+// }

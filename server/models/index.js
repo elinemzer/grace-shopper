@@ -1,28 +1,33 @@
 const Sequelize = require('sequelize');
 
-const users = require('./users');
-const products = require('./products');
-const reviews = require('./reviews');
-const orders = require('./orders');
-const carts = require('./cart.js');
-const product_order = require('./product_order');
+const Users = require('./users');
+const Products = require('./products');
+const Reviews = require('./reviews');
+const Orders = require('./orders');
+const Carts = require('./cart.js');
+const Product_order = require('./product_order');
 const db = require('../db')
 
 
 
 //product_order join table
-orders.belongsToMany(products, {through: 'product_order'});
-products.belongsToMany(orders, {through: 'product_order'});
+Orders.belongsToMany(Products, {through: 'Product_order'});
+Products.belongsToMany(Orders, {through: 'Product_order'});
 
 // product_cart join table
-products.belongsToMany(users, {through: 'cart'});
-users.belongsToMany(products, {through: 'cart'});
+Products.belongsToMany(Users, {through: 'Cart'});
+Users.belongsToMany(Products, {through: 'Cart'});
 
-users.hasMany(reviews);
-reviews.belongsTo(users);
-users.hasMany(orders);
+Users.hasMany(Reviews);
+Reviews.belongsTo(Users);
 
-products.hasMany(reviews);
+Users.hasMany(Orders);
+Orders.belongsTo(Users);
+
+Products.hasMany(Reviews);
+
+module.exports = {Orders, Products, Reviews,
+                  Users, Carts, Product_order};
 
 // var syncedDbPromise = db.sync();
 
@@ -32,4 +37,3 @@ products.hasMany(reviews);
 
 
 //module.exports = syncedDbPromise;
-
