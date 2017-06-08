@@ -6,7 +6,12 @@ import {updateUser} from '../action-creators'
 
 const mapStateToProps = function(state) {
 	return {
-		user: state.selectedUser
+		user: state.selectedUser,
+		userOrders: state.orders.filter(order => {
+			console.log('order', order)
+			console.log(order.getUser())
+			return order.userId === state.selectedUser.id
+		})
 	}
 }
 

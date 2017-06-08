@@ -11,7 +11,12 @@ router.param('order', function(req, res, next, id){
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
   Orders.findAll()
-  .then(ordersFound => res.send(ordersFound))
+  .then(ordersFound => {
+    let order = ordersFound[0];
+    // console.log('orders found on api route: ', ordersFound)
+    console.log(order.getUser());
+    res.send(ordersFound)
+  })
   .catch(next)
 });
 
@@ -19,6 +24,18 @@ router.get('/:orderId', function (req, res, next){
   Orders.findById(req.params.orderId)
   .then(orderFound => {
     res.send(orderFound)
+  })
+  .catch(next)
+});
+
+router.get('/users/:userId', function (req, res, next){
+  Orders.findAll({
+    where: {
+      userId: req.params.userId
+    }
+  })
+  .then(ordersFound => {
+    res.send(ordersFound)
   })
   .catch(next)
 });

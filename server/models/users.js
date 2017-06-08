@@ -6,7 +6,7 @@ const products = require('./products')
 const crypto = require('crypto')
 const _ = require('lodash');
 
-var users = db.define('user', {
+var Users = db.define('Users', {
 	email: {
 		type: Sequelize.STRING,
 		allowNull: false,
@@ -85,4 +85,4 @@ function setSaltAndPassword (user) {
 
 
 
-module.exports = users;
+module.exports = Users;

@@ -26,54 +26,58 @@ var data = {
 	    {title: "Shark", description: 'My child drew this and wouldn\'t stop screaming until I put it on the site', region:'Australia', imageUrl:'https://68.media.tumblr.com/2b46544962f64861f565f614e33c58be/tumblr_n1zlzfNerc1r4khp7o2_500.png', price:100.00},
    ],
  	carts: [
-	    {userId: 1, productId: 2, quantity: 5},
-	    {userId: 2, productId: 1, quantity: 3},
-	    {userId: 4, productId: 3, quantity: 2},
-	    {userId: 5, productId: 2, quantity: 2},
-	    {userId: 3, productId: 1, quantity: 10},
-	    {userId: 2, productId: 2, quantity: 1},
+	    {UserId: 1, ProductId: 2, quantity: 5},
+	    {UserId: 2, ProductId: 1, quantity: 3},
+	    {UserId: 4, ProductId: 3, quantity: 2},
+	    {UserId: 5, ProductId: 2, quantity: 2},
+	    {UserId: 3, ProductId: 1, quantity: 10},
+	    {UserId: 2, ProductId: 2, quantity: 1},
 
   	],
 
    orders: [
-	    {status: 'Created', datePlaced:'2017-01-01' , userId: 1},
-	    {status: 'Processing', datePlaced:'2016-02-28', userId:2},
-	    {status: 'Cancelled', datePlaced:'2017-03-01', userId:3},
-	    {status: 'Completed', datePlaced:'2017-05-02', userId:4},
-	    {status: 'Completed', datePlaced:'2017-01-03', userId:5}
+	    {status: 'Created', datePlaced:'2017-01-01' , UserId: 1},
+	    {status: 'Processing', datePlaced:'2016-02-28', UserId:2},
+	    {status: 'Cancelled', datePlaced:'2017-03-01', UserId:3},
+	    {status: 'Completed', datePlaced:'2017-05-02', UserId:4},
+	    {status: 'Completed', datePlaced:'2017-01-03', UserId:5}
 
    ],
 
    reviews: [
-	    {rating: '1', title: 'Worst Fish', content: 'I hate this fish', userId: 5, productId: 1},
-	    {rating: '2', title: 'Not a great fish', content: 'I dont like this fish very much', userId: 1, productId: 3},
-	    {rating: '3', title: 'Mixed Feelings', content: 'This fish is alright but not great', userId: 2 , productId: 5},
-	    {rating: '4', title: 'Very Dangerous', content: 'My fault for buying a shark', userId: 5, productId: 6},
-	    {rating: '5', title: 'Wonderful fish', content: 'I love this fish', userId: 2, productId:1},
-	    {rating: '1', title: 'Never received fish', content: 'I dont understand how the reviews work', userId: 1, productId: 4},
+	    {rating: '1', title: 'Worst Fish', content: 'I hate this fish', UserId: 5, ProductId: 1},
+	    {rating: '2', title: 'Not a great fish', content: 'I dont like this fish very much', UserId: 1, ProductId: 3},
+	    {rating: '3', title: 'Mixed Feelings', content: 'This fish is alright but not great', UserId: 2 , ProductId: 5},
+	    {rating: '4', title: 'Very Dangerous', content: 'My fault for buying a shark', UserId: 5, ProductId: 6},
+	    {rating: '5', title: 'Wonderful fish', content: 'I love this fish', UserId: 2, ProductId:1},
+	    {rating: '1', title: 'Never received fish', content: 'I dont understand how the reviews work', UserId: 1, ProductId: 4},
 
    ],
    product_order: [
-		{orderId: 1, productId: 1, quantity: 1, price: 10.00},
-		{orderId: 2, productId: 1, quantity: 2, price: 57.50},
-		{orderId: 3, productId: 2, quantity: 1, price: 0.10},
-		{orderId: 4, productId: 2, quantity: 1, price: 0.10},
-		{orderId: 4, productId: 1, quantity: 1, price: 0.10},
+		{OrderId: 1, ProductId: 1, quantity: 1, price: 10.00},
+		{OrderId: 2, ProductId: 1, quantity: 2, price: 57.50},
+		{OrderId: 3, ProductId: 2, quantity: 1, price: 0.10},
+		{OrderId: 4, ProductId: 2, quantity: 1, price: 0.10},
+		{OrderId: 4, ProductId: 1, quantity: 1, price: 0.10},
 
    ]
 };
 
-  Orders.belongsToMany(Products, {through: 'product_order'});
-  Products.belongsToMany(Orders, {through: 'product_order'});
+  Orders.belongsToMany(Products, {through: 'Product_order'});
+  Products.belongsToMany(Orders, {through: 'Product_order'});
 
 
-	Products.belongsToMany(Users, {through: 'cart'});
-	Users.belongsToMany(Products, {through: 'cart'});
+	Products.belongsToMany(Users, {through: 'Cart'});
+	Users.belongsToMany(Products, {through: 'Cart'});
 
 	Users.hasMany(Reviews);
-	Users.hasMany(Orders);
 	Products.hasMany(Reviews);
 	Reviews.belongsTo(Users);
+
+
+	Users.hasMany(Orders);
+	Orders.belongsTo(Users);
+
 
 
 db.sync({force:true})

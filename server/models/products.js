@@ -4,7 +4,7 @@ const reviews = require('./reviews');
 const users = require('./users');
 const orders = require('./orders');
 
-const products = db.define('product', {
+const products = db.define('Product', {
 	title: {
 		type: Sequelize.STRING,
 		allowNull: false,
