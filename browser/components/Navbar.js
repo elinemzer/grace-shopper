@@ -20,10 +20,10 @@ export default (props) => {
 
           <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul className="nav navbar-nav">
-              <li><a href="/">Shop for Fish</a></li>
+              <li><Link to='/products'>Shop Fish</Link></li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Region <span className="caret"></span></a>
-                <ul className="dropdown-menu">
+                <a href="#" className="dropdown-toggle nav-region" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Region <span className="caret"></span></a>
+                <ul id="nav-dropdown" className="dropdown-menu">
                   <li><a href="#">Africa</a></li>
                   <li><a href="#">Asia</a></li>
                   <li><a href="#">Australia</a></li>
@@ -39,20 +39,20 @@ export default (props) => {
                   <div className="form-group">
                     <input id="search-input" type="text" className="form-control" placeholder="Search Fish" />
                   </div>
-                  <button id="search-btn" type="submit" className="btn btn-default">Submit</button>
+                  <button id="search-btn" type="submit" className="btn btn-default">Search</button>
                 </form>
               </li>
 
               {
                 props.user &&
                 props.user.email?
-                <li><Link to='/user'> 
-                    <p className="yellow">{props.user.firstName}'s Account</p> 
+                <li><Link to='/user'>
+                    <p className="yellow">{props.user.firstName}'s Account</p>
                     </Link>
                 </li>
                 :
-                <li><Link to='/login'> 
-                    <p className="yellow">Login</p> 
+                <li><Link to='/login'>
+                    <p className="yellow">Login</p>
                     </Link>
                 </li>
               }
