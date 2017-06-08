@@ -3,7 +3,7 @@
 var router = require('express').Router();
 
 
-var User = require('../models/users');
+var User = require('../models/Users');
 
 router.get('/me', (req, res, next) => {
 	User.findOne({

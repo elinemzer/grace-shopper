@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Carts = require('../models/carts');
-const Users = require('../models/users');
+const Carts = require('../models/Carts');
+const Users = require('../models/Users');
 
 //taking supplied cart id and attaching product object to request
 router.param('cart', function(req, res, next, id){

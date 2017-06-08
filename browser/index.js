@@ -31,7 +31,7 @@ const onAppEnter = function () {
     axios.get('api/products'),
     axios.get('api/orders'),
     axios.get('api/reviews'),
-    axios.get('/api/auth/me')
+    axios.get('api/auth/me')
   ])
   .then(responses => responses.map(r => r.data))
   .then(([users, products, orders, reviews, loggedInUser]) => {

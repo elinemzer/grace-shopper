@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const Products = require('../models/products');
+const Products = require('../models/Products');
 
 //taking supplied product id and attaching product object to request
 

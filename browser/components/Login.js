@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default function Login (props) {
-	
-	console.log(props)
-
+	console.log('login props', props)
   return (
   	<div className='default-container'>
     	<div className="row">
@@ -22,7 +20,7 @@ export default function Login (props) {
 		    </div>
 		<div className='col-xs-6'>
     			<h1>New User? GET LOST!</h1>
-				<form onSubmit= {props.signUpUser} >
+				<form onSubmit= {props.signUpHandler} >
 					<p>First Name</p>
 						<input id="a1" type="text" className="form-control col-md-2" onChange={props.handleFirst} aria-describedby="basic-addon1" />
 					<p>Last Name</p>

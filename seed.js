@@ -1,12 +1,12 @@
 var Promise = require('bluebird');
 var db = require('./server/db');
 // var { cart, user, order, product, review } = db
-var Users = require('./server/models/users');
-var Carts = require('./server/models/cart');
-var Orders = require('./server/models/orders');
-var Products = require('./server/models/products');
-var Reviews = require('./server/models/reviews');
-var Product_Orders = require('./server/models/product_order')
+var Users = require('./server/models').Users;
+var Carts = require('./server/models').Carts;
+var Orders = require('./server/models').Orders;
+var Products = require('./server/models').Products;
+var Reviews = require('./server/models').Reviews;
+var Product_Orders = require('./server/models').Product_order
 
 var data = {
 	users: [

@@ -17,8 +17,8 @@ class LoginContainer extends Component{
 		}
 		this.handleEmail = this.handleEmail.bind(this);
 		this.handlePassword = this.handlePassword.bind(this);
-		this.loginUser = this.loginUser.bind(this);
-		this.signUpUser = this.signUpUser.bind(this);
+		this.loginUserHandler = this.loginUserHandler.bind(this);
+		this.signUpHandler = this.signUpHandler.bind(this);
 		this.handleFirst = this.handleFirst.bind(this);
 		this.handleLast = this.handleLast.bind(this);
 
@@ -52,20 +52,23 @@ class LoginContainer extends Component{
 			lastName: value
 		})
 	}
-	loginUser(event) {
+
+	loginUserHandler (event) {
 		event.preventDefault()
-		this.props.loginUser({email: this.state.email, password: this.state.password})
+		this.props.postUser({email: this.state.email, password: this.state.password})
 		hashHistory.push('/')
 	}
 
-	signUpUser(event) {
+	signUpHandler(event) {
+		console.log('in user signup handler')
 		event.preventDefault()
-		this.props.signUpUser({email: this.state.email, password: this.state.password})
+		console.log('sending state for signup: ', this.state);
+		this.props.signUpUser({firstName: this.state.firstName, lastName: this.state.lastName, email: this.state.email, password: this.state.password})
 		hashHistory.push('/')
 	}
 
 	render(){
-		return(<Login loginUser={this.loginUser} signUpUser={this.signUpUser} handleEmail={this.handleEmail} handlePassword={this.handlePassword} />
+		return(<Login loginUser={this.postUser} signUpHandler={this.signUpHandler} handleFirst={this.handleFirst} handleLast={this.handleLast} handleEmail={this.handleEmail} handlePassword={this.handlePassword} />
 		)
 	}
 
@@ -74,15 +77,16 @@ class LoginContainer extends Component{
 
 const mapStateToProps = function(state){
 	return {
-		state: state
+		state
 		}
 	}
 
 
 const mapDispatchToProps = function(dispatch) {
 	return {
-		loginUser: (user) => {
-			axios.post('/api/login/login',{
+		postUser: (user) => {
+			console.log('oops')
+			axios.post('/api/login/logIn',{
 				email:user.email,
 				password:user.password
 			})
@@ -92,9 +96,13 @@ const mapDispatchToProps = function(dispatch) {
 
 		},
 		signUpUser: (user) => {
+			console.log('in signup user')
 			axios.post('/api/login/signup',{
+
 				email:user.email,
-				password:user.password
+				password:user.password,
+				firstName: user.firstName,
+				lastName: user.lastName
 			})
 			.then((result) => {
 				return dispatch(loginUser(result.data))

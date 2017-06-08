@@ -1,20 +1,20 @@
 const router = require('express').Router();
-const Orders = require('../models/orders');
-const Users = require('../models/users');
+const Orders = require('../models/Orders');
+const Users = require('../models/Users');
 
-//taking supplied order id and attaching product object to request
-router.param('order', function(req, res, next, id){
-  Orders.findById(id, { include: [Users] })
-  .then(order => {req.order = order})
-})
+// //taking supplied order id and attaching product object to request
+// router.param('order', function(req, res, next, id){
+//   Orders.findById(id, { include: [Users] })
+//   .then(order => {req.order = order})
+// })
 
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
   Orders.findAll()
   .then(ordersFound => {
-    let order = ordersFound[0];
-    // console.log('orders found on api route: ', ordersFound)
-    console.log(order.getUser());
+    // let order = ordersFound[0];
+    // // console.log('orders found on api route: ', ordersFound)
+    // console.log(order.getUser());
     res.send(ordersFound)
   })
   .catch(next)

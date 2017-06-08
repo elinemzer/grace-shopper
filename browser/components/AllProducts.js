@@ -15,10 +15,8 @@ export default function AllProducts (props) {
             <Link className="thumbnail" to={`/products/${oneFish.id}`}>
               <img src={ oneFish.imageUrl } />
               <div className="caption">
-                <h5>
                   <p id="product-tile-title">{ oneFish.title }</p>
                   <p>From { oneFish.region }</p>
-                </h5>
               </div>
             </Link>
           </div>

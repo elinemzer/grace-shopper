@@ -1,14 +1,13 @@
 const router = require('express').Router();
-const Users = require('../models/users');
-const Cart = require('../models/cart');
-const Products = require('../models/products');
-const Orders = require('../models/orders')
+const Users = require('../models/Users');
+const Cart = require('../models/Cart');
+const Products = require('../models/Products');
+const Orders = require('../models/Orders')
 
 
 
 
 router.get('/:userId', function (req, res, next){
-  console.log("getting user by id")
   Users.findById(req.params.userId)
   .then(userFound => {
     res.send(userFound)

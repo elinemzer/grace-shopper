@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const Reviews = require('../models/reviews');
-const Users = require('../models/users');
+const Reviews = require('../models/Reviews');
+const Users = require('../models').Users;
 
 //taking supplied review id and attaching review object to request
 // router.param('review', function(req, res, next, id){

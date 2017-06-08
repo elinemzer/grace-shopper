@@ -1,7 +1,25 @@
 const router = require('express').Router();
-const Users = require('../models/users');
+const Users = require('../models').Users;
 
-router.post('/login', (req, res, next) => {
+
+router.post('/signup', (req, res, next) => {
+  Users.create(req.body)
+    .then(user => {
+      req.login(user, err => {
+
+        if (err) next(err)
+        else{
+          req.session.userId = user.id
+          res.json(user)
+        } 
+
+      });
+    })
+
+    .catch(next);
+});
+
+router.post('/logIn', (req, res, next) => {
   Users.findOne({
     where: {
       email: req.body.email
@@ -23,28 +41,9 @@ router.post('/login', (req, res, next) => {
     .catch(next);
 });
 
-router.post('/signup', (req, res, next) => {
-  Users.create(req.body)
-    .then(user => {
-      req.login(user, err => {
-        if (err) next(err);
-        else res.json(user);
-      });
-    })
-    .then((user)=>{
-      if(!user){
-        res.sendStatus(401);
-      } else {
-        req.session.userId = user.id
-        res.sendStatus(200)
-      }
-
-    })
-    .catch(next);
-});
-
 router.post('/logout', (req, res, next) => {
   req.logout();
+  req.session.userId = null
   res.sendStatus(200);
 });
 

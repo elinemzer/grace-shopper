@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default (props) => {
-  console.log('rendering navbar')
   return (
     <div>
       <div className="row">
@@ -46,9 +45,15 @@ export default (props) => {
               {
                 props.user &&
                 props.user.email?
-                <li><Link to='/user'> 
+
+                <li>
+                <div>
+                  <Link to='/user'> 
                     <p className="yellow">{props.user.firstName}'s Account</p> 
-                    </Link>
+                  </Link>
+                  <button onClick={props.onLogout} className='btn btn-danger'> Log Out </button>
+              
+                </div>
                 </li>
                 :
                 <li><Link to='/login'> 
