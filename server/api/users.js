@@ -2,6 +2,8 @@ const router = require('express').Router();
 const Users = require('../models/users');
 const Cart = require('../models/cart');
 const Orders = require('../models/orders')
+const Products = require('../models/products')
+
 
 
 router.get('/:userId', function (req, res, next){

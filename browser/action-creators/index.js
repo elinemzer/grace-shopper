@@ -71,7 +71,6 @@ export const getProductById = productId => {
   return dispatch => {
     axios.get(`/api/products/${productId}`)
     .then(response => {
-      console.log(response.data)
       dispatch(receiveProduct(response.data));
     });
   }

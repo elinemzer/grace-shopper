@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css?family=Amaranth:400,400i');
+
+.fancy-type {
+    font-family: 'Amaranth', sans-serif;
+}
+
 .fullscreen-bg {
     position: fixed;
     top: 0;
@@ -16,6 +22,13 @@
     height: 100vh;
 }
 
+.cart-quantity{
+    display:inline-block;
+}
+.cart-item{
+    width: 100px;
+    height: 100px;
+}
 
 @media (min-aspect-ratio: 16/9) {
   .fullscreen-bg__video {
@@ -35,16 +48,22 @@ img {
     width: 100%
 }
 
+/* NavBar */
+
 #nav {
     color: white;
-    background-color: #2b4368;
+    background-color: #1c3151;
     border: 0px white;
     height: 75px;
-    width: 100%;
+    width: 101%;
     margin-bottom: 50px;
     margin-top: -5px;
     padding-top: 0px;
     border-bottom: white 1px;
+    padding-right: 20px;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    position: fixed;
+    z-index: 1;
 }
 
 #nav a {
@@ -63,22 +82,90 @@ img {
 }
 
 #search-btn {
-    background: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.6);
     margin-left: 5px;
     border-color: white;
+    color: white;
+}
+
+#search-btn:hover {
+    color: #1c3151;
+    font-style: italic;
+    background: rgba(255, 255, 255, 0.9)
 }
 
 #nav-logo {
-    background: #2b4368;
-    position: absolute;
+    background: #1c3151;
+    position: fixed;
     top: 0;
     left: 43%;
     width: 140px;
     height: 140px;
     border-radius: 100%;
     border: 1px white;
+    z-index: 2;
 }
 
 #nav-logo img {
     z-index: 100 !important;
+    margin-top: 16px;
+}
+
+/* All products */
+
+.default-container {
+    color: #f2f2f2;
+    margin: 150px 5%;
+}
+
+#product-tile a {
+    background: rgba(255, 255, 255, 0.3);
+    border: 0px;
+    text-decoration: none;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+}
+
+#product-tile a:hover {
+    background: rgba(255, 255, 255, 0.3);
+    border: 0px;
+    font-style: italic;
+    font-family: 'Amaranth', sans-serif;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.7);
+}
+
+#product-tile a p {
+    color: white;
+}
+
+#product-tile-title {
+    font-size: 1.3em;
+}
+
+/* Single Product */
+
+#product-title {
+    margin: 30px 0px 15px 0px;
+}
+
+.region {
+    margin-bottom: 15px;
+}
+
+.price {
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+
+#product-add {
+    background-color: #1c3151;
+    border-color: #1c3151;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    margin-right: 5px;
+}
+
+#product-add:hover {
+    background-color: #1c3151;
+    border-color: #1c3151;
+    box-shadow: 3px 3px 50px rgba(0,0,0, 0.3);
+    margin-right: 5px;
 }

@@ -3,17 +3,11 @@ const Reviews = require('../models/reviews');
 const Users = require('../models/users');
 
 //taking supplied review id and attaching review object to request
-router.param('review', function(req, res, next, id){
-  Reviews.findById(id, { include: [Users] })
-  .then(review => {req.review = review})
-})
+// router.param('review', function(req, res, next, id){
+//   Reviews.findById(id, { include: [Users] })
+//   .then(review => {req.review = review})
+// })
 
-// matches GET requests to /api/reviews/
-router.get('/', function (req, res, next){
-  Reviews.findAll()
-  .then(reviewsFound => res.send(reviewsFound))
-  .catch(next)
-});
 
 router.get('/:reviewId', function (req, res, next){
   Reviews.findById(req.params.reviewId)
@@ -22,6 +16,15 @@ router.get('/:reviewId', function (req, res, next){
   })
   .catch(next)
 });
+
+// matches GET requests to /api/reviews/
+router.get('/', function (req, res, next){
+  Reviews.findAll({include:[Users]})
+  .then(reviewsFound => res.send(reviewsFound))
+  .catch(next)
+});
+
+
 
 // matches POST requests to /api/reviews/
 router.post('/', function (req, res, next){

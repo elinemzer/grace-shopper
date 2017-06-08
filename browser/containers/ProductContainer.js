@@ -6,7 +6,10 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = function(state){
 	return {
-		product: state.selectedProduct
+		product: state.selectedProduct, 
+		reviews: state.reviews.filter( review => {
+			return review.productId === state.selectedProduct.id
+		})
 	}
 }
 

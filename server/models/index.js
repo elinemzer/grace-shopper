@@ -19,6 +19,7 @@ products.belongsToMany(users, {through: 'cart'});
 users.belongsToMany(products, {through: 'cart'});
 
 users.hasMany(reviews);
+reviews.belongsTo(users);
 users.hasMany(orders);
 
 products.hasMany(reviews);
