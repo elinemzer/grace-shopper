@@ -23,6 +23,7 @@ import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
 import UsersContainer from './containers/UsersContainer'
+import Home from './components/Home'
 
 
 const onAppEnter = function () {
@@ -67,7 +68,8 @@ ReactDOM.render(
   	<Router history = {hashHistory}>
     <Route path='/landing' component = {Landing} />
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
-        <IndexRoute component={ProductsContainer} />
+        <IndexRoute path='/home' component={Home} />
+        <Route path="/home" component={Home} />
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
