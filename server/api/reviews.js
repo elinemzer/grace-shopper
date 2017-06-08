@@ -19,7 +19,7 @@ router.get('/:reviewId', function (req, res, next){
 
 // matches GET requests to /api/reviews/
 router.get('/', function (req, res, next){
-  Reviews.findAll({include:[Users]})
+  Reviews.findAll()
   .then(reviewsFound => res.send(reviewsFound))
   .catch(next)
 });

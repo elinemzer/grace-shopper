@@ -5,7 +5,7 @@ export default (props) => {
 	const users = props.users
 
 	return (
-		<div className="row">
+		<div className="row default-container">
 		{
 			users && users.map(user => {
 				return (
