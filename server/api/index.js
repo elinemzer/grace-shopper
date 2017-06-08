@@ -2,8 +2,9 @@ const router = require('express').Router();
 
 router.use('/users', require('./users')); // matches all requests to /api/users/
 router.use('/products', require('./products'));
-router.use('/orders', require("./orders"))
-router.use('/reviews', require("./reviews"))
+router.use('/orders', require("./orders"));
+router.use('/reviews', require("./reviews"));
+router.use('/login', require("./login"));
 
 router.use(function (req, res, next) {
   const err = new Error('Not found.');
