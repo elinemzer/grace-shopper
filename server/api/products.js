@@ -1,5 +1,7 @@
 const router = require('express').Router();
 const Products = require('../models/products');
+const Reviews = require('../models/reviews');
+const Users = require('../models/users')
 
 //taking supplied product id and attaching product object to request
 
@@ -11,9 +13,8 @@ const Products = require('../models/products');
 //needed a db query
 router.get('/:productId', function (req, res, next){
 
-  Products.findById(req.params.productId)
+  Products.findById(req.params.productId, {include: [{model: Reviews, include: [Users]}]})
   .then(productFound => {
-    console.log('in route with', productFound)
     res.send(productFound)
   })
   .catch(next)

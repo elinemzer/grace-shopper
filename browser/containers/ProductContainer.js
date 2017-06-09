@@ -6,11 +6,15 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = function(state){
 	return {
-		product: state.selectedProduct, 
-		reviews: state.reviews.filter( review => {
-			return review.productId === state.selectedProduct.id
-		})
+		product: state.selectedProduct,
+		reviews: state.selectedProduct.Reviews
 	}
 }
+
+// const mapDispatchToProps = function(dispatch) {
+// 	editForm: function() {
+// 		props.
+// 	}
+// }
 
 export default connect(mapStateToProps)(Product)
