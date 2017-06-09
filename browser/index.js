@@ -76,8 +76,9 @@ ReactDOM.render(
         <IndexRoute path='/home' component={Home} />
         <Route path="/home" component={Home} />
         <Route path='products/region/:region' component={RegionContainer} />
-        <Route path='/products' component={ProductsContainer} />
-        <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
+        <Route path='/products' component={ProductsContainer} >
+          <Route path='/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
+        </Route>
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart/:userId' component={CartContainer} />
