@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import { loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import { getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios'
 
@@ -61,6 +61,12 @@ const onOrderEnter = function (nextRouterState) {
   store.dispatch(getOrderById(orderId));
 }
 
+// const onCartEnter = function (nextRouterState) {
+//   const userId = nextRouterState.params.userId
+
+//   store.dispatch(getCartByUser(userId));
+// }
+
 
 
 ReactDOM.render(
@@ -74,7 +80,7 @@ ReactDOM.render(
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
-        <Route path='/cart' component={CartContainer} />
+        <Route path='/cart/:userId' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
   	</Route>
 	  </Router>

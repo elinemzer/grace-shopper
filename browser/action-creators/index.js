@@ -13,8 +13,21 @@ export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
 export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const LOGOUT_USER = 'LOGOUT_USER'
+export const ADD_TO_CART = 'ADD_TO_CART'
+
 
 /* ACTION CREATORS */
+
+export const receiveCart = cart =>({
+  type: RECEIVE_CART,
+  cart
+})
+
+export const addToCart = cart => ({
+  type: ADD_TO_CART,
+  cart
+})
+
 export const logoutUser = user =>({
   type: LOGOUT_USER,
   user: {}
@@ -53,11 +66,6 @@ export const receiveProduct = product => ({
 export const receiveOrder = order => ({
   type: RECEIVE_ORDER,
   order
-})
-
-export const receiveCart = cart => ({
-  type: RECEIVE_CART,
-  cart
 })
 
 
@@ -124,11 +132,11 @@ export const updateUser = (userId, bodyObj) => {
   }
 }
 
-// export const getUsersOrders = userId => {
+// export const addToCart = item => {
 //   return dispatch => {
-//     axios.get(`/api/orders/users/${userId}`)
-//     .then(ordersForUser => {
-//       dispatch(receiveOrders(ordersForUser.data))
+//     axios.get(`/api/cart/${userId}`)
+//     .then(cart => {
+//       dispatch(receiveCart(cart.data));
 //     })
 //   }
 // }

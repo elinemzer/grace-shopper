@@ -40,9 +40,22 @@ router.delete('/:userId', function (req, res, next){
   })
 });
 
+// adds item to cart
+router.post('/addItem', function (req, res, next){
+  Users.findById(req.session.userId)
+  .then( user => {
+    user.addProducts(req.body.id)
+    return user
+  })
+  .then((user) => {
+    res.send(user)
+  })  
+  .catch(next)
+});
+
 // matches GET requests to /api/users/
 router.get('/', function (req, res, next){
-  Users.findAll()
+  Users.findAll({})
   .then(usersFound => res.send(usersFound))
   .catch(next)
 });

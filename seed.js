@@ -67,8 +67,10 @@ var data = {
   Products.belongsToMany(Orders, {through: 'Product_order'});
 
 
-	Products.belongsToMany(Users, {through: 'Cart'});
-	Users.belongsToMany(Products, {through: 'Cart'});
+	Products.belongsToMany(Users, {through: Carts});
+	Users.belongsToMany(Products, {through: Carts});
+	Carts.belongsTo(Users);
+	Carts.belongsTo(Products);
 
 	Users.hasMany(Reviews);
 	Products.hasMany(Reviews);

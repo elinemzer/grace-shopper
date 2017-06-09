@@ -2,10 +2,13 @@ import React from 'react';
 import { Link } from 'react-router';
 import Review from './Review'
 
-export default function AllProducts (props) {
+export default function Product (props) {
 
   const fish = props.product;
-	const reviews = props.reviews;
+	// const reviews = props.reviews;
+  const cartClickHandler = () =>{
+    props.addToCart(fish)
+  };
 
   return (
   	<div className="default-container">
@@ -22,17 +25,13 @@ export default function AllProducts (props) {
               <p className="description"><span id="field-notes">Field Notes:</span> {fish.description}</p>
               <p className ="price fancy-type yellow">${ fish.price }</p>
             </h5>
-            <button className='btn btn-primary' id="product-add">
+            <button onClick ={cartClickHandler} className='btn btn-primary' id="product-add">
                 <span className="glyphicon glyphicon-shopping-cart"></span>
             </button>
             <button className='btn btn-danger' id='product-delete'> x </button>
           </div>
           <div className="reviews col-xs-12">
-                { reviews &&
-                  reviews.map((review) =>{
-                    return <Review key={review.id}review={review} />
-                  })
-                }
+
           </div>
 
       </div>

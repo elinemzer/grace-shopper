@@ -15,8 +15,10 @@ Orders.belongsToMany(Products, {through: 'Product_order'});
 Products.belongsToMany(Orders, {through: 'Product_order'});
 
 // product_cart join table
-Products.belongsToMany(Users, {through: 'Cart'});
-Users.belongsToMany(Products, {through: 'Cart'});
+Users.belongsToMany(Products, {through: {model: Carts, unique: false}});
+Products.belongsToMany(Users, {through: {model: Carts, unique: false}});
+// Carts.belongsToOne(Users)
+// Carts.hasOne(Products)
 
 Users.hasMany(Reviews);
 Reviews.belongsTo(Users);

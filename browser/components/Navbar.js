@@ -45,7 +45,7 @@ export default (props) => {
               {
                 props.user &&
                 props.user.email?
-                <li><Link to='/user'>
+                <li><Link to={`/users/${props.user.id}`}>
                     <p className="yellow">{props.user.firstName}'s Account</p>
                     </Link>
                   <button onClick = {props.logoutUser} className ='btn-danger'>Log Out </button>
@@ -58,7 +58,7 @@ export default (props) => {
               }
 
               <li className="dropdown">
-                <Link to='/cart'>
+                <Link to={props.user && `/cart/${props.user.id}`}>
                   <span className="glyphicon glyphicon-shopping-cart" />
                 </Link>
                 <ul className="dropdown-menu">
