@@ -2,11 +2,9 @@ import React from 'react';
 import { Link } from 'react-router';
 import Review from './Review'
 
-export default function AllProducts (props) {
-
+export default function Product (props) {
   const fish = props.product;
 	const reviews = props.reviews;
-
   return (
   	<div className="default-container">
       <div className="row">
