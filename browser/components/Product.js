@@ -6,31 +6,42 @@ export default class AllProducts extends React.Component  {
   constructor(props) {
     super(props);
     this.state={
-      editForm: false
+      editForm: false,
+      reviewTitle: '',
+      reviewContent: '',
+      rating: '0'
     }
     this.newReview = this.newReview.bind(this);
     this.reviewContentChange = this.reviewContentChange.bind(this);
+    this.reviewTitleChange = this.reviewTitleChange.bind(this);
   }
 
-  newReview() {
-
+  newReview(evt) {
+    evt.preventDefault();
+    let bodyObj = {
+      rating: this.state.rating,
+      title: this.state.reviewTitle,
+      content: this.state.reviewContent,
+      ProductId: this.props.product.id,
+      UserId: this.props.loggedInUser.id
+    }
+    this.props.submitNewReview(bodyObj)
+    this.setState({'editForm': false})
   }
 
-  reviewContentChange() {
+  reviewContentChange(evt) {this.setState({'reviewContent': evt.target.value})}
 
-  }
+  reviewTitleChange(evt) {this.setState({'reviewTitle': evt.target.value})}
 
   render() {
     const fish = this.props.product;
     const reviews = this.props.reviews;
-    console.log("fish reviews: ", reviews)
+    const star = <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true"></span>
     return (
       <div className="default-container">
         <div className="row">
-  
             <div className="col-xs-5" key={ fish.id }>
                 <img id="single-product-img" src={ fish.imageUrl } />
-  
             </div>
             <div className="caption col-xs-6">
               <h2 id="product-title" className="fancy-type">{fish.title}</h2>
@@ -44,13 +55,11 @@ export default class AllProducts extends React.Component  {
               </button>
               <button className='btn btn-danger' id='product-delete'> x </button>
             </div>
-  
         </div>
   
         <div className="row">
           <div className="panel panel-default col-md-6">
               <div className="panel-body" style={{color: '#1c3151' }}>
-  
                 <div className="reviews">
                   <h2 className="fancy-type">User Reviews</h2>
                   { 
@@ -61,11 +70,43 @@ export default class AllProducts extends React.Component  {
                     : <h4>No users have reviewed this product yet!</h4>
                   }
                   {
-                    (!this.state.editForm) ? <button type="button" className="btn btn-primary" onClick={() => this.setState({'editForm': 'true'})}>Leave a Review</button>
+                    (!this.state.editForm) ? (this.props.loggedInUser.id) ? <button type="button" className="btn btn-primary" onClick={() => this.setState({'editForm': 'true'})}>Leave a Review</button>
+                                                                        : <div><button type="button" className="btn btn-primary" disabled>Leave a Review</button>
+                                                                            <span>  You must be logged in to leave a review.</span>
+                                                                          </div>
                     : <div className='form-group'>
                       <form onSubmit={this.newReview}>
-                        <input type="text" className="form-control" placeholder="Review Title" />
-                        <textarea height='100' width='100' className='form-control' onChange={this.reviewContentChange}></textarea>
+                        Rating (1-5):
+                        {(this.state.rating>='1') ? 
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '1'})}></span>
+                            : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '1'})}></span>
+                        }
+                        {(this.state.rating>='2') ? 
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '2'})}></span>
+                            : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '2'})}></span>
+                        }
+                        {(this.state.rating>='3') ? 
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '3'})}></span>
+                            : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '3'})}></span>
+                        }
+                        {(this.state.rating>='4') ? 
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '4'})}></span>
+                            : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '4'})}></span>
+                        }
+                        {(this.state.rating>='5') ? 
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '5'})}></span>
+                            : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '5'})}></span>
+                        }
+
+                        <input type="text" className="form-control" value={this.state.reviewTitle}
+                               onChange={this.reviewTitleChange} placeholder="Review Title" />
+                        <textarea height='100' width='100' className='form-control' value={this.state.reviewContent}
+                                  placeholder="Type your review here..." onChange={this.reviewContentChange}></textarea>
+                        {
+                          (this.state.rating=='0') ? <button type="submit" className="btn btn-primary" disabled>Submit Review</button>
+                          : <button type="submit" className="btn btn-primary">Submit Review</button>
+                        }          
+                        
                       </form>
                       </div>
                   }
@@ -80,3 +121,4 @@ export default class AllProducts extends React.Component  {
       )
   }
 }
+
