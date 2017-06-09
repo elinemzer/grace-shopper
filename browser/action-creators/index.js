@@ -103,6 +103,15 @@ export const getProductById = productId => {
   }
 }
 
+export const searchProducts = query => {
+  return dispatch => {
+    return axios.get(`/api/products/${productId}`)
+      .then(response => {
+        dispatch(receiveProducts(response.data));
+      });
+  };
+};
+
 export const getOrderById = orderId => {
   return dispatch => {
     axios.get(`/api/order/${orderId}`)

@@ -3,12 +3,28 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 import Navbar from '../components/Navbar'
 import {connect} from 'react-redux';
-import { logoutUser} from '../action-creators'
+import { logoutUser, searchProducts} from '../action-creators'
+
 class AppContainer extends Component {
 
   constructor(props){
     super(props);
+    this.state = { inputValue: '' };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
+
+  handleChange(evt) {
+    const inputValue = evt.target.value;
+    this.setState({ inputValue });
+  }
+
+  handleSubmit (evt) {
+  evt.preventDefault();
+  if (this.state.inputValue){
+    this.props.searchProducts(this.state)
+  }
+}
 
   render () {
     return (
@@ -18,8 +34,8 @@ class AppContainer extends Component {
             <source src="files/img/productbg.mp4" type="video/mp4" />
         </video>
       </div>
-        <Navbar logoutUser={this.props.logoutUser} user={this.props.loggedInUser} />
-        
+        <Navbar logoutUser={this.props.logoutUser} user={this.props.loggedInUser} handleChange={this.handleChange} handleSubmit={this.handleSubmit} inputValue={this.state.inputValue} />
+
         <div className="col-xs-12">
 
           { this.props.children }
@@ -32,7 +48,8 @@ class AppContainer extends Component {
 
 const mapStateToProps = function(state){
   return {
-    loggedInUser: state.loggedInUser
+    loggedInUser: state.loggedInUser,
+    products: state.products.products
     }
 }
 
@@ -44,7 +61,9 @@ const mapDispatchToProps = function(dispatch) {
       .then(()=>{
         return dispatch(logoutUser())
       })
-
+    },
+    searchProducts: ({ inputValue }) => {
+      dispatch(searchProducts(inputValue));
     }
   }
 }

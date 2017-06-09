@@ -12,7 +12,11 @@ export default function AllProducts (props) {
     fish = props.products;
   }
 
+
+  const fish = props.products;
+
   console.log(fish);
+
 
   return (
   	<div className="container-fluid default-container">
