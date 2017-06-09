@@ -13,7 +13,8 @@ export const RECEIVE_REVIEW = "RECEIVE_REVIEW"
 export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const LOGOUT_USER = 'LOGOUT_USER'
-export const ADD_TO_CART = 'ADD_TO_CART'
+export const ADD_REVIEW = 'ADD_REVIEW'
+export const DELETE_USER = 'DELETE_USER'
 
 
 /* ACTION CREATORS */
@@ -53,6 +54,11 @@ export const receiveProducts = products => ({
   products
 })
 
+export const deleteUser = user => ({
+  type: DELETE_USER,
+  user
+})
+
 export const receiveUser = user => ({
   type: RECEIVE_USER,
   user
@@ -79,6 +85,12 @@ export const receiveReview = review => ({
   review
 })
 
+export const addReview = review => ({
+  type: ADD_REVIEW,
+  review
+})
+
+
 /* ASYNC THUNK ACTION CREATORS */
 export const getUserById = userId => {
   return dispatch => {
@@ -98,6 +110,15 @@ export const getProductById = productId => {
   }
 }
 
+export const searchProducts = query => {
+  return dispatch => {
+    return axios.get(`/api/products/${productId}`)
+      .then(response => {
+        dispatch(receiveProducts(response.data));
+      });
+  };
+};
+
 export const getOrderById = orderId => {
   return dispatch => {
     axios.get(`/api/order/${orderId}`)
@@ -108,21 +129,40 @@ export const getOrderById = orderId => {
 }
 
 
-export const getReviewById = reviewId => {
-  return dispatch => {
-    axios.get(`/api/review/${reviewId}`)
-    .then(response => {
-      dispatch(receiveReview(response.data));
-    });
-  }
-}
-
-
 export const updateUser = (userId, bodyObj) => {
   return dispatch => {
     axios.put(`/api/users/${userId}`, bodyObj)
     .then(updatedUser => {
       dispatch(receiveUser(updatedUser.data))
+    }).then( () => {
+      return axios.get(`/api/users`)
+    }).then(foundUsers => {
+      dispatch(receiveUsers(foundUsers.data))
+    })
+    .catch(console.log)
+  }
+}
+
+export const addNewReview = (bodyObj) => {
+  return dispatch => {
+    console.log('making axios request...', bodyObj)
+    axios.post(`/api/reviews`, bodyObj)
+    .then(newReview => {
+      console.log("new review: ", newReview)
+      dispatch(addReview(newReview.data))
+    }).then(() => {
+      return axios.get(`/api/products/${bodyObj.ProductId}`)
+    }).then(prodWithNewReview => {
+      dispatch(receiveProduct(prodWithNewReview.data))
+    }).catch(console.log)
+  }
+}
+
+export const removeUser = userId => {
+  return dispatch => {
+    axios.delete(`/api/users/${userId}`)
+    .then(userDeleted => {
+      dispatch(deleteUser(userDeleted.data))
     }).then( () => {
       return axios.get(`/api/users`)
     }).then(foundUsers => {

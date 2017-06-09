@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import store from '../store';
 import Product from '../components/Product';
 import {connect} from 'react-redux';
-import {receiveCart} from '../action-creators';
 import axios from 'axios'
+import {addNewReview, receiveCart} from '../action-creators'
+
+
 const mapStateToProps = function(state){
 	return {
-		product: state.selectedProduct, 
-		reviews: state.reviews.filter( review => {
-			return review.productId === state.selectedProduct.id
-		})
+		product: state.selectedProduct,
+		reviews: state.selectedProduct.Reviews,
+		loggedInUser: state.loggedInUser
 	}
 }
 
 const mapDispatchToProps = function(dispatch) {
 	return {
+
+		submitNewReview: function(bodyObj) {
+			return dispatch(addNewReview(bodyObj))
+		},
 		addToCart: (product) => {
 			axios.post('/api/users/addItem',product)
 			.then((result) => {
@@ -24,10 +29,8 @@ const mapDispatchToProps = function(dispatch) {
 				console.log(user)
 				return dispatch(receiveCart(user.data.Products))
 			})
-				// return dispatch(addToCart(result.data))
-
-		}
-	}
+    }
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Product)

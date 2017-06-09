@@ -1,28 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default function AllReviews (props) {
-	
+export default function Review (props) {
+  
   const review = props.review;
-	
+  let stars = [];
+  for (let i = 0; i < review.rating; i++) {
+    stars.push(<span className="ratingStar glyphicon glyphicon-star" aria-hidden="true"></span>)
+  }
+
   return (
-  	<div>
+    <div>
       <div className="row">
       {
-          <div className="col-xs-12" key={ review.id }>
-              
+          <div key={ review.id }>
               <div className="review">
-                <h5>
-                  <p className ="userName">{review.user.email}</p>
-                  <p className = "reviewTitle">{ review.title }</p>
-                  <p className = "reviewRating">{ review.rating } *</p>
-                  <p className = "reviewContent">{ review.content }</p>
-                </h5>
+                <ul className="list-group">
+                  <span>{review.title}</span> <span>{stars}</span>
+                  <li className="list-group-item">by {review.User.firstName} {review.User.lastName}</li>
+                  <li className="list-group-item">{ review.content }</li>
+                </ul>
               </div>
           </div>
-        
       }
       </div>
     </div>
-  	)
+    )
 }
