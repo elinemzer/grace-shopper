@@ -145,15 +145,15 @@ export default class SingleUser extends Component {
 				<div className="panel panel-default">
 				  <div className="panel-body" style={{color: '#1c3151' }}>
 					{
-						(user.Orders) ? user.Orders.map((order, idx1) => {
+						(user.Orders != undefined && user.Orders.length) ? user.Orders.map((order, idx1) => {
 							return (
 								<ul key={idx1} className="list-group">
 								<li className="list-group-item"><h3>Order Placed On: {order.datePlaced.slice(0,10)} </h3></li>
 								  {order.Products.map((product, idx) => {
-											return (<li key={idx} className="list-group-item"><p><span className="col-md-4"style={{'text-align': 'left'}}>{product.title} </span><span className="col-md-4" style={{'text-align': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'text-align': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
+											return (<li key={idx} className="list-group-item"><p><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title} </span><span className="col-md-4" style={{'textAlign': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
 										})
 									}
-									<li className="list-group-item" style={{'text-align': 'right'}}><p>Order Total: ${this.calculateOrderTotal(order)} </p></li>
+									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.calculateOrderTotal(order)} </p></li>
 								</ul>)
 						})
 						: <h4>No past orders!</h4>

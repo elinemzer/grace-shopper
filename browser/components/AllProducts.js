@@ -2,9 +2,21 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default function AllProducts (props) {
+  const region = props.routeParams.region;
+  let fish;
+  if (region) {
+    fish = props.products.filter( fish => {
+      return fish.region.split(' ').join('').toLowerCase() == region.toLowerCase();
+    })
+  } else {
+    fish = props.products;
+  }
+
 
   const fish = props.products;
-  console.log('products: ', props.filteredProducts)
+
+  console.log(fish);
+
 
   return (
   	<div className="container-fluid default-container">
