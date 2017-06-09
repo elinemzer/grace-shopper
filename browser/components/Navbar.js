@@ -21,14 +21,14 @@ export default (props) => {
             <ul className="nav navbar-nav">
               <li><Link to='/products'>Shop Fish</Link></li>
               <li className="dropdown">
-                <a href="#" className="dropdown-toggle nav-region" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Region <span className="caret"></span></a>
+                <a href="#" className="dropdown-toggle nav-region" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" id="nav-region">Region <span className="caret"></span></a>
                 <ul id="nav-dropdown" className="dropdown-menu">
-                  <li><a href="#">Africa</a></li>
-                  <li><a href="#">Asia</a></li>
-                  <li><a href="#">Australia</a></li>
-                  <li><a href="#">Europe</a></li>
-                  <li><a href="#">North America</a></li>
-                  <li><a href="#">South America</a></li>
+                  <Link to="/products/region/africa"><li><a className="drop-region" href="#">Africa</a></li></Link>
+                  <Link to="/products/region/asia"><li><a className="drop-region" href="#">Asia</a></li></Link>
+                  <Link to="/products/region/australia"><li><a className="drop-region" href="#">Australia</a></li></Link>
+                  <Link to="/products/region/europe"><li><a className="drop-region" href="#">Europe</a></li></Link>
+                  <Link to="/products/region/northamerica"><li><a className="drop-region" href="#">North America</a></li></Link>
+                  <Link to="/products/region/southamerica"><li><a className="drop-region" href="#">South America</a></li></Link>
                 </ul>
               </li>
             </ul>
@@ -45,11 +45,15 @@ export default (props) => {
               {
                 props.user &&
                 props.user.email?
-                <li><Link to='/user'>
-                    <p className="yellow">{props.user.firstName}'s Account</p>
-                    </Link>
-                  <button onClick = {props.logoutUser} className ='btn-danger'>Log Out </button>
-                </li>
+                  <li className="dropdown">
+                        <a href="" id="nav-account" ClassName="dropdown-toggle nav-region yellow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          {props.user.firstName} {props.user.lastName} <span className="caret"></span>
+                        </a>
+                    <ul className="dropdown-menu" id="account-dropdown">
+                      <Link to={`/users/${props.user.id}`}><li><a className="drop-region" href="#">My Account</a></li></Link>
+                      <Link to="/products"><li onClick = {props.logoutUser}><a className="drop-region" href="#">Logout<span className="glyphicon glyphicon-remove" id="nav-logout"></span></a></li></Link>
+                    </ul>
+                  </li>
                 :
                 <li><Link to='/login'>
                     <p className="yellow">Login</p>

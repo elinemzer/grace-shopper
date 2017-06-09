@@ -7,6 +7,10 @@ $color-darkyellow: #e2b42d;
     font-family: 'Open Sans', sans-serif;
 }
 
+.inline {
+    display: inline-block;
+}
+
 .default-container {
     color: #f2f2f2;
     margin: 180px 5%;
@@ -121,8 +125,24 @@ img {
     font-size: 1.3em;
 }
 
-.nav-region {
+.drop-region {
+    font-family: 'Hind', sans-serif;
+    text-transform: uppercase;
+    color: white;
+    margin-top: 25px;
+    font-size: .9em !important;
+    margin-left: 10px;
+}
+
+.drop-region:hover {
+    width: 100%;
+}
+
+#nav-region {
     border-radius: 5px;
+}
+#nav-region:focus {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 #nav-dropdown {
@@ -131,8 +151,34 @@ img {
 }
 
 #nav-dropdown a:hover{
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.2);
     color: $color-yellow;
+    text-decoration: none;
+}
+#nav-account {
+    color: $color-yellow;
+    border-radius: 5px;
+}
+#nav-account:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+#account-dropdown {
+    background-color: $color-navy;
+    border-radius: 10px;
+}
+
+#account-dropdown a:hover{
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: $color-yellow;
+    text-decoration: none;
+}
+
+#nav-logout {
+    margin-left : 5px;
+    font-size: .8em;
+    color: red;
 }
 
 #search {
@@ -157,6 +203,7 @@ img {
     color: $color-yellow;
     box-shadow: inset 0px 0px 30px rgba(0,0,0,0.2);
 }
+
 
 #nav-logo {
     background: $color-navy;
@@ -273,6 +320,11 @@ img {
 
 /* Home */
 
+#home-arrow {
+   font-size: .8em;
+   margin-left: 5px;
+}
+
 #home-page img{
     width: 108%;
     margin-left: -5%;
@@ -314,7 +366,7 @@ img {
     background-color: $color-darkyellow;
     border-radius: 5px;
     height: 50px;
-    padding-top: 3%;
+    padding-top: 3.5%;
     text-align: center;
     font-size: 1.3em;
     font-family: 'Hind', sans-serif;

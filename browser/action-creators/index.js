@@ -14,6 +14,7 @@ export const LOGIN_USER = "LOGIN_USER"
 export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const LOGOUT_USER = 'LOGOUT_USER'
 export const ADD_REVIEW = 'ADD_REVIEW'
+export const DELETE_USER = 'DELETE_USER'
 
 /* ACTION CREATORS */
 export const logoutUser = user =>({
@@ -39,6 +40,11 @@ export const receiveOrders = orders => ({
 export const receiveProducts = products => ({
   type: RECEIVE_PRODUCTS,
   products
+})
+
+export const deleteUser = user => ({
+  type: DELETE_USER,
+  user
 })
 
 export const receiveUser = user => ({
@@ -135,3 +141,26 @@ export const addNewReview = (bodyObj) => {
     }).catch(console.log)
   }
 }
+
+export const removeUser = userId => {
+  return dispatch => {
+    axios.delete(`/api/users/${userId}`)
+    .then(userDeleted => {
+      dispatch(deleteUser(userDeleted.data))
+    }).then( () => {
+      return axios.get(`/api/users`)
+    }).then(foundUsers => {
+      dispatch(receiveUsers(foundUsers.data))
+    })
+    .catch(console.log)
+  }
+}
+
+// export const getUsersOrders = userId => {
+//   return dispatch => {
+//     axios.get(`/api/orders/users/${userId}`)
+//     .then(ordersForUser => {
+//       dispatch(receiveOrders(ordersForUser.data))
+//     })
+//   }
+// }
