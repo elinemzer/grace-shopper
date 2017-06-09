@@ -1,29 +1,34 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Product from './Product'
+import _ from 'lodash'
 
 export default function Cart (props) {
-  console.log(props)
-  const cart = props.cart
-
+  // let products = _.uniq(props.user.Products)
+  const products = props.products
+  
+  console.log(products)
   return (
-	<div className='default-container'>
-    {
-      cart.map((product) => {
-        return (
-          <div key={product.id}>
-            <img src={ product.imageUrl } className ="cart-item img-thumbnail"/>
-            <span> {product.title} </span>
-            <span> {product.price} </span>
-            <div>
-              <button>-</button>
-              1
-              <button>+</button>
-            </div>
+    <div className="container-fluid default-container">
+      <h2 className="fancy-type" id="products-title">{props.user.firstName+'\'s Cart'}</h2>
+      <div className="row">
+      {
+        products && products.map(oneFish => (
+          <div id="product-tile" className="col-xs-4" key={ oneFish.id }>
+            <Link className="thumbnail" to={`/products/${oneFish.id}`}>
+              <img src={ oneFish.imageUrl } />
+              <div className="caption">
+                  <p id="product-tile-title">{ oneFish.title } ({ oneFish.region })</p>
+                  <p className="yellow" id="product-tile-price">${oneFish.price}</p>
+              </div>
+              <div className ='quantity-control'>
+              <button> - </button>
+              <button> + </button>
+              </div>
+            </Link>
           </div>
-        )
-      })
-    }
-  </div>
-  )	
+        ))
+      }
+      </div>
+    </div>
+    )
 }

@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import Review from './Review'
 
+
 export default class AllProducts extends React.Component  {
   constructor(props) {
     super(props);
@@ -14,6 +15,11 @@ export default class AllProducts extends React.Component  {
     this.newReview = this.newReview.bind(this);
     this.reviewContentChange = this.reviewContentChange.bind(this);
     this.reviewTitleChange = this.reviewTitleChange.bind(this);
+    this.cartClickHandler = this.cartClickHandler.bind(this);
+  }
+
+  cartClickHandler() {
+    props.addToCart(this.props.product)
   }
 
   newReview(evt) {
@@ -50,7 +56,7 @@ export default class AllProducts extends React.Component  {
                 <p className="description"><span id="field-notes">Field Notes:</span> {fish.description}</p>
                 <p className ="price fancy-type yellow">${ fish.price }</p>
               </h5>
-              <button className='btn btn-primary' id="product-add">
+              <button onClick ={cartClickHandler} className='btn btn-primary' id="product-add">
                   <span className="glyphicon glyphicon-shopping-cart"></span>
               </button>
               <button className='btn btn-danger' id='product-delete'> x </button>

@@ -1,8 +1,5 @@
 const db = require('../db');
 const Sequelize = require('sequelize');
-const reviews = require('./reviews')
-const orders = require('./orders')
-const products = require('./products')
 const crypto = require('crypto')
 const _ = require('lodash');
 
@@ -55,6 +52,7 @@ var Users = db.define('Users', {
 		sanitize: function () {
       return _.omit(this.toJSON(), ['password', 'salt']);
     },
+
     correctPassword: function (candidatePassword) {
       return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
     }

@@ -16,7 +16,19 @@ export const LOGOUT_USER = 'LOGOUT_USER'
 export const ADD_REVIEW = 'ADD_REVIEW'
 export const DELETE_USER = 'DELETE_USER'
 
+
 /* ACTION CREATORS */
+
+export const receiveCart = cart =>({
+  type: RECEIVE_CART,
+  cart
+})
+
+export const addToCart = cart => ({
+  type: ADD_TO_CART,
+  cart
+})
+
 export const logoutUser = user =>({
   type: LOGOUT_USER,
   user: {}
@@ -60,11 +72,6 @@ export const receiveProduct = product => ({
 export const receiveOrder = order => ({
   type: RECEIVE_ORDER,
   order
-})
-
-export const receiveCart = cart => ({
-  type: RECEIVE_CART,
-  cart
 })
 
 
@@ -165,11 +172,11 @@ export const removeUser = userId => {
   }
 }
 
-// export const getUsersOrders = userId => {
+// export const addToCart = item => {
 //   return dispatch => {
-//     axios.get(`/api/orders/users/${userId}`)
-//     .then(ordersForUser => {
-//       dispatch(receiveOrders(ordersForUser.data))
+//     axios.get(`/api/cart/${userId}`)
+//     .then(cart => {
+//       dispatch(receiveCart(cart.data));
 //     })
 //   }
 // }

@@ -1,22 +1,22 @@
 const router = require('express').Router();
-const Carts = require('../models/carts');
+const Carts = require('../models/cart');
 const Users = require('../models/users');
+const Products = require('../models/products');
 
 //taking supplied cart id and attaching product object to request
-router.param('cart', function(req, res, next, id){
-  Carts.findById(id, { include: [Users] })
-  .then(cart => {req.cart = cart})
-})
+// router.param('cart', function(req, res, next, id){
+//   Carts.findById(id, { include: [Users] })
+//   .then(cart => {req.cart = cart})
+// })
 
 // matches GET requests to /api/cart/
-router.get('/', function (req, res, next){
-  Carts.findAll()
-  .then(cartsFound => res.send(cartsFound))
-  .catch(next)
-});
+router.get('/:userId', function (req, res, next){
 
-router.get('/:cartId', function (req, res, next){
-  Carts.findById(req.params.cartId)
+  Carts.findAll({
+    where: {userId: req.params.userId},
+    include:[{Users}, {Products}]
+
+  })
   .then(cartFound => {
     res.send(cartFound)
   })
@@ -41,3 +41,5 @@ router.delete('/:cartId', function (req, res, next){
     res.sendStatus(204)
   })
 });
+
+module.exports = router

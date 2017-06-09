@@ -6,7 +6,8 @@ import {connect} from 'react-redux';
 
 const mapStateToProps = function(state){
 	return {
-		cart: state.selectedUser.products
+		user: state.loggedInUser,
+		products: state.cart
 		}
 	}
 

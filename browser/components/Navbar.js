@@ -50,6 +50,7 @@ export default function Navbar (props) {
               {
                 props.user &&
                 props.user.email?
+
                   <li className="dropdown">
                         <a href="" id="nav-account" ClassName="dropdown-toggle nav-region yellow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           {props.user.firstName} {props.user.lastName} <span className="caret"></span>
@@ -59,6 +60,7 @@ export default function Navbar (props) {
                       <Link to="/products"><li onClick = {props.logoutUser}><a className="drop-region" href="#">Logout<span className="glyphicon glyphicon-remove" id="nav-logout"></span></a></li></Link>
                     </ul>
                   </li>
+
                 :
                 <li><Link to='/login'>
                     <p className="yellow">Login</p>
@@ -67,7 +69,7 @@ export default function Navbar (props) {
               }
 
               <li className="dropdown">
-                <Link to='/cart'>
+                <Link to={props.user && `/cart/${props.user.id}`}>
                   <span className="glyphicon glyphicon-shopping-cart" />
                 </Link>
                 <ul className="dropdown-menu">
