@@ -2,13 +2,6 @@ const router = require('express').Router();
 const Reviews = require('../models/reviews');
 const Users = require('../models/users');
 
-//taking supplied review id and attaching review object to request
-// router.param('review', function(req, res, next, id){
-//   Reviews.findById(id, { include: [Users] })
-//   .then(review => {req.review = review})
-// })
-
-
 router.get('/:reviewId', function (req, res, next){
   Reviews.findById(req.params.reviewId)
   .then(reviewFound => {
@@ -28,9 +21,12 @@ router.get('/', function (req, res, next){
 
 // matches POST requests to /api/reviews/
 router.post('/', function (req, res, next){
+  console.log("making request, body: ", req.body)
   Reviews.create(req.body)
-  .then(reviewCreated => res.send(reviewCreated))
-  .catch(next)
+  .then(reviewCreated => {
+    console.log("review created: ", reviewCreated)
+    return res.send(reviewCreated)
+  }).catch(next)
 });
 // matches PUT requests to /api/reviews/:reviewId
 router.put('/:reviewId', function (req, res, next){
