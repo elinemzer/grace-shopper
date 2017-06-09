@@ -55,13 +55,13 @@ class LoginContainer extends Component{
 	loginUser(event) {
 		event.preventDefault()
 		this.props.loginUser({email: this.state.email, password: this.state.password})
-		hashHistory.push('/home')
+		hashHistory.push('/products')
 	}
 
 	signUpUser(event) {
 		event.preventDefault()
 		this.props.signUpUser({email: this.state.email, lastName: this.state.lastName, firstName: this.state.firstName, password: this.state.password})
-		hashHistory.push('/home')
+		hashHistory.push('/products')
 	}
 
 	render(){

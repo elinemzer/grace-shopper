@@ -9,7 +9,7 @@ export default function Home () {
       <div className="home-container default-container">
         <h1 id="home-title">Pisces</h1>
         <h3 id="home-subtitle">Aquascaping</h3>
-        <Link to="/products"><h5>Shop Now  > </h5></Link>
+        <Link to="/products"><h5>Shop Now<span className="glyphicon glyphicon-chevron-right" id="home-arrow" /></h5></Link>
       </div>
     </div>
   )

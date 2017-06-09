@@ -9,10 +9,8 @@ import axios from 'axios'
 
 
 import AppContainer from './containers/AppContainer'
-
 import Landing from './components/Landing'
 // import AppContainer from './containers/AppContainer'
-
 // import AdminOrdersContainer from './containers/AdminOrdersContainer'
 import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
@@ -23,6 +21,7 @@ import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
 import UsersContainer from './containers/UsersContainer'
+import RegionContainer from './containers/RegionContainer'
 import Home from './components/Home'
 
 
@@ -70,6 +69,7 @@ ReactDOM.render(
   	<Route path='/' component = {AppContainer} onEnter={onAppEnter}>
         <IndexRoute path='/home' component={Home} />
         <Route path="/home" component={Home} />
+        <Route path='products/region/:region' component={RegionContainer} />
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
