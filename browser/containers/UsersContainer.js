@@ -6,7 +6,8 @@ import {removeUser} from '../action-creators'
 
 const mapStateToProps = function(state) {
 	return {
-		users: state.users
+		users: state.users,
+		loggedInUser: state.loggedInUser
 	}
 }
 
