@@ -4,6 +4,7 @@ import { Link } from 'react-router';
 export default function AllProducts (props) {
 
   const fish = props.products;
+  console.log('products: ', props.filteredProducts)
 
   return (
   	<div className="container-fluid default-container">

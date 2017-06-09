@@ -1,7 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router';
 
-export default (props) => {
+export default function Navbar (props) {
+
+  const handleChange = props.handleChange;
+  const inputValue = props.inputValue;
+  const handleSubmit = props.handleSubmit;
+
   return (
     <div>
       <div className="row">
@@ -34,9 +39,9 @@ export default (props) => {
             </ul>
             <ul className="nav navbar-nav navbar-right">
               <li>
-                <form className="navbar-form" id="search">
+                <form className="navbar-form" id="search" onSubmit={handleSubmit}>
                   <div className="form-group">
-                    <input id="search-input" type="text" className="form-control" placeholder="Search Fish" />
+                    <input id="search-input" type="text" className="form-control" placeholder="Search Fish" onChange={handleChange} value={inputValue} />
                   </div>
                   <button id="search-btn" type="submit" className="btn btn-default">Search</button>
                 </form>
