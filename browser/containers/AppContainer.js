@@ -1,15 +1,40 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { browserHistory } from 'react-router';
-import Navbar from '../components/Navbar'
+import { hashHistory } from 'react-router';
+import Navbar from '../components/Navbar';
+import AllProducts from '../components/AllProducts';
 import {connect} from 'react-redux';
-import { logoutUser, searchProducts} from '../action-creators'
+import { logoutUser, receiveProducts} from '../action-creators'
+
+const mapStateToProps = function(state){
+  return {
+    loggedInUser: state.loggedInUser,
+    products: state.products
+  }
+}
+
+const mapDispatchToProps = function(dispatch) {
+  return {
+    logoutUser: () => {
+      console.log('logout user clicked')
+      axios.post('/api/login/logout')
+      .then(() => {
+        return dispatch(logoutUser())
+      })
+    },
+    searchProducts: ({ inputValue }) => {
+      dispatch(receiveProducts(inputValue));
+    }
+  }
+}
 
 class AppContainer extends Component {
 
   constructor(props){
     super(props);
-    this.state = { inputValue: '' };
+    this.state = {
+      inputValue: ''
+   };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -21,10 +46,16 @@ class AppContainer extends Component {
 
   handleSubmit (evt) {
   evt.preventDefault();
+  let searchedFish = this.props.products;
+
   if (this.state.inputValue){
-    this.props.searchProducts(this.state)
+    searchedFish = searchedFish.filter( fish => {
+      return fish.title.split(' ').join('').toLowerCase() === this.state.inputValue.split(' ').join('').toLowerCase();
+    })
+    hashHistory.push(`/products/${searchedFish[0].id}`)
   }
 }
+
 
   render () {
     return (
@@ -42,29 +73,6 @@ class AppContainer extends Component {
         </div>
       </div>
     )
-  }
-}
-
-
-const mapStateToProps = function(state){
-  return {
-    loggedInUser: state.loggedInUser,
-    products: state.products.products
-    }
-}
-
-const mapDispatchToProps = function(dispatch) {
-  return {
-    logoutUser: () => {
-      console.log('logout user clicked')
-      axios.post('/api/login/logout')
-      .then(()=>{
-        return dispatch(logoutUser())
-      })
-    },
-    searchProducts: ({ inputValue }) => {
-      dispatch(searchProducts(inputValue));
-    }
   }
 }
 

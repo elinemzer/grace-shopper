@@ -12,7 +12,6 @@ export default function AllProducts (props) {
     fish = props.products;
   }
 
-
   return (
   	<div className="container-fluid default-container">
       <h2 className="fancy-type" id="products-title">Our current selection</h2>

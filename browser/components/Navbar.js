@@ -43,7 +43,7 @@ export default function Navbar (props) {
                   <div className="form-group">
                     <input id="search-input" type="text" className="form-control" placeholder="Search Fish" onChange={handleChange} value={inputValue} />
                   </div>
-                  <button id="search-btn" type="submit" className="btn btn-default">Search</button>
+                  <button id="search-btn" type="submit" className="btn btn-default" onSubmit={handleSubmit}>Search</button>
                 </form>
               </li>
 
