@@ -52,7 +52,7 @@ export default function Navbar (props) {
                 props.user.email?
 
                   <li className="dropdown">
-                        <a href="" id="nav-account" ClassName="dropdown-toggle nav-region yellow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                        <a href="" id="nav-account" className="dropdown-toggle nav-region yellow" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           {props.user.firstName} {props.user.lastName} <span className="caret"></span>
                         </a>
                     <ul className="dropdown-menu" id="account-dropdown">

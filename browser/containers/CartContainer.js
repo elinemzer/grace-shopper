@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import store from '../store';
 import Cart from '../components/Cart';
 import {connect} from 'react-redux';
-import {receiveCart} from '../action-creators'
+import {reduceCart} from '../action-creators'
 import axios from 'axios'
 
 const mapStateToProps = function(state){
@@ -18,9 +18,16 @@ const mapDispatchToProps = function(dispatch) {
 		removeOrDecrement: (product) => {
 			axios.delete(`/api/users/item/${product}`)
 			.then((result) => {
-			return dispatch(receiveCart(result.data));
+			return dispatch(reduceCart(result.data));
 				
 			})
+    	},
+
+    	increment: (product) =>{
+    		axios.put(`/api/users/item/${product}`)
+    		.then((result) => {
+    			return dispatch(reduceCart(result.data))
+    		})
     	}
   }
 }

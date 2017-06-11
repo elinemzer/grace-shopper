@@ -1,4 +1,4 @@
-import {  FLASH_MESSAGE, ADD_TO_CART, RECEIVE_CART, LOGOUT_USER, LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
+import {  REDUCE_CART, FLASH_MESSAGE, ADD_TO_CART, RECEIVE_CART, LOGOUT_USER, LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
 
 // import { receiveUser, receiveUsers, receiveProduct, receiveProducts, receiveOrder, receiveOrders, receiveCart, receiveReviews, receiveReview } from "../action-creators";
 
@@ -67,7 +67,13 @@ export default function (state = initialState, action) {
       break;
 
     case RECEIVE_CART:
-      newState.cart = action.cart;
+      //merges cart from session state with the stored cart of logging in user
+      newState.cart = newState.cart.concat(action.cart);
+      break;
+
+    case REDUCE_CART:
+      //overwrites session cart with new cart (for incrementing/decrementing/deleting)
+      newState.cart = action.cart
       break;
 
     case ADD_TO_CART:

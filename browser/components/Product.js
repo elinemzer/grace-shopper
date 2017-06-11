@@ -66,7 +66,6 @@ export default class AllProducts extends React.Component  {
               <button onClick ={this.cartClickHandler} className='btn btn-primary' id="product-add">
                   <span className="glyphicon glyphicon-shopping-cart"/>
               </button>
-              <button className='btn btn-danger' id='product-delete'> x </button>
             </div>
         </div>
   

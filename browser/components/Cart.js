@@ -3,15 +3,21 @@ import { Link } from 'react-router';
 import _ from 'lodash'
 
 export default function Cart (props) {
-  console.log(props)
-  const products = _.uniqBy(props.products, 'id')
+
+  const products = _.uniqBy(props.products, 'id').sort()
   const removeOrDecrement = function(event){
     props.removeOrDecrement(event.target.value)
   }
-  
+  const increment = function(event){
+    props.increment(event.target.value)
+  }
+  const totalPrice = products.length === 0? 0 : products.map( item =>{
+    return item.Cart && item.price * item.Cart.quantity
+  }).reduce((a, b) => a + b)
+
   return (
     <div className="container-fluid default-container">
-      <h2 className="fancy-type" id="products-title">{props.user.firstName + '\'s Cart'}</h2>
+      <h2 className="fancy-type" id="products-title">{`Total: $ ${totalPrice}`}</h2>
       <div className="row">
       {
         products && products.map(oneFish => (
@@ -25,8 +31,8 @@ export default function Cart (props) {
               <div className ='quantity-control'>
               <form method='post' action=''>
                 <button onClick={removeOrDecrement} className='btn btn-danger dec' value={oneFish.id}> - </button>
-                  <input type='text' name='quantity' id='cart-quantity' value={oneFish.Cart.quantity} />
-                <button className='btn btn-success inc' value={oneFish.id}> + </button>
+                  <input type='text' name='quantity' id='cart-quantity' value={oneFish.Cart && oneFish.Cart.quantity} />
+                <button onClick={increment} className='btn btn-success inc' value={oneFish.id}> + </button>
               </form>
               </div>
             </Link>
