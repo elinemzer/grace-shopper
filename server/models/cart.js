@@ -5,4 +5,10 @@ module.exports = db.define('Cart', {
 		quantity: {
 		type: Sequelize.INTEGER
 	}
+},{
+	hooks:{
+		beforeCreate: function(cart){
+			console.log('getting ready to create')
+		}
+	}
 })

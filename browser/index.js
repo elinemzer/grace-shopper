@@ -39,7 +39,10 @@ const onAppEnter = function () {
     store.dispatch(receiveProducts(products));
     store.dispatch(receiveOrders(orders));
     store.dispatch(receiveReviews(reviews));
-    store.dispatch(loginUser(loggedInUser))
+    if(loggedInUser.email){
+      store.dispatch(loginUser(loggedInUser))
+    }
+
   })
 }
 
@@ -80,7 +83,7 @@ ReactDOM.render(
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
-        <Route path='/cart/:userId' component={CartContainer} />
+        <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
   	</Route>
 	  </Router>

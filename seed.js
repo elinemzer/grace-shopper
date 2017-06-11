@@ -26,11 +26,11 @@ var data = {
 	    {title: "Emporer Angelfish", description: 'The emperor angelfish (Pomacanthus imperator) is a species of marine angelfish. It is a reef-associated fish, native to the Indian and Pacific Oceans, from the Red Sea to Hawaii and the Austral Islands. It ranges from coastal East Africa and the Red Sea in the west, to the Tuamotu Islands and Line Islands. Some populations have been observed as far as southern Japan to the Great Barrier Reef in Australia, New Caledonia, and the Austral Islands. Rare sightings have been recorded in the Hawaiian Islands, Puerto Rico, and Florida. These appearances are most likely due to aquarium release. From 2010 there have been reports that the species is colonizing the southeast Mediterranean, most likely as an invader via the Suez Canal. This species is generally associated with stable populations and faces no major threats of extinction. It is a favorite among photographers, artists, and aquarists because of its unique, brilliant pattern of coloration.', region:'Australia', imageUrl:'files/img/angel.jpg', price:100.00},
    ],
  	carts: [
-	    {UserId: 1, ProductId: 2, quantity: 5},
-	    {UserId: 2, ProductId: 1, quantity: 3},
-	    {UserId: 4, ProductId: 3, quantity: 2},
-	    {UserId: 5, ProductId: 2, quantity: 2},
-	    {UserId: 3, ProductId: 1, quantity: 10},
+	    {UserId: 1, ProductId: 2, quantity: 1},
+	    {UserId: 2, ProductId: 1, quantity: 1},
+	    {UserId: 4, ProductId: 3, quantity: 1},
+	    {UserId: 5, ProductId: 2, quantity: 1},
+	    {UserId: 3, ProductId: 1, quantity: 1},
 	    {UserId: 2, ProductId: 2, quantity: 1},
 
   	],

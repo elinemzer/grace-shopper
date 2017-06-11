@@ -69,7 +69,7 @@ export default function Navbar (props) {
               }
 
               <li className="dropdown">
-                <Link to={props.user && `/cart/${props.user.id}`}>
+                <Link to={`/cart`}>
                   <span className="glyphicon glyphicon-shopping-cart" />
                 </Link>
                 <ul className="dropdown-menu">

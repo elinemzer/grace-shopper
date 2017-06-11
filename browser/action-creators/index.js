@@ -15,7 +15,8 @@ export const UPDATE_USER_INFO = "UPDATE_USER_INFO"
 export const LOGOUT_USER = 'LOGOUT_USER'
 export const ADD_REVIEW = 'ADD_REVIEW'
 export const DELETE_USER = 'DELETE_USER'
-
+export const FLASH_MESSAGE = 'FLASH_MESSAGE'
+export const REMOVE_FROM_CART = 'REMOVE_FROM_CART'
 
 /* ACTION CREATORS */
 
@@ -24,9 +25,9 @@ export const receiveCart = cart =>({
   cart
 })
 
-export const addToCart = cart => ({
-  type: ADD_TO_CART,
-  cart
+export const removeFromCart = item =>({
+  type: REMOVE_FROM_CART,
+  item
 })
 
 export const logoutUser = user =>({
@@ -90,6 +91,10 @@ export const addReview = review => ({
   review
 })
 
+export const flash = message =>({
+  type:FLASH_MESSAGE,
+  message
+})
 
 /* ASYNC THUNK ACTION CREATORS */
 export const getUserById = userId => {
@@ -172,11 +177,15 @@ export const removeUser = userId => {
   }
 }
 
-// export const addToCart = item => {
-//   return dispatch => {
-//     axios.get(`/api/cart/${userId}`)
-//     .then(cart => {
-//       dispatch(receiveCart(cart.data));
-//     })
-//   }
-// }
+//sets state flashMessage to provided message, then flips back to empty string after 1 second
+export const flashMessage = (message) => {
+    return dispatch =>{
+      dispatch(flash(message))
+      setTimeout(function() {
+        dispatch(flash(''));
+    }, 3000);
+
+    }
+    
+  }
+

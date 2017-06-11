@@ -56,8 +56,15 @@ export default class AllProducts extends React.Component  {
                 <p className="description"><span id="field-notes">Field Notes:</span> {fish.description}</p>
                 <p className ="price fancy-type yellow">${ fish.price }</p>
               </h5>
+              {
+                this.props.flashMessage &&
+                <div className="alert alert-success" role="alert">
+                  <strong>Success!</strong> {this.props.flashMessage}
+                </div>
+              }
+
               <button onClick ={this.cartClickHandler} className='btn btn-primary' id="product-add">
-                  <span className="glyphicon glyphicon-shopping-cart"></span>
+                  <span className="glyphicon glyphicon-shopping-cart"/>
               </button>
               <button className='btn btn-danger' id='product-delete'> x </button>
             </div>
