@@ -546,6 +546,7 @@ img {
     color: $color-yellow
 }
 
+
 /* CART */
 
 #cart-quantity {
@@ -602,4 +603,9 @@ img {
     border: none;
     background-color: $color-darkyellow;
     color: white;
+
+/* ADMIN */
+
+.col-md-4 {
+  font-size: 11px
 }
