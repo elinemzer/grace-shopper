@@ -21,7 +21,9 @@ export default function Cart (props) {
   return (
     <div className="container-fluid default-container">
       <h2 className="fancy-type" id="products-title">{`Total: $ ${totalPrice}`}</h2>
+      <Link to='/order'>
       <button onClick={checkoutHandler} className="btn btn-success"> Checkout</button>
+      </Link>
       <div className="row">
       {
         products && products.map(oneFish => (

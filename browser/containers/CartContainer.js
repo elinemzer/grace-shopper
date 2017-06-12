@@ -1,6 +1,6 @@
 import Cart from '../components/Cart';
 import {connect} from 'react-redux';
-import {reduceCart} from '../action-creators';
+import {reduceCart, submitOrder} from '../action-creators';
 import axios from 'axios';
 
 const mapStateToProps = function(state){
@@ -29,8 +29,9 @@ const mapDispatchToProps = function(dispatch) {
 
 		checkout: (cart) => {
 			axios.post(`/api/orders/checkout`, cart)
-			.then( () => {
-				return dispatch(reduceCart([]));
+			.then( (order) => {
+				console.log(order.data)
+				return dispatch(submitOrder(order.data))
 			});
 		}
   };

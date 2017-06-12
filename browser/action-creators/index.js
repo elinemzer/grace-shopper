@@ -17,8 +17,14 @@ export const ADD_REVIEW = 'ADD_REVIEW'
 export const DELETE_USER = 'DELETE_USER'
 export const FLASH_MESSAGE = 'FLASH_MESSAGE'
 export const REDUCE_CART = 'REDUCE_CART'
+export const SUBMIT_ORDER = 'SUBMIT_ORDER'
 
 /* ACTION CREATORS */
+export const submitOrder = order => ({
+  type: SUBMIT_ORDER,
+  order
+})
+
 export const reduceCart = cart => ({
   type: REDUCE_CART,
   cart
