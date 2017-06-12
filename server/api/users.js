@@ -49,7 +49,7 @@ router.delete('/:userId', function (req, res, next){
       }
     }).then(() => {
       res.sendStatus(204)
-    })
+    }).catch(next)
   }
   else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
 

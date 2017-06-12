@@ -24,9 +24,8 @@ router.get('/:productId', function (req, res, next){
 router.get('/', function (req, res, next){
   Products.findAll()
   .then(productsFound => {
-
-    res.send(productsFound)})
-  .catch(next)
+    res.send(productsFound)
+  }).catch(next)
 });
 
 
