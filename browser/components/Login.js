@@ -18,7 +18,12 @@ export default function Login (props) {
 					<span className="input-group-btn">
 					   	<button className="btn btn-default login-btn" type="submit">Sign In</button>
 				    </span>
-			    </form>
+			   </form>
+          <hr />
+          <h1 className="fancy-type form-title">Or</h1>
+            <span className="input-group-btn">
+                <button onClick={props.googleLogin} className="btn btn-danger google-btn" type="submit">Login with Google</button>
+            </span>
 		    </div>
     <div className="col-md-2">
     </div>

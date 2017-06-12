@@ -1,15 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+// if (process.env.NODE_ENV === 'development') {
+//   require('../secrets'); // this will mutate the process.env object with your secrets.
+// }
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
 import {receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
-import axios from 'axios'
+import axios from 'axios';
 
-if (process.env.NODE_ENV === 'development') {
-  require('../secrets'); // this will mutate the process.env object with your secrets.
-}
+// if (process.env.NODE_ENV === 'development') {
+//   require('../secrets'); // this will mutate the process.env object with your secrets.
+// }
+
 
 import AppContainer from './containers/AppContainer'
 import Landing from './components/Landing'
@@ -18,7 +22,7 @@ import Landing from './components/Landing'
 import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
 import LoginContainer from './containers/LoginContainer'
-// import OrderContainer from './containers/OrderContainer'
+import OrderContainer from './containers/OrderContainer'
 // import OrdersContainer from './containers/OrdersContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
@@ -89,6 +93,7 @@ ReactDOM.render(
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
+        <Route path='/order' component={OrderContainer} />
   	</Route>
 	  </Router>
   </Provider>,

@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -w & nodemon ./server/index.js",
-    "start-dev": "webpack -w & nodemon ./server/index.js NODE_ENV=development"
+    "start": "node ./server/index.js",
+    "start-dev": "webpack -w & nodemon ./server/index.js NODE_ENV=development",
+    "postinstall": "webpack"
   },
   "author": "",
   "license": "ISC",
