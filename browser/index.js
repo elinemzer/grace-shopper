@@ -7,9 +7,9 @@ import {receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, ge
 import scss from '../index.scss';
 import axios from 'axios'
 
-if (process.env.NODE_ENV === 'development') {
-  require('../secrets'); // this will mutate the process.env object with your secrets.
-}
+// if (process.env.NODE_ENV === 'development') {
+//   require('../secrets'); // this will mutate the process.env object with your secrets.
+// }
 
 import AppContainer from './containers/AppContainer'
 import Landing from './components/Landing'
