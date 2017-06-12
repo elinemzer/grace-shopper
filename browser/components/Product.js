@@ -108,23 +108,23 @@ export default class AllProducts extends React.Component  {
                       <form onSubmit={ this.newReview} >
                         Rating (1-5):
                         {(this.state.rating>='1') ?
-                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '1'})}></span>
+                            <span className="glyphicon glyphicon-star ratingStar btn-lg text-shadow" aria-hidden="true" onClick={() => this.setState({'rating': '1'})}></span>
                             : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '1'})}></span>
                         }
                         {(this.state.rating>='2') ?
-                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '2'})}></span>
+                            <span className="glyphicon glyphicon-star ratingStar text-shadow btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '2'})}></span>
                             : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '2'})}></span>
                         }
                         {(this.state.rating>='3') ?
-                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '3'})}></span>
+                            <span className="glyphicon glyphicon-star ratingStar text-shadow btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '3'})}></span>
                             : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '3'})}></span>
                         }
                         {(this.state.rating>='4') ?
-                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '4'})}></span>
+                            <span className="glyphicon glyphicon-star ratingStar text-shadow btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '4'})}></span>
                             : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '4'})}></span>
                         }
                         {(this.state.rating>='5') ?
-                            <span className="glyphicon glyphicon-star ratingStar btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '5'})}></span>
+                            <span className="glyphicon glyphicon-star ratingStar text-shadow btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '5'})}></span>
                             : <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true" onClick={() => this.setState({'rating': '5'})}></span>
                         }
 

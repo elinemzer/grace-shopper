@@ -30,7 +30,6 @@ const mapDispatchToProps = function(dispatch) {
 		checkout: (cart) => {
 			axios.post(`/api/orders/checkout`, cart)
 			.then( (order) => {
-				console.log(order.data)
 				return dispatch(submitOrder(order.data))
 			});
 		}

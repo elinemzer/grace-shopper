@@ -7,6 +7,7 @@ export default class ManageProducts extends Component{
 	
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			addProd: false,
 			name: '',

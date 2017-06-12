@@ -6,7 +6,6 @@ import { addNewProduct, updateProduct, removeProduct } from '../action-creators'
 import _ from 'lodash'
 
 const mapStateToProps = function(state) {
-	console.log(state);
 	return {
 		products: _.sortBy(state.products, [(prod) => {
 					return prod.title
