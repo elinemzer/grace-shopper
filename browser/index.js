@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import {receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import {getProducts, receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios';
 
@@ -30,6 +30,7 @@ import UserContainer from './containers/UserContainer'
 import UsersContainer from './containers/UsersContainer'
 import RegionContainer from './containers/RegionContainer'
 import Home from './components/Home'
+import ManageProductsContainer from './containers/ManageProductsContainer'
 
 
 const onAppEnter = function () {
@@ -55,10 +56,8 @@ const onAppEnter = function () {
 }
 
 const onUserEnter = function (nextRouterState) {
-  console.log("entering!")
   const userId = nextRouterState.params.userId;
   store.dispatch(getUserById(userId));
-  // store.dispatch(getUsersOrders(userId));
 }
 
 const onProductEnter = function (nextRouterState) {
@@ -90,6 +89,7 @@ ReactDOM.render(
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
+        <Route path='/admin/products' component={ManageProductsContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />

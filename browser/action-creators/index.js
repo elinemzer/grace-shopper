@@ -35,7 +35,6 @@ export const receiveCart = cart =>({
   cart
 })
 
-
 export const logoutUser = user =>({
   type: LOGOUT_USER,
   user: {}
@@ -121,14 +120,14 @@ export const getProductById = productId => {
   }
 }
 
-// export const searchProducts = query => {
-//   return dispatch => {
-//     return axios.get(`/api/products/${productId}`)
-//       .then(response => {
-//         dispatch(receiveProducts(response.data));
-//       });
-//   };
-// };
+export const getProducts = () => {
+  return dispatch => {
+    return axios.get(`/api/products`)
+      .then(response => {
+        dispatch(receiveProducts(response.data));
+      });
+  };
+};
 
 export const getOrderById = orderId => {
   return dispatch => {

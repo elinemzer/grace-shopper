@@ -6,7 +6,7 @@ export default function Review (props) {
   const review = props.review;
   let stars = [];
   for (let i = 0; i < review.rating; i++) {
-    stars.push(<span className="ratingStar glyphicon glyphicon-star" aria-hidden="true"></span>)
+    stars.push(<span className="ratingStar glyphicon glyphicon-star" key={i} aria-hidden="true"></span>)
   }
 
   return (

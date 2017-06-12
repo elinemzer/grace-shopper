@@ -18,7 +18,7 @@ export default function AllProducts (props) {
       <div className="row">
       {
         fish && fish.map(oneFish => (
-          <div id="product-tile" className="col-xs-4" key={ oneFish.id }>
+          <div id="product-tile" className="col-xs-4" key={oneFish.id}>
             <Link className="thumbnail" to={`/products/${oneFish.id}`}>
               <img src={ oneFish.imageUrl } />
               <div className="caption">
