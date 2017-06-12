@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-if (process.env.NODE_ENV === 'development') {
-  require('../secrets'); // this will mutate the process.env object with your secrets.
-}
+// if (process.env.NODE_ENV === 'development') {
+//   require('../secrets'); // this will mutate the process.env object with your secrets.
+// }
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
