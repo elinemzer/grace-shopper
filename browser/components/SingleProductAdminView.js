@@ -14,7 +14,6 @@ export default class SingleProd extends Component {
 			img: this.props.fish.imageUrl,
 			price: this.props.fish.price
 		}
-		console.log(this.state)
 		this.toggleEdit = this.toggleEdit.bind(this);
 		this.submitChanges = this.submitChanges.bind(this);
 		this.onChangeName = this.onChangeName.bind(this);
@@ -65,7 +64,7 @@ export default class SingleProd extends Component {
 						<ul className="list-group" style={{color: 'black'}}>
 							<li className="list-group-item" style={{fontSize: 18}}><span style={labelStyle}>Fish Name</span>: {prod.title} <span onClick={this.toggleEdit} style={editStyle}>  edit </span></li>
 							{
-								(prod.description.length>200) ? <li className="list-group-item"><span style={labelStyle}>Field Notes:</span> {prod.description.substring(0, 200).concat("...")}</li>
+								(prod.description.length>50) ? <li className="list-group-item"><span style={labelStyle}>Field Notes:</span> {prod.description.substring(0, 50).concat("...")}</li>
 								: <li className="list-group-item"><span style={labelStyle}>Field Notes:</span> {prod.description}</li>
 							}
 							<li className="list-group-item"><span style={labelStyle}>Native Region</span>: {prod.region}</li>

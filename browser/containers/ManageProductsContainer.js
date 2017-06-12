@@ -2,12 +2,15 @@ import React, { Component } from 'react';
 import store from '../store'
 import {connect} from 'react-redux'
 import ManageProductsComponent from '../components/ManageProductsComponent'
-import { updateProduct, removeProduct } from '../action-creators'
+import { addNewProduct, updateProduct, removeProduct } from '../action-creators'
+import _ from 'lodash'
 
 const mapStateToProps = function(state) {
 	console.log(state);
 	return {
-		products: state.products
+		products: _.sortBy(state.products, [(prod) => {
+					return prod.title
+				}])
 	};
 };
 
@@ -18,6 +21,10 @@ const mapDispatchToProps = function(dispatch) {
 		},
 		deleteFish: (fishId) => {
 			dispatch(removeProduct(fishId));
+		},
+		handleSubmitNewProduct: (bodyObj) => {
+			console.log('in handler!!! new info: ', bodyObj)
+			dispatch(addNewProduct(bodyObj))
 		}
 	};
 };

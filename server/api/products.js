@@ -3,14 +3,7 @@ const Products = require('../models/products');
 const Reviews = require('../models/reviews');
 const Users = require('../models/users')
 
-//taking supplied product id and attaching product object to request
 
-// router.param('product', function(req, res, next, id){
-//   Products.findById(id)
-//   .then(product => {req.product = product})
-// })
-
-//needed a db query
 router.get('/:productId', function (req, res, next){
 
   Products.findById(req.params.productId, {include: [{model: Reviews, include: [Users]}]})
@@ -32,6 +25,7 @@ router.get('/', function (req, res, next){
 
 // matches POST requests to /api/products/
 router.post('/', function (req, res, next){
+  console.log('req.body: ', req.body)
   Products.create(req.body)
   .then(productCreated => res.send(productCreated))
   .catch(next)
