@@ -1,15 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+if (process.env.NODE_ENV === 'development') {
+  require('../secrets'); // this will mutate the process.env object with your secrets.
+}
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
 import {receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
-import axios from 'axios'
+import axios from 'axios';
 
-if (process.env.NODE_ENV === 'development') {
-  require('../secrets'); // this will mutate the process.env object with your secrets.
-}
 
 import AppContainer from './containers/AppContainer'
 import Landing from './components/Landing'
