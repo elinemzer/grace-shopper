@@ -8,12 +8,15 @@ const _ = require('lodash')
 
 //Get user by userId (for individual user page/admin user view)
 router.get('/:userId', function (req, res, next){
-  Users.findById(req.params.userId, {include: [{model: Orders, include: [Products]}]})
-  .then(userFound => {
-    console.log('userFound: ', userFound)
-    res.send(userFound)
-  })
-  .catch(next)
+  if(req.session.admin || req.params.userId === req.session.userId){
+    Users.findById(req.params.userId, {include: [{model: Orders, include: [Products]}]})
+    .then(userFound => {
+      console.log('userFound: ', userFound)
+      res.send(userFound)
+    })
+    .catch(next)
+  }
+
 });
 
 // matches POST requests to /api/users/
