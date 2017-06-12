@@ -18,7 +18,7 @@ import Landing from './components/Landing'
 import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
 import LoginContainer from './containers/LoginContainer'
-// import OrderContainer from './containers/OrderContainer'
+import OrderContainer from './containers/OrderContainer'
 // import OrdersContainer from './containers/OrdersContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
@@ -89,6 +89,7 @@ ReactDOM.render(
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
+        <Route path='/order' component={OrderContainer} />
   	</Route>
 	  </Router>
   </Provider>,

@@ -1,4 +1,4 @@
-import {  REDUCE_CART, FLASH_MESSAGE, ADD_TO_CART, RECEIVE_CART, LOGOUT_USER, LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
+import {  SUBMIT_ORDER, REDUCE_CART, FLASH_MESSAGE, ADD_TO_CART, RECEIVE_CART, LOGOUT_USER, LOGIN_USER, RECEIVE_USER, RECEIVE_USERS, RECEIVE_PRODUCT, RECEIVE_PRODUCTS, RECEIVE_ORDER, RECEIVE_ORDERS, RECEIVE_REVIEWS, RECEIVE_REVIEW } from "../action-creators";
 
 // import { receiveUser, receiveUsers, receiveProduct, receiveProducts, receiveOrder, receiveOrders, receiveCart, receiveReviews, receiveReview } from "../action-creators";
 
@@ -13,7 +13,8 @@ const initialState = {
   reviews: [],
   selectedReview: {},
   loggedInUser: {},
-  flashMessage: ''
+  flashMessage: '',
+  selectedOrder: {}
 }
 
 export default function (state = initialState, action) {
@@ -21,6 +22,11 @@ export default function (state = initialState, action) {
   const newState = Object.assign({}, state);
 
   switch (action.type) {
+
+    case SUBMIT_ORDER:
+      newState.cart = [];
+      newState.selectedOrder = action.order;
+      break;
 
     case LOGOUT_USER:
       newState.loggedInUser = action.user;

@@ -3,6 +3,7 @@ const Orders = require('../models/orders');
 const Users = require('../models/users');
 const Products = require('../models/products');
 const Product_Order = require('../models/product_order');
+const Cart = require('../models/cart')
 const Promise = require('bluebird')
 
 //taking supplied order id and attaching product object to request
@@ -78,29 +79,46 @@ router.post('/checkout', function (req, res, next){
     return Products.findById(item.id)
   })
 
-  console.log('in checkout order with ', req.body)
 
   Orders.create({UserId: req.session.userId, status: 'Created', datePlaced: Date()})
   .then( createdOrder => {
+    //Use promise array to  get all products
     Promise.all(getProducts)
     .then(allProducts =>{
+      //Create new promise array that adds all products to order
       return Promise.map(allProducts, (product) =>{
         return createdOrder.addProducts(product)
       })
+      //execute promise array to add all products to order
       .then(addingProducts =>{
         return Promise.all(addingProducts)
       })
       .then( addedProducts =>{
+        //Create promise array to update product orders
         return Promise.map(req.body, (product) =>{
           return Product_Order.update({quantity: product.Cart.quantity, price: product.price}, {where: {OrderId: createdOrder.id, ProductId: product.id}})
       })
       .then( allProductOrders => {
+        //Update all product orders
         return Promise.all(allProductOrders)
       })
+      .then( () =>{
+        //Destroy User/Products cart associations
+        return Cart.destroy({where: {UserId: req.session.userId}})
+      })
+      .then(foundCarts => {
+        //Retrieve the created order with the newly added products
+        return Orders.findById(createdOrder.id, {include: [{model: Products}]})
+      })
+      .then(foundOrderWithProds => {
+            //Send back the order with the products for adding onto the state
+            res.status(201).send(foundOrderWithProds)
+      })
+      .catch(next)
       })
     })
 
-    res.status(201).send(createdOrder)
+
   })
 });
 // matches DELETE requests to /api/orders/:orderId
