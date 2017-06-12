@@ -39,10 +39,27 @@ export default class AllProducts extends React.Component  {
 
   reviewTitleChange(evt) {this.setState({'reviewTitle': evt.target.value})}
 
+
   render() {
     const fish = this.props.product;
     const reviews = this.props.reviews;
     const star = <span className="glyphicon glyphicon-star-empty btn-lg" aria-hidden="true"></span>
+    
+    let avg = 0.0;
+    let stars = [];
+    if ((reviews != undefined && reviews.length)) {
+      reviews.map((review) =>{
+        avg += +review.rating;
+      })
+      avg = avg/reviews.length;
+
+      for (let i = 0; i < avg; i++) {
+        stars.push(<span className="ratingStar glyphicon glyphicon-star" aria-hidden="true"></span>)
+      }
+      if (stars==[]) stars = null;
+
+    }
+
     return (
       <div className="default-container">
         <div className="row">
@@ -50,7 +67,7 @@ export default class AllProducts extends React.Component  {
                 <img id="single-product-img" src={ fish.imageUrl } />
             </div>
             <div className="caption col-xs-6">
-              <h2 id="product-title" className="fancy-type">{fish.title}</h2>
+              <h2 id="product-title" className="fancy-type">{fish.title} {stars}</h2>
               <h5>
                 <h4 className ="region fancy-type">{ fish.region }</h4>
                 <p className="description"><span id="field-notes">Field Notes:</span> {fish.description}</p>
@@ -83,9 +100,9 @@ export default class AllProducts extends React.Component  {
                   }
                   {
                     (!this.state.editForm) ? (this.props.loggedInUser.id) ? <button type="button" className="btn btn-primary" onClick={() => this.setState({'editForm': 'true'})}>Leave a Review</button>
-                                                                        : <div><button type="button" className="btn btn-primary" disabled>Leave a Review</button>
-                                                                            <span>  You must be logged in to leave a review.</span>
-                                                                          </div>
+                      : <div><button type="button" className="btn btn-primary" disabled>Leave a Review</button>
+                          <span>  You must be logged in to leave a review.</span>
+                        </div>
                     : <div className='form-group'>
                       <form onSubmit={this.newReview}>
                         Rating (1-5):
