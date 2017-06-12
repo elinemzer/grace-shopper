@@ -1,39 +1,21 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import SingleProduct from './SingleProductAdminView'
 
 
-export default class MangeProducts extends Component {
-	constructor(props) {
-		super(props);
-		console.log('manage products component constructor', props)
-		this.handleEdit = this.handleEdit.bind(this);
-	}
+export default (props) => {
+	const products = props.products;
 
-	handleEdit() {
-
-	}
-
-	render() {
-
-		const editStyle = {
-			fontSize: 12,
-			color: 'blue'
-		};
-
-		return (
-			<div className="row default-container">
+	return (
+		<div className="row default-container">
+			<h2 className="fancy-type" id="products-title">Manage Inventory</h2>
 			{
-				this.props.products && this.props.products.map(prod => {
-					return (
-						<div key={prod.id} className="col-sm-6 text-center">
-						<p>
-							{prod.title} <span onClick={this.handleEdit} style={editStyle}> edit </span>
-						</p>
-						</div>
-						)
+				products && products.map(prod => {
+					return (<SingleProduct fish={prod} deleteProduct={props.deleteFish} updateFish={props.updateFish} />)
 				})
+
 			}
-			</div>
-			)
-	}
+		</div>
+	)
 }
+

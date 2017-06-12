@@ -22,7 +22,7 @@ router.get('/:productId', function (req, res, next){
 
 // matches GET requests to /api/products/
 router.get('/', function (req, res, next){
-  Products.findAll()
+  Products.findAll({order: [['title', 'ASC']]})
   .then(productsFound => {
     res.send(productsFound)
   }).catch(next)
@@ -38,13 +38,16 @@ router.post('/', function (req, res, next){
 });
 // matches PUT requests to /api/products/:productId
 router.put('/:productId', function (req, res, next){
-  req.product.update(req.body)
-  .then(productUpdated => res.send(productUpdated))
+  Products.update(req.body, {where: 
+    {id: req.params.productId}
+  }).then(productUpdated => res.send(productUpdated))
   .catch(next)
 });
 // matches DELTE requests to /api/products/:productId
 router.delete('/:productId', function (req, res, next){
-  req.product.destroy(req.body)
+  Products.destroy({where: {
+    id: req.params.productId}
+  })
   .then(() => {
     res.sendStatus(204)
   })
