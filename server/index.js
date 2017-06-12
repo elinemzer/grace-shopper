@@ -8,7 +8,9 @@ const Users = require('./models/users')
 //passport for our db session
 const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+
 const secrets = require('../secrets')
+
 //new sequelize session for auth
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
