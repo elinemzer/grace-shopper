@@ -33,8 +33,8 @@ const mapDispatchToProps = function(dispatch) {
     	checkout: (cart) => {
     		axios.post(`/api/orders/checkout`, cart)
     		.then( (result) => {
-    			console.log(result)
-    			// return dispatch(reduceCart([]))
+    			
+    			return dispatch(reduceCart([]))
 			})
     	}
   }

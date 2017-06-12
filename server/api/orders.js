@@ -2,6 +2,7 @@ const router = require('express').Router();
 const Orders = require('../models/orders');
 const Users = require('../models/users');
 const Products = require('../models/products');
+const Product_Order = require('../models/product_order');
 const Promise = require('bluebird')
 
 //taking supplied order id and attaching product object to request
@@ -87,7 +88,15 @@ router.post('/checkout', function (req, res, next){
         return createdOrder.addProducts(product)
       })
       .then(addingProducts =>{
-        Promise.all(addingProducts)
+        return Promise.all(addingProducts)
+      })
+      .then( addedProducts =>{
+        return Promise.map(req.body, (product) =>{
+          return Product_Order.update({quantity: product.Cart.quantity, price: product.price}, {where: {OrderId: createdOrder.id, ProductId: product.id}})
+      })
+      .then( allProductOrders => {
+        return Promise.all(allProductOrders)
+      })
       })
     })
 
