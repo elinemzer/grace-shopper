@@ -17,7 +17,6 @@ const mapStateToProps = function(state){
 const mapDispatchToProps = function(dispatch) {
   return {
     logoutUser: () => {
-      console.log('logout user clicked')
       axios.post('/api/login/logout')
       .then(() => {
         return dispatch(logoutUser())
