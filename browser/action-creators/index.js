@@ -18,6 +18,9 @@ export const DELETE_USER = 'DELETE_USER'
 export const FLASH_MESSAGE = 'FLASH_MESSAGE'
 export const REDUCE_CART = 'REDUCE_CART'
 export const SUBMIT_ORDER = 'SUBMIT_ORDER'
+export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
+export const DELETE_PRODUCT = 'DELETE_PRODUCT'
+export const ADD_PRODUCT = 'ADD_PRODUCT'
 
 /* ACTION CREATORS */
 export const submitOrder = order => ({
@@ -75,11 +78,20 @@ export const receiveProduct = product => ({
   product
 })
 
+export const addProduct = product => ({
+  type: ADD_PRODUCT,
+  product
+})
+
+export const deleteProduct = product => ({
+  type: DELETE_PRODUCT,
+  product
+})
+
 export const receiveOrder = order => ({
   type: RECEIVE_ORDER,
   order
 })
-
 
 export const receiveReviews = reviews => ({
   type: RECEIVE_REVIEWS,
@@ -100,6 +112,8 @@ export const flash = message =>({
   type:FLASH_MESSAGE,
   message
 })
+
+
 
 /* ASYNC THUNK ACTION CREATORS */
 export const getUserById = userId => {
@@ -179,6 +193,47 @@ export const removeUser = userId => {
     .catch(console.log)
   }
 }
+
+export const updateProduct = (bodyObj, fishId) => {
+  return dispatch => {
+    axios.put(`/api/products/${fishId}`, bodyObj)
+    .then(updatedProduct => {
+      dispatch(receiveProduct(updatedProduct.data))
+    }).then(() => {
+      return axios.get(`/api/products`)
+    }).then(allProducts => {
+      dispatch(receiveProducts(allProducts.data))
+    })
+    .catch(console.log)
+  }
+}
+
+export const removeProduct = (fishId) => {
+  return dispatch => {
+    axios.delete(`/api/products/${fishId}`)
+    .then(deletedFish => {
+      disaptch(deleteProduct(deletedFish.data))
+    }).then(() => {
+      return axios.get(`/api/products`)
+    }).then(allProducts => {
+      dispatch(receiveProducts(allProducts.data))
+    }).catch(console.log)
+  }
+}
+
+export const addNewProduct = (bodyObj) => {
+  return dispatch => {
+    axios.post(`/api/products`, bodyObj)
+    .then(newFish => {
+      dispatch(addProduct(newFish.data))
+    }).then(() => {
+      return axios.get(`/api/products`)
+    }).then(allProducts => {
+      dispatch(receiveProducts(allProducts.data))
+    }).catch(console.log)
+  }
+}
+
 
 //sets state flashMessage to provided message, then flips back to empty string after 1 second
 export const flashMessage = (message) => {
