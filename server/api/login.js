@@ -6,7 +6,7 @@ const Promise = require('bluebird')
 
 router.post('/login', (req, res, next) => {
   //Turn cart into promises to get sequelize database objects for each product
-  const getProducts = Promise.map(req.session.cart, function (item){
+  const getProducts = Promise.map(req.session.cart||[], function (item){
     return Products.findById(item.id)
   })
 
@@ -27,9 +27,7 @@ router.post('/login', (req, res, next) => {
       .then(allProducts =>{
         return Promise.map(allProducts, (product) => {
           return user.addProducts(product)
-          })
-        
-        .then(addingProducts => {
+          }).then(addingProducts => {
           Promise.all(addingProducts)
         })
       })

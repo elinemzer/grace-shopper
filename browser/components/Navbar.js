@@ -57,6 +57,10 @@ export default function Navbar (props) {
                         </a>
                     <ul className="dropdown-menu" id="account-dropdown">
                       <Link to={`/users/${props.user.id}`}><li><a className="drop-region" href="#">My Account</a></li></Link>
+                      {
+                        (props.user.isAdmin) ? <Link to={'/admin'}><li><a className="drop-region" href="#">Manage Users</a></li></Link>
+                        :null
+                      }
                       <Link to="/products"><li onClick = {props.logoutUser}><a className="drop-region" href="#">Logout<span className="glyphicon glyphicon-remove" id="nav-logout"></span></a></li></Link>
                     </ul>
                   </li>
