@@ -63,9 +63,9 @@ var data = {
    ],
 
    reviews: [
-	    {rating: '1', title: 'Worst Fish', content: 'I hate this fish', UserId: 5, ProductId: 1},
-	    {rating: '2', title: 'Not a great fish', content: 'I dont like this fish very much', UserId: 1, ProductId: 3},
-	    {rating: '3', title: 'Mixed Feelings', content: 'This fish is alright but not great', UserId: 2 , ProductId: 5},
+	    {rating: '3', title: 'Worst Fish', content: 'I hate this fish', UserId: 5, ProductId: 1},
+	    {rating: '3', title: 'Not a great fish', content: 'I dont like this fish very much', UserId: 1, ProductId: 3},
+	    {rating: '4', title: 'Mixed Feelings', content: 'This fish is alright but not great', UserId: 2 , ProductId: 5},
 	    {rating: '4', title: 'Very Dangerous', content: 'My fault for buying a shark', UserId: 4, ProductId: 6},
 	    {rating: '5', title: 'Wonderful fish', content: 'I love this fish', UserId: 2, ProductId:1},
 	    {rating: '1', title: 'Never received fish', content: 'I dont understand how the reviews work', UserId: 1, ProductId: 4},
