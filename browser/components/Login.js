@@ -3,7 +3,6 @@ import { Link } from 'react-router';
 
 export default function Login (props) {
 
-	console.log(props)
 
   return (
   	<div className='login-container'>

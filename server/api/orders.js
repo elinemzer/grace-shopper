@@ -10,11 +10,12 @@ router.param('order', function(req, res, next, id){
 
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
-  Orders.findAll()
+  const where = req.session.admin ? {} : {where: {UserId: req.session.userId}}
+  Orders.findAll(where)
   .then(ordersFound => {
     let order = ordersFound[0];
     // console.log('orders found on api route: ', ordersFound)
-    console.log(order.getUser());
+    // console.log(order.getUser());
     res.send(ordersFound)
   })
   .catch(next)
@@ -23,13 +24,16 @@ router.get('/', function (req, res, next){
 router.get('/:orderId', function (req, res, next){
   Orders.findById(req.params.orderId)
   .then(orderFound => {
-    res.send(orderFound)
+    if(orderFound.UserId === req.session.userId)
+      res.send(orderFound)
+    else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
   })
   .catch(next)
 });
 
 router.get('/users/:userId', function (req, res, next){
-  Orders.findAll({
+  if(req.session.admin || req.session.userId === req.params.userId){
+    Orders.findAll({
     where: {
       userId: req.params.userId
     }
@@ -38,25 +42,37 @@ router.get('/users/:userId', function (req, res, next){
     res.send(ordersFound)
   })
   .catch(next)
+  } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
+
 });
 // matches POST requests to /api/orders/
-router.post('/', function (req, res, next){
-  Orders.create(req.body)
-  .then(orderCreated => res.send(orderCreated))
-  .catch(next)
+
+  router.post('/', function (req, res, next){
+    if(req.session.admin){
+    Orders.create(req.body)
+    .then(orderCreated => res.send(orderCreated))
+    .catch(next)
+    } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
+
 });
 // matches PUT requests to /api/orders/:orderId
 router.put('/:orderId', function (req, res, next){
-  req.order.update(req.body)
-  .then(orderUpdated => res.send(orderUpdated))
-  .catch(next)
+  if(req.session.admin){
+    req.order.update(req.body)
+      .then(orderUpdated => res.send(orderUpdated))
+      .catch(next)
+  } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
+
 });
-// matches DELTE requests to /api/orders/:orderId
+// matches DELETE requests to /api/orders/:orderId
 router.delete('/:orderId', function (req, res, next){
-  req.order.destroy(req.body)
-  .then(() => {
-    res.sendStatus(204)
-  })
+  if(req.session.admin){
+    req.order.destroy(req.body)
+    .then(() => {
+      res.sendStatus(204)
+    })
+  } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
+
 });
 
 module.exports = router;

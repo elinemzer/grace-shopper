@@ -44,11 +44,11 @@ var data = {
       {title: "Sumatra Barb", description: "Puntigrus tetrazona, the tiger barb or Sumatra barb, is a species of tropical cyprinid fish. The natural geographic range reportedly extends throughout the Malay Peninsula, Sumatra and Borneo in Indonesia, with unsubstantiated sightings reported in Cambodia. Tiger barbs are also found in many other parts of Asia, and with little reliable collection data over long periods of time, definite conclusions about their natural geographic range versus established introductions are difficult. The tiger barb can grow to about 7-10 centimeters long (2.75 – 4 in) and 3-4 centimeters wide,(1.18 in), although they are often smaller when kept in captivity. Some can grow to around 13 centimeters as well. Native fish are silver to brownish yellow with four vertical black stripes and red fins and snout. The green tiger barb is the same size and has the same nature as the normal barb, but has a green body. The green tiger barb, often called the moss green tiger barb, can vary considerably in how green it looks; to some people it looks nearly black. Albino barbs are a light yellow with four barely visible stripes.", region:'Asia', imageUrl:'files/img/barb.jpg', price:18.50}
    ],
  	carts: [
-	    {UserId: 1, ProductId: 2, quantity: 5},
-	    {UserId: 2, ProductId: 1, quantity: 3},
-	    {UserId: 4, ProductId: 3, quantity: 2},
-	    {UserId: 5, ProductId: 2, quantity: 2},
-	    {UserId: 3, ProductId: 1, quantity: 10},
+	    {UserId: 1, ProductId: 2, quantity: 1},
+	    {UserId: 2, ProductId: 1, quantity: 1},
+	    {UserId: 4, ProductId: 3, quantity: 1},
+	    {UserId: 5, ProductId: 2, quantity: 1},
+	    {UserId: 3, ProductId: 1, quantity: 1},
 	    {UserId: 2, ProductId: 2, quantity: 1},
 
   	],

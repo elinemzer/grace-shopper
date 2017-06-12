@@ -13,6 +13,14 @@ const passport = require('passport');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dbStore = new SequelizeStore({ db: db });
+
+// collect our google configuration into an object
+const googleConfig = {
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: '/auth/google/callback'
+};
+
 dbStore.sync();
 
 app.use(morgan('dev'));
@@ -36,6 +44,14 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use('/api', require('./api'));
 
 //serialize/deserialize users
+
+app.get('/auth/google', passport.authenticate('google', { scope: 'email' }));
+
+app.get('/auth/google/callback', passport.authenticate('google', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+
 passport.serializeUser((user, done) => {
   try {
     done(null, user.id);

@@ -8,15 +8,20 @@ var User = require('../models/users');
 router.get('/me', (req, res, next) => {
 	User.findOne({
 		where: {id: req.session.userId},
-		include: [{model:Products}]
+		include: [
+			{model: Products}
+		]
 	})
 	.then((foundUser) => {
+	//if no user is found, simply send back the cart for permeation reasons
 		if(!foundUser){
-			res.send({})
+			res.send(req.session.cart)
 		}
+	//othe
 		else res.send(foundUser);
 	}).catch(next);
 });
+
 
 
 module.exports = router

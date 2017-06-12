@@ -3,10 +3,13 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import { getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import {receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios'
 
+if (process.env.NODE_ENV === 'development') {
+  require('../secrets'); // this will mutate the process.env object with your secrets.
+}
 
 import AppContainer from './containers/AppContainer'
 import Landing from './components/Landing'
@@ -39,7 +42,11 @@ const onAppEnter = function () {
     store.dispatch(receiveProducts(products));
     store.dispatch(receiveOrders(orders));
     store.dispatch(receiveReviews(reviews));
-    store.dispatch(loginUser(loggedInUser))
+    if (loggedInUser.email) store.dispatch(loginUser(loggedInUser))
+    //user is not logged in, so we are only receiving a cart from the session cart
+    else store.dispatch(receiveCart(loggedInUser))
+
+
   })
 }
 
@@ -81,7 +88,7 @@ ReactDOM.render(
         </Route>
         <Route path='/admin' component={UsersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
-        <Route path='/cart/:userId' component={CartContainer} />
+        <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
   	</Route>
 	  </Router>

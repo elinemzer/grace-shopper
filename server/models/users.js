@@ -12,6 +12,9 @@ var Users = db.define('Users', {
 	password: {
 		type: Sequelize.STRING
 	},
+
+	googleId: Sequelize.STRING,
+
 	salt: {
 		type: Sequelize.STRING
 	},

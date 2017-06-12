@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -w & nodemon ./server/index.js"
+    "start": "webpack -w & nodemon ./server/index.js",
+    "start-dev": "webpack -w & nodemon ./server/index.js NODE_ENV=development"
   },
   "author": "",
   "license": "ISC",
@@ -22,6 +23,7 @@
     "morgan": "^1.8.2",
     "net": "^1.0.2",
     "passport": "^0.3.2",
+    "passport-google-oauth": "^1.0.0",
     "path": "^0.12.7",
     "pg": "^6.2.3",
     "pg-hstore": "^2.3.2",
