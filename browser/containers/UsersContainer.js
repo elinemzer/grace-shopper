@@ -3,21 +3,29 @@ import store from '../store'
 import {connect} from 'react-redux'
 import UserComponent from '../components/UserComponent'
 import {removeUser} from '../action-creators'
+import axios from 'axios'
 
 const mapStateToProps = function(state) {
 	return {
 		users: state.users,
-		loggedInUser: state.loggedInUser
-	}
-}
+		loggedInUser: state.loggedInUser,
+		setResetFlag: (userId) => {
+			axios.put(`/api/users/${userId}`)
+			.then( newUser => {
+				console.log(newUser);
+			});
+		}
+	};
+};
 
 const mapDispatchToProps = function(dispatch) {
 	return {
 		delete: (userId) => {
-			console.log("passed in userId: ", userId)
-			return dispatch(removeUser(userId))
-		}
-	}
-}
+			return dispatch(removeUser(userId));
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserComponent)
+		}
+
+	};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserComponent);

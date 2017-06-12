@@ -29,10 +29,7 @@ router.post('/', function (req, res, next){
 // matches PUT requests to /api/users/:userId
 router.put('/:userId', function (req, res, next){
   if(req.session.admin || req.params.userId === req.session.userId){
-  Users.findById(req.params.userId)
-  .then(userFound => {
-    return userFound.update(req.body)
-  })
+  Users.update({passwordReset: true}, {where:{id:req.params.userId}})
   .then(userUpdated => {
     res.send(userUpdated)
   })

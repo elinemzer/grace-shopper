@@ -80,7 +80,7 @@ router.post('/checkout', function (req, res, next){
   })
 
 
-  Orders.create({UserId: req.session.userId, status: 'Created', datePlaced: Date()})
+  Orders.create({UserId: req.session.userId||'01', status: 'Created', datePlaced: Date()})
   .then( createdOrder => {
     //Use promise array to  get all products
     Promise.all(getProducts)
