@@ -14,6 +14,7 @@ const mapStateToProps = function(state) {
 const mapDispatchToProps = function(dispatch) {
 	return {
 		delete: (userId) => {
+			console.log("passed in userId: ", userId)
 			return dispatch(removeUser(userId))
 		}
 	}
