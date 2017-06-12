@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 
 export default function Review (props) {
-  
+
   const review = props.review;
   let stars = [];
   for (let i = 0; i < review.rating; i++) {
@@ -14,12 +14,11 @@ export default function Review (props) {
       <div className="row">
       {
           <div key={ review.id }>
-              <div className="review">
-                <ul className="list-group">
-                  <span>{review.title}</span> <span>{stars}</span>
-                  <li className="list-group-item">by {review.User.firstName} {review.User.lastName}</li>
-                  <li className="list-group-item">{ review.content }</li>
-                </ul>
+              <div className="review-tile">
+                  <h4>{review.title}</h4>
+                  <h5>{stars}</h5>
+                  <h5>by {review.User.firstName} {review.User.lastName}</h5>
+                  <li className="list-group-item review-content">{ review.content }</li>
               </div>
           </div>
       }

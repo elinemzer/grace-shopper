@@ -4,6 +4,7 @@ import { browserHistory, Link } from 'react-router';
 export default (props) => {
 	const users = props.users
 	const resetHandler = function (event) {
+		console.log(event.target.value)
 		props.setResetFlag(event.target.value)
 	}
 	

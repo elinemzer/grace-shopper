@@ -11,6 +11,12 @@ module.exports = db.define('Review', {
 		type: Sequelize.STRING
 	},
 	content: {
-		type: Sequelize.TEXT
+		type: Sequelize.TEXT,
+		validate: {
+			len: {
+				args: 10,
+				msg: 'Put in some more effort! Review must be at least ten characters!'
+			}
+		}
 	}
 })

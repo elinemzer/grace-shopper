@@ -52,7 +52,6 @@ var Users = db.define('Users', {
 	},
 	passwordReset:{
 		type: Sequelize.BOOLEAN,
-		allowNull: false,
 		defaultValue: false
 	}
 },{

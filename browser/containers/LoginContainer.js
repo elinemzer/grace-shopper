@@ -95,7 +95,11 @@ const mapDispatchToProps = function (dispatch) {
 				password:user.password
 			})
 			.then((result) => {
-				return dispatch(loginUser(result.data))
+				console.log(result)
+				if(result.status === 202){
+					hashHistory.push('/passwordreset')
+				} else {return dispatch(loginUser(result.data))}
+
 			})
 		},
 		googleLogin: (user) => {

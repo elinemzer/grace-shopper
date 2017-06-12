@@ -29,6 +29,7 @@ import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
 import UsersContainer from './containers/UsersContainer'
 import RegionContainer from './containers/RegionContainer'
+import PasswordResetContainer from './containers/PasswordResetContainer'
 import Home from './components/Home'
 import ManageProductsContainer from './containers/ManageProductsContainer'
 
@@ -94,6 +95,7 @@ ReactDOM.render(
         <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
         <Route path='/order' component={OrderContainer} />
+        <Route path='/passwordreset' component={PasswordResetContainer} />
   	</Route>
 	  </Router>
   </Provider>,
