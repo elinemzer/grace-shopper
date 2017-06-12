@@ -32,6 +32,7 @@ import RegionContainer from './containers/RegionContainer'
 import PasswordResetContainer from './containers/PasswordResetContainer'
 import Home from './components/Home'
 import ManageProductsContainer from './containers/ManageProductsContainer'
+import ManageOrdersContainer from './containers/ManageOrdersContainer'
 
 
 const onAppEnter = function () {
@@ -90,7 +91,9 @@ ReactDOM.render(
         <Route path='/products' component={ProductsContainer} />
         <Route path='/products/:productId' component= {ProductContainer} onEnter={onProductEnter}/>
         <Route path='/admin' component={UsersContainer} />
+        <Route path='/admin/users' component={UsersContainer} />
         <Route path='/admin/products' component={ManageProductsContainer} />
+        <Route path='/admin/orders' component={ManageOrdersContainer} />
         <Route path='/users/:userId' component={UserContainer} onEnter={onUserEnter} />
         <Route path='/cart' component={CartContainer} />
         <Route path='/login' component={LoginContainer} />
