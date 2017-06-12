@@ -15,9 +15,13 @@ export default function Cart (props) {
     return item.Cart && item.price * item.Cart.quantity
   }).reduce((a, b) => a + b)
 
+  const checkoutHandler = function(){
+    props.checkout(products)
+  }
   return (
     <div className="container-fluid default-container">
       <h2 className="fancy-type" id="products-title">{`Total: $ ${totalPrice}`}</h2>
+      <button onClick={checkoutHandler} className="btn btn-success"> Checkout</button>
       <div className="row">
       {
         products && products.map(oneFish => (

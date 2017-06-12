@@ -28,6 +28,14 @@ const mapDispatchToProps = function(dispatch) {
     		.then((result) => {
     			return dispatch(reduceCart(result.data))
     		})
+    	},
+
+    	checkout: (cart) => {
+    		axios.post(`/api/orders/checkout`, cart)
+    		.then( (result) => {
+    			console.log(result)
+    			// return dispatch(reduceCart([]))
+			})
     	}
   }
 }

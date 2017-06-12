@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Orders = require('../models/orders');
 const Users = require('../models/users');
+const Products = require('../models/products');
+const Promise = require('bluebird')
 
 //taking supplied order id and attaching product object to request
 router.param('order', function(req, res, next, id){
@@ -57,12 +59,40 @@ router.get('/users/:userId', function (req, res, next){
 });
 // matches PUT requests to /api/orders/:orderId
 router.put('/:orderId', function (req, res, next){
+
+
   if(req.session.admin){
     req.order.update(req.body)
       .then(orderUpdated => res.send(orderUpdated))
       .catch(next)
   } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
 
+});
+
+//"checkout" the received cart
+
+router.post('/checkout', function (req, res, next){
+
+  const getProducts = Promise.map(req.body, function (item){
+    return Products.findById(item.id)
+  })
+
+  console.log('in checkout order with ', req.body)
+
+  Orders.create({UserId: req.session.userId, status: 'Created', datePlaced: Date()})
+  .then( createdOrder => {
+    Promise.all(getProducts)
+    .then(allProducts =>{
+      return Promise.map(allProducts, (product) =>{
+        return createdOrder.addProducts(product)
+      })
+      .then(addingProducts =>{
+        Promise.all(addingProducts)
+      })
+    })
+
+    res.status(201).send(createdOrder)
+  })
 });
 // matches DELETE requests to /api/orders/:orderId
 router.delete('/:orderId', function (req, res, next){
