@@ -8,12 +8,15 @@ const _ = require('lodash')
 
 //Get user by userId (for individual user page/admin user view)
 router.get('/:userId', function (req, res, next){
-  Users.findById(req.params.userId, {include: [{model: Orders, include: [Products]}]})
-  .then(userFound => {
-    console.log('userFound: ', userFound)
-    res.send(userFound)
-  })
-  .catch(next)
+  if(req.session.admin || req.params.userId === req.session.userId){
+    Users.findById(req.params.userId, {include: [{model: Orders, include: [Products]}]})
+    .then(userFound => {
+      console.log('userFound: ', userFound)
+      res.send(userFound)
+    })
+    .catch(next)
+  }
+
 });
 
 // matches POST requests to /api/users/
@@ -29,10 +32,7 @@ router.post('/', function (req, res, next){
 // matches PUT requests to /api/users/:userId
 router.put('/:userId', function (req, res, next){
   if(req.session.admin || req.params.userId === req.session.userId){
-  Users.findById(req.params.userId)
-  .then(userFound => {
-    return userFound.update(req.body)
-  })
+  Users.update({passwordReset: true}, {where:{id:req.params.userId}})
   .then(userUpdated => {
     res.send(userUpdated)
   })
@@ -43,12 +43,15 @@ router.put('/:userId', function (req, res, next){
 
 // matches DELETE requests to /api/users/:userId
 router.delete('/:userId', function (req, res, next){
-  if(req.session.admin){
-    req.user.destroy(req.body)
-    .then(() => {
+  if(req.session.admin) {
+      Users.destroy({where: {
+        id: req.params.userId
+      }
+    }).then(() => {
       res.sendStatus(204)
-  })
-  } else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
+    })
+  }
+  else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
 
 
 });
