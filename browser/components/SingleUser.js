@@ -88,8 +88,8 @@ export default class SingleUser extends Component {
 		<div className="row">
 		<div className="col-md-6">
 			<h2 className="fancy-type"> Account Details</h2>
-			<div className="panel panel-default">
-			  <div className="panel-body" style={{color: '#1c3151' }}>
+			<div className="panel panel-default account-details">
+			  <div className="panel-body">
 			    <h4>Name: {user.firstName} {user.lastName}</h4>
 			    {
 			    	(!this.state.editEmail) ?
@@ -101,7 +101,7 @@ export default class SingleUser extends Component {
 			    		<form onSubmit={this.submitEmailButton} >
 						  <input type="text" className="form-control" onChange={this.onChangeEmail} defaultValue={user.email} aria-describedby="basic-addon1" />
 						  <span className="input-group-btn">
-					        <button className="btn btn-default" type="submit">Change Email</button>
+					        <button className="btn btn-default account-btns" type="submit">Change Email</button>
 					      </span>
 					      </form>
 					</span>
@@ -113,7 +113,7 @@ export default class SingleUser extends Component {
 				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} style={editStyle}> edit </span> </h4>
 						    <h5> {user.address1} </h5>
 						    {(user.address2) ? <h5> {user.address2} </h5> : null}
-						    <h5> {user.city}, {user.state} {user.zipcode} </h5>
+						    <h5> {user.city} {user.state} {user.zipcode} </h5>
 				    </div>
 						: <div>
 					    	<h4>Shipping Address: </h4>
@@ -130,7 +130,7 @@ export default class SingleUser extends Component {
 									  <p>Zipcode</p>
 									  <input id="zip" type="text" className="form-control col-md-2" onChange={this.onChangeZipcode} defaultValue={user.zipcode} aria-describedby="basic-addon1" />
 										  <span className="input-group-btn">
-									        <button className="btn btn-default" type="submit">Change Address</button>
+									        <button className="btn btn-default account-btns" type="submit">Change Address</button>
 								      </span>
 							    </form>
 							</span>
@@ -143,8 +143,8 @@ export default class SingleUser extends Component {
 
 			<div className="col-md-6">
 			<h2 className="fancy-type">Order History</h2>
-				<div className="panel panel-default">
-				  <div className="panel-body" style={{color: '#1c3151' }}>
+				<div className="panel panel-default account-details">
+				  <div className="panel-body" >
 					{
 						(user.Orders !== undefined && user.Orders.length) ? user.Orders.map((order, idx1) => {
 							return (
