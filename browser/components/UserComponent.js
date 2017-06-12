@@ -30,7 +30,8 @@ export default (props) => {
 							  	<div className="btn-group btn-group-sm" role="group" aria-label="...">
 									<Link to={`/admin`}>
 								  <button type="button" className="btn btn-info" onClick={resetHandler} value={user.id} align="left">Reset Password</button>
-								  <button type="button" className="btn btn-danger" align="right" value={user.id} onClick={props.delete}>Delete</button>
+								  <button type="button" className="btn btn-danger" align="right" onClick={() => {props.delete(user.id)}}>Delete</button>
+
 									</Link>
 								</div>
 							  </li>

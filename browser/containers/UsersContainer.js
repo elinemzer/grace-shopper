@@ -22,6 +22,7 @@ const mapDispatchToProps = function(dispatch) {
 	return {
 		delete: (userId) => {
 			return dispatch(removeUser(userId));
+
 		}
 
 	};

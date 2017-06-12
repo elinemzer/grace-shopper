@@ -40,12 +40,15 @@ router.put('/:userId', function (req, res, next){
 
 // matches DELETE requests to /api/users/:userId
 router.delete('/:userId', function (req, res, next){
-  if(req.session.admin){
-    req.user.destroy(req.body)
-    .then(() => {
+  if(req.session.admin) {
+      Users.destroy({where: {
+        id: req.params.userId
+      }
+    }).then(() => {
       res.sendStatus(204)
-  })
-  } else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
+    })
+  }
+  else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
 
 
 });
