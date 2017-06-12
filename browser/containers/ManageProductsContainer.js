@@ -6,7 +6,6 @@ import {removeUser} from '../action-creators'
 import axios from 'axios'
 
 const mapStateToProps = function(state) {
-	console.log(state);
 	return {
 		products: state.products
 	};

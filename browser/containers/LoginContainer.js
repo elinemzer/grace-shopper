@@ -95,7 +95,6 @@ const mapDispatchToProps = function (dispatch) {
 				password:user.password
 			})
 			.then((result) => {
-				console.log(result)
 				if(result.status === 202){
 					hashHistory.push('/passwordreset')
 				} else {return dispatch(loginUser(result.data))}
@@ -103,10 +102,8 @@ const mapDispatchToProps = function (dispatch) {
 			})
 		},
 		googleLogin: (user) => {
-			console.log("in axios")
 			axios.get('/google')
 			.then((result) => {
-				console.log(result);
 				//return dispatch(loginUser(result.data))
 			})
 		},

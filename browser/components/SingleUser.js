@@ -80,7 +80,6 @@ export default class SingleUser extends Component {
 		};
 
 		const user = this.props.user;
-		console.log('userOrder: ', user.Orders)
 
 		return(
 		<div className="default-container">

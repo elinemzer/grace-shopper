@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import PasswordReset from '../components/PasswordReset';
 import {connect} from 'react-redux';
-import { loginUser, flash } from '../action-creators';
+import { loginUser, flashMessage } from '../action-creators';
 import { hashHistory } from 'react-router'
 
 
@@ -89,7 +89,7 @@ const mapDispatchToProps = function (dispatch) {
 				newPassword: user.newPassword
 			})
 			.then((updatedUser) => {
-				return dispatch(flash('Password has been updated. Please log in with your new password'))
+				return dispatch(flashMessage('Password has been updated. Please log in with your new password'))
 
 			})
 		}

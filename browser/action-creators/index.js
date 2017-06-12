@@ -155,10 +155,8 @@ export const updateUser = (userId, bodyObj) => {
 
 export const addNewReview = (bodyObj) => {
   return dispatch => {
-    console.log('making axios request...', bodyObj)
     axios.post(`/api/reviews`, bodyObj)
     .then(newReview => {
-      console.log("new review: ", newReview)
       dispatch(addReview(newReview.data))
     }).then(() => {
       return axios.get(`/api/products/${bodyObj.ProductId}`)

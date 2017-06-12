@@ -28,9 +28,20 @@ router.post('/', function (req, res, next){
   } else (res.status(401).send('Access Denied - Please log in as admin to complete this action'))
 
 });
-
 // matches PUT requests to /api/users/:userId
 router.put('/:userId', function (req, res, next){
+  if(req.session.admin || req.params.userId === req.session.userId){
+  Users.update(req.body, {where:{id:req.params.userId}})
+  .then(userUpdated => {
+    res.send(userUpdated)
+  })
+  .catch(next)
+  } else (res.status(401).send('Access Denied - Please log in as admin to complete this action')) 
+
+});
+
+// matches password update PUT requests to /api/users//password/:userId
+router.put('/password/:userId', function (req, res, next){
   if(req.session.admin || req.params.userId === req.session.userId){
   Users.update({passwordReset: true}, {where:{id:req.params.userId}})
   .then(userUpdated => {

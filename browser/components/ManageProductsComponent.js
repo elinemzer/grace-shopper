@@ -5,7 +5,6 @@ import axios from 'axios'
 export default class MangeProducts extends Component {
 	constructor(props) {
 		super(props);
-		console.log('manage products component constructor', props)
 		this.handleEdit = this.handleEdit.bind(this);
 	}
 
