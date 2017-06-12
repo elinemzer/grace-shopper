@@ -2,6 +2,8 @@
 $color-yellow: #ffd456;
 $color-navy: #1c3151;;
 $color-darkyellow: #e2b42d;
+$color-red: #e03c3c;
+$color-darkred: #cc2c2c;
 
 * {
     font-family: 'Open Sans', sans-serif;
@@ -402,6 +404,20 @@ img {
     border: none;
     border-radius: 3px !important;
     text-transform: uppercase;
+}
+
+.google-btn {
+    margin-top: 15px;
+    background-color: $color-red;
+    border: none;
+    color: white;
+    border-radius: 3px !important;
+    text-transform: uppercase;
+}
+
+.google-btn:hover {
+    background-color: $color-darkred;
+    color: white;
 }
 
 .login-btn:hover {

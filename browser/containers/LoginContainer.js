@@ -21,65 +21,73 @@ class LoginContainer extends Component{
 		this.signUpUser = this.signUpUser.bind(this);
 		this.handleFirst = this.handleFirst.bind(this);
 		this.handleLast = this.handleLast.bind(this);
+		this.googleLogin = this.googleLogin.bind(this);
 
 
 	}
 
-	handleEmail(event){
+	handleEmail (event) {
 		const value = event.target.value;
 		this.setState({
 			email: value
 		})
 	}
 
-	handlePassword(event){
+	handlePassword (event) {
 		const value = event.target.value;
 		this.setState({
 			password: value
 		})
 	}
 
-	handleFirst(event){
+	handleFirst (event) {
 		const value = event.target.value;
 		this.setState({
 			firstName: value
 		})
 	}
 
-	handleLast(event){
+	handleLast (event) {
 		const value = event.target.value;
 		this.setState({
 			lastName: value
 		})
 	}
-	loginUser(event) {
+
+	googleLogin (event) {
+		event.preventDefault()
+		this.props.googleLogin()
+		hashHistory.push('/products')
+	}
+
+	loginUser (event) {
 		event.preventDefault()
 		this.props.loginUser({email: this.state.email, password: this.state.password})
 		hashHistory.push('/products')
 	}
 
-	signUpUser(event) {
+	signUpUser (event) {
 		event.preventDefault()
 		this.props.signUpUser({email: this.state.email, lastName: this.state.lastName, firstName: this.state.firstName, password: this.state.password})
 		hashHistory.push('/products')
 	}
 
-	render(){
-		return(<Login loginUser={this.loginUser} handleLast={this.handleLast} handleFirst={this.handleFirst} signUpUser={this.signUpUser} handleEmail={this.handleEmail} handlePassword={this.handlePassword} />
+	render () {
+		return(<Login loginUser={this.loginUser} handleLast={this.handleLast} handleFirst={this.handleFirst} signUpUser={this.signUpUser} handleEmail={this.handleEmail} googleLogin={this.googleLogin} handlePassword={this.handlePassword} />
 		)
 	}
 
 }
 
 
-const mapStateToProps = function(state){
+const mapStateToProps = function (state) {
 	return {
 		state: state
 		}
 	}
 
 
-const mapDispatchToProps = function(dispatch) {
+const mapDispatchToProps = function (dispatch) {
 	return {
 		loginUser: (user) => {
 			axios.post('/api/login/login',{
@@ -89,7 +97,14 @@ const mapDispatchToProps = function(dispatch) {
 			.then((result) => {
 				return dispatch(loginUser(result.data))
 			})
-
+		},
+		googleLogin: (user) => {
+			console.log("in axios")
+			axios.get('/google')
+			.then((result) => {
+				console.log(result);
+				//return dispatch(loginUser(result.data))
+			})
 		},
 		signUpUser: (user) => {
 			axios.post('/api/login/signup',{
