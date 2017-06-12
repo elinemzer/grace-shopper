@@ -15,7 +15,9 @@ router.get('/me', (req, res, next) => {
 	.then((foundUser) => {
 	//if no user is found, simply send back the cart for permeation reasons
 		if(!foundUser){
+			if(req.session.cart)
 			res.send(req.session.cart)
+			else{res.send([])}
 		}
 	//othe
 		else res.send(foundUser);
