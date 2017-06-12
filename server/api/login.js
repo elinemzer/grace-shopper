@@ -9,7 +9,6 @@ router.post('/login', (req, res, next) => {
   const getProducts = Promise.map(req.session.cart, function (item){
     return Products.findById(item.id)
   })
-  let creatingProducts = []
 
   Users.findOne({
     where: {email: req.body.email},
