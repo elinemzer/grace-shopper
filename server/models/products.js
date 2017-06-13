@@ -22,12 +22,12 @@ const products = db.define('Product', {
 	},
 	price: {
 		type: Sequelize.DECIMAL(10, 2)
+	},
+	outOfStock: {
+		type: Sequelize.BOOLEAN,
+		defaultValue: 'FALSE'
 	}
 })
-
-// products.hasMany(reviews);
-// products.belongsToMany(users, {through: 'cart'});
-// products.belongsToMany(orders, {through: 'product_order'});
 
 
 module.exports = products;

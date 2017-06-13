@@ -12,10 +12,11 @@ export default class ManageProducts extends Component{
 			addProd: false,
 			name: '',
 			notes: '',
-			region: '',
+			region: 'Africa',
 			img: '',
 			price: 0.00
 		}
+		
 		this.toggleAddProduct = this.toggleAddProduct.bind(this);
 		this.onChangeName = this.onChangeName.bind(this);
 		this.onChangeNotes = this.onChangeNotes.bind(this);
@@ -50,7 +51,7 @@ export default class ManageProducts extends Component{
 
 	render() {
 		const products = this.props.products;
-
+		console.log(this.state);
 		return (
 			<div className="row default-container">
 				<h2 className="fancy-type" id="products-title">Manage Inventory
@@ -59,14 +60,14 @@ export default class ManageProducts extends Component{
 				{
 					(this.state.addProd) ? 
 					<div className="row">
-					<ul className="list-group col-md-6 col-md-offset-3" style={{color: 'black'}}> 
+					<ul className="account-details list-group col-md-6 col-md-offset-3"> 
 							<form onSubmit={this.submitNewProduct}>
-								<li className="list-group-item container-fluid"><label htmlFor='regions'>Fish Name: </label><input type="text" id='regions' className="form-control col-md-6" onChange={this.onChangeName} aria-describedby="basic-addon1" /></li>
-								<li className="list-group-item container-fluid">Field Notes:
+								<li className="account-details list-group-item container-fluid"><label htmlFor='regions'>Fish Name: </label><input type="text" id='regions' className="form-control col-md-6" onChange={this.onChangeName} aria-describedby="basic-addon1" /></li>
+								<li className="account-details list-group-item container-fluid">Field Notes:
 									<textarea height='50' width='100'className="form-control col-md-6 " onChange={this.onChangeNotes} aria-describedby="basic-addon1" />
 								</li>
-								<li className="list-group-item">Native Region: 
-									<select onChange={this.onChangeRegion}>
+								<li className="account-details list-group-item">Native Region: 
+									<select defaultValue="Africa" onChange={this.onChangeRegion}>
 										<option value="Africa">Africa</option>
 										<option value="Asia">Asia</option>
 										<option value="Australia">Australia</option>
@@ -75,10 +76,21 @@ export default class ManageProducts extends Component{
 										<option value="South America">South America</option>
 									</select>
 								</li>
-								<li className="list-group-item container-fluid">Sample Image URL: <input type="text" className="form-control col-md-6" onChange={this.onChangeImg} aria-describedby="basic-addon1" /></li>
-								<li className="list-group-item container-fluid">Price (USD): <input type="number" step="0.01" className="form-control col-md-10" onChange={this.onChangePrice} aria-describedby="basic-addon1" /></li>
-								<li className="list-group-item container-fluid">
-									<button type='submit' className="btn btn-default">Save Changes</button><button className="btn btn-default" onClick={this.toggleAddProduct}>Cancel</button>
+								<li className="account-details list-group-item container-fluid">Sample Image URL: <input type="text" className="form-control col-md-6" onChange={this.onChangeImg} aria-describedby="basic-addon1" /></li>
+								<li className="account-details list-group-item container-fluid">Price (USD): <input type="number" step="0.01" className="form-control col-md-10" onChange={this.onChangePrice} aria-describedby="basic-addon1" /></li>
+								<li className="account-details list-group-item container-fluid">
+									{
+										(this.state.name=='' || this.state.notes=='' || this.state.region=='' || this.state.img=='' || this.state.price==0.00) ?
+											<div>
+												<button type='submit' className="btn btn-default" disabled>Save Changes</button>
+												<button className="btn btn-default" onClick={this.toggleAddProduct}>Cancel</button>
+												<span style={{'color': 'red'}}> All fields are required!</span>
+											</div>
+										: <div>
+											<button type='submit' className="btn btn-default">Save Changes</button>
+											<button className="btn btn-default" onClick={this.toggleAddProduct}>Cancel</button>
+										  </div>
+									}
 								</li>
 							</form>
 						</ul>
@@ -87,7 +99,7 @@ export default class ManageProducts extends Component{
 				}
 				{
 					products && products.map(prod => {
-						return (<SingleProduct fish={prod} deleteProduct={this.props.deleteFish} updateFish={this.props.updateFish} />)
+						return (<SingleProduct key={prod.id} fish={prod} outOfStock={this.props.outOfStock} deleteProduct={this.props.deleteFish} updateFish={this.props.updateFish} />)
 					})
 
 				}
