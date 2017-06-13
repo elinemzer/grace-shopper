@@ -54,7 +54,7 @@ const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken,
   const googleId = profile.id;
   const name = profile.displayName;
   const email = profile.emails[0].value;
-
+  console.log(profile)
   Users.findOne({where: { googleId: googleId  }})
     .then(function (user) {
       if (!user) {
@@ -72,13 +72,7 @@ const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken,
 // register our strategy with passport
 passport.use(strategy);
 
-app.get('/google',  (req, res, next) => {
-   //res.send(req.user.dataValues)
-    if (req.query.return) {
-      console.log(req.query.return);
-    }
-    next();
-  },
+app.get('/google',
   passport.authenticate('google', { scope: 'email' }));
 
 app.get('/google/callback', passport.authenticate('google', {
