@@ -74,24 +74,24 @@ export default class Order extends Component {
 	onChangeZipcode(evt) {this.setState({'zipcode': evt.target.value})}
 
 	render() {
-		const editStyle = {
-			fontSize: 12,
-			color: 'blue'
-		};
+
 
 		const user = this.props.user;
-
+		if(this.props.order.datePlaced){
+			this.props.order.datePlaced = this.props.order.datePlaced.slice(0, (this.props.order.datePlaced.indexOf('T')))
+		}
+		console.log(this.props.order.datePlaced)
 		return(
 		<div className="default-container">
 		<div className="row">
 		<div className="col-md-6">
 			<h2 className="fancy-type"> Shipping Details</h2>
-			<div className="panel panel-default">
-			  <div className="panel-body" style={{color: '#1c3151' }}>
-			    <h4>Name: {user.firstName} {user.lastName}</h4>
+			<div className="panel panel-default account-details">
+			  <div className="panel-body">
+			    <h4 className="inner-panel">Name: {user.firstName} {user.lastName}</h4>
 			    {
 			    	(!this.state.editEmail) ?
-			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} style={editStyle}> edit </span> </h4>
+			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} className="edit"> edit </span> </h4>
 			    	:
 			    	<div>
 			    	<h4>Email: </h4>
@@ -108,7 +108,7 @@ export default class Order extends Component {
 			    {
 			    	(!this.state.editAddress) ?
 			    	<div>
-				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} style={editStyle}> edit </span> </h4>
+				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} className="edit"> edit </span> </h4>
 						    <h5> {user.address1} </h5>
 						    {(user.address2) ? <h5> {user.address2} </h5> : null}
 						    <h5> {user.city}, {user.state} {user.zipcode} </h5>
@@ -141,20 +141,20 @@ export default class Order extends Component {
 
 			<div className="col-md-6">
 			<h2 className="fancy-type">Your Order</h2>
-				<div className="panel panel-default">
-				  <div className="panel-body" style={{color: '#1c3151' }}>
+				<div className="panel account-details">
+				  <div className="panel-body">
 					{
 						this.props.order &&
-							
+
 								<ul className="list-group">
-								<li className="list-group-item"><h3>Order Placed On: {this.props.order && this.props.order.datePlaced} </h3></li>
+								<li className="list-group-item inner-panel"><h3>Order Placed On: {this.props.order && this.props.order.datePlaced} </h3></li>
 								  {this.props.products && this.props.products.map((product, idx) => {
-											return (<li key={idx} className="list-group-item"><p><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title} </span><span className="col-md-4" style={{'textAlign': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
+											return (<li key={idx} className="list-group-item inner-panel"><p><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title} </span><span className="col-md-4" style={{'textAlign': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
 										})
 									}
-									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && this.calculateOrderTotal(this.props.order)} </p></li>
+									<li className="list-group-item inner-panel" style={{'textAlign': 'right'}}><p>Order Total: <span className="yellow">${this.props.order.Products && this.calculateOrderTotal(this.props.order)}</span></p></li>
 								</ul>
-						
+
 
 					}
     		</div>
