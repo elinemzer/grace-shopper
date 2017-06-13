@@ -27,6 +27,7 @@ export default class Order extends Component {
 		this.onChangeState = this.onChangeState.bind(this);
 		this.onChangeZipcode = this.onChangeZipcode.bind(this);
 		this.submitAddressButton = this.submitAddressButton.bind(this);
+		this.addShippingInfoButton = this.addShippingInfoButton.bind(this);
 	}
 
 
@@ -46,6 +47,22 @@ export default class Order extends Component {
 		evt.preventDefault();
 		this.props.submitEmail(this.state.email, this.props.user.id);
 		this.setState({'editEmail': false})
+	}
+
+	addShippingInfoButton(evt){
+		evt.preventDefault();
+		this.props.updateShippingInfo(
+			[
+			this.props.order.id,
+			{
+				email: this.state.email,
+				address1: this.state.address1,
+				address2: this.state.address2,
+				city: this.state.city,
+				state: this.state.state,
+				zipcode: this.state.zipcode
+			}]
+			)
 	}
 
 	submitAddressButton(evt) {
@@ -80,55 +97,66 @@ export default class Order extends Component {
 		};
 
 		const user = this.props.user;
-
 		return(
 		<div className="default-container">
 		<div className="row">
 		<div className="col-md-6">
+			{
+   				user.firstName? 
+   				''
+   				:
+                <div className="alert alert-danger" role="alert">
+                  <strong>Alert!</strong> Your order will not be processed unless you add the following information
+                </div>
+            }
 			<h2 className="fancy-type"> Shipping Details</h2>
 			<div className="panel panel-default">
 			  <div className="panel-body" style={{color: '#1c3151' }}>
-			    <h4>Name: {user.firstName} {user.lastName}</h4>
+			  	{
+			  		user.firstName &&<h4>Name: {user.firstName} {user.lastName}</h4>
+			  	}
+
 			    {
-			    	(!this.state.editEmail) ?
-			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} style={editStyle}> edit </span> </h4>
-			    	:
+
 			    	<div>
 			    	<h4>Email: </h4>
 			    	<span className="input-group">
 			    		<form onSubmit={this.submitEmailButton} >
-						  <input type="text" className="form-control" onChange={this.onChangeEmail} defaultValue={user.email} aria-describedby="basic-addon1" />
+						  <input type="text" value={this.state.email}  className="form-control" onChange={this.onChangeEmail} aria-describedby="basic-addon1" />
 						  <span className="input-group-btn">
-					        <button className="btn btn-default" type="submit">Change Email</button>
+						  {
+						  	user.firstName && <button className="btn btn-default" type="submit">Change Email</button>
+						  }
+
 					      </span>
 					      </form>
 					</span>
 					</div>
 			    }
 			    {
-			    	(!this.state.editAddress) ?
-			    	<div>
-				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} style={editStyle}> edit </span> </h4>
-						    <h5> {user.address1} </h5>
-						    {(user.address2) ? <h5> {user.address2} </h5> : null}
-						    <h5> {user.city}, {user.state} {user.zipcode} </h5>
-				    </div>
-						: <div>
+			    
+					 <div>
 					    	<h4>Shipping Address: </h4>
 					    	<span className="input-group">
-					    		<form onSubmit={this.submitAddressButton} >
+					    		<form onSubmit={ user.firstName? this.submitAddressButton : this.addShippingInfoButton} >
 									  <p>Address Line 1</p>
-									  <input id="a1" type="text" className="form-control col-md-2" onChange={this.onChangeAddress1} defaultValue={user.address1} aria-describedby="basic-addon1" />
+									  <input id="a1" type="text" value={this.state.address1} className="form-control col-md-2" onChange={this.onChangeAddress1}  aria-describedby="basic-addon1" />
 									  <p>Address Line 2</p>
-									  <input id="a2" type="text" className="form-control col-md-2" onChange={this.onChangeAddress2} defaultValue={user.address2} aria-describedby="basic-addon1" />
+									  <input id="a2" type="text" value={this.state.address2}className="form-control col-md-2" onChange={this.onChangeAddress2} aria-describedby="basic-addon1" />
 									  <p>City</p>
-									  <input id="city" type="text" className="form-control col-md-2" onChange={this.onChangeCity} defaultValue={user.city} aria-describedby="basic-addon1" />
+									  <input id="city" type="text" value={this.state.city}className="form-control col-md-2" onChange={this.onChangeCity} aria-describedby="basic-addon1" />
 									  <p>State</p>
-									  <input id="state" type="text" className="form-control col-md-2" onChange={this.onChangeState} defaultValue={user.state} aria-describedby="basic-addon1" />
+									  <input id="state" type="text" value={this.state.state}className="form-control col-md-2" onChange={this.onChangeState}  aria-describedby="basic-addon1" />
 									  <p>Zipcode</p>
-									  <input id="zip" type="text" className="form-control col-md-2" onChange={this.onChangeZipcode} defaultValue={user.zipcode} aria-describedby="basic-addon1" />
+									  <input id="zip" type="text" value={this.state.zipcode}className="form-control col-md-2" onChange={this.onChangeZipcode}  aria-describedby="basic-addon1" />
 										  <span className="input-group-btn">
-									        <button className="btn btn-default" type="submit">Change Address</button>
+										  {
+										  	user.firstName && <button className="btn btn-default" type="submit">Change Address</button>
+										  }
+										  {
+										  	user.firstName || <button className="btn btn-danger" type="submit">Add Shipping Info</button>
+										  }
+
 								      </span>
 							    </form>
 							</span>

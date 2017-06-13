@@ -10,7 +10,8 @@ var Product_Orders = require('./server/models/product_order')
 
 var data = {
 	users: [
-	    {email: "Mars@venus.jupiter", password: "123", firstName: 'Eli', lastName: 'Nemzer', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
+      {id: "1001", email:'admin@aquascaping.com', password: "123", firstName: 'GUEST', lastName: 'USER', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
+      {email: "Mars@venus.jupiter", password: "123", firstName: 'Eli', lastName: 'Nemzer', address1: '123 fake st', address2: 'd8', city:'Chicago', state:'NM', zipcode:'11111', isAdmin: 'false'},
 	    {email: "Space@venus.jupiter", password: "123", firstName: 'Danielle', lastName: 'Westerman', address1: '123 Fake Stt', address2: '', city:'Loudon', state:'NH', zipcode:'10250', isAdmin: 'false'},
 	    {email: "Dogpound@venus.jupiter", password: "123", firstName: 'Emily', lastName: 'Acres', address1: '45 Main Ct', address2: 'z12', city:'Austin', state:'TX', zipcode:'13063', isAdmin: 'true'},
 	    {email: "Hello@venus.jupiter", password: "123", firstName: 'Jeremy', lastName: 'Wicks', address1: '60 Star Cir', address2: '', city:'Orlando', state:'MD', zipcode:'21122', isAdmin: 'false'},

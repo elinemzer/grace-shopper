@@ -3,6 +3,8 @@ import store from '../store'
 import {connect} from 'react-redux'
 import Order from '../components/Order'
 import {updateUser} from '../action-creators'
+import axios from 'axios'
+import {hashHistory} from 'react-router'
 
 const mapStateToProps = function(state) {
 	return {
@@ -19,6 +21,14 @@ const mapDispatchToProps = function(dispatch) {
 		},
 		submitAddress: (bodyObj, userId) => {
 			return dispatch(updateUser(userId, bodyObj))
+		},
+		updateShippingInfo: (info) =>{
+
+			axios.put(`/api/orders/${info[0]}/info`, info[1])
+			.then( result =>{
+				hashHistory.push('/products')
+
+			})
 		}
 	}
 }

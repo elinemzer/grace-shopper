@@ -74,13 +74,14 @@ router.put('/:orderId', function (req, res, next){
 //"checkout" the received cart
 
 router.post('/checkout', function (req, res, next){
-
+  delete req.session.cart
   const getProducts = Promise.map(req.body, function (item){
     return Products.findById(item.id)
   })
 
+  const userId = req.session.userId ? req.session.userId : 1001
 
-  Orders.create({UserId: req.session.userId||'01', status: 'Created', datePlaced: Date()})
+  Orders.create({UserId: userId, status: 'Created', datePlaced: Date()})
   .then( createdOrder => {
     //Use promise array to  get all products
     Promise.all(getProducts)
@@ -121,6 +122,17 @@ router.post('/checkout', function (req, res, next){
 
   })
 });
+
+router.put('/:orderId/info', function (req, res, next){
+    console.log(req.params.id)
+    Orders.update(req.body, {where: {id: req.params.orderId}})
+    .then((updatedOrder) => {
+      res.status(201).send('Did it')
+    }).catch(next)
+
+
+});
+
 // matches DELETE requests to /api/orders/:orderId
 router.delete('/:orderId', function (req, res, next){
   if(req.session.admin){
