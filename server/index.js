@@ -52,13 +52,15 @@ const googleConfig = {
 // us the user's profile and access token
 const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken, profile, done) {
   const googleId = profile.id;
-  const name = profile.displayName;
+  const firstName = profile.name.givenName;
+  const lastName = profile.name.familyName;
   const email = profile.emails[0].value;
-  console.log(profile)
+
   Users.findOne({where: { googleId: googleId  }})
     .then(function (user) {
       if (!user) {
-        return Users.create({ name, email, googleId })
+
+        return Users.create({ firstName, lastName, email, googleId })
           .then(function (user) {
             done(null, user);
           });
@@ -71,14 +73,6 @@ const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken,
 
 // register our strategy with passport
 passport.use(strategy);
-
-app.get('/google',
-  passport.authenticate('google', { scope: 'email' }));
-
-app.get('/google/callback', passport.authenticate('google', {
-  successRedirect: '/products',
-  failureRedirect: '/login'
-}));
 
 passport.serializeUser((user, done) => {
   try {
@@ -94,6 +88,18 @@ passport.deserializeUser((id, done) => {
     .catch(done);
 });
 
+app.get('/google',
+  passport.authenticate('google', { scope: 'email' }));
+
+app.get('/google/callback', 
+  passport.authenticate('google', {
+  successRedirect: '/products',
+  failureRedirect: '/login'
+  }) 
+);
+
+
+
 // bundle needs this line
 app.use('/files', express.static(path.join(__dirname, '../public')));
 
@@ -101,6 +107,7 @@ app.use('/files', express.static(path.join(__dirname, '../public')));
 app.use(express.static(path.join(__dirname, '../node_modules')))
 
 app.get('/*', function (req, res) {
+  console.log(req.user)
   res.sendFile(path.join(__dirname, '../index.html'))
 });
 

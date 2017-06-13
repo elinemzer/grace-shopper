@@ -6,21 +6,23 @@ var router = require('express').Router();
 var User = require('../models/users');
 
 router.get('/me', (req, res, next) => {
-	User.findOne({
-		where: {id: req.session.userId},
-		include: [
-			{model: Products}
-		]
-	})
+	let userId = req.user ? Number(req.user.id) : req.session.userId
+
+	User.findOne({ 
+		where: {id: userId}, 
+		include: [{model: Products}]} )
 	.then((foundUser) => {
 	//if no user is found, simply send back the cart for permeation reasons
 		if(!foundUser){
+			console.log('oops', req.user)
 			if(req.session.cart)
 			res.send(req.session.cart)
 			else{res.send([])}
 		}
 	//othe
-		else res.send(foundUser);
+		else {
+			console.log('found user', foundUser)
+			res.send(foundUser)}
 	}).catch(next);
 });
 

@@ -56,6 +56,7 @@ router.post('/login', (req, res, next) => {
 });
 
 router.post('/logout', (req, res, next) => {
+      req.logOut();
     delete req.session.userId
     delete req.session.cart
     delete req.session.admin
