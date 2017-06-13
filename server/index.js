@@ -10,7 +10,7 @@ const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
 
-if (PROCESS_ENV=='development'){
+if (!process.env.HEROKU){
   const secrets = require('../secrets')
 }
 
