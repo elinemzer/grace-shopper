@@ -14,7 +14,7 @@ router.param('order', function(req, res, next, id){
 
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
-  const where = req.session.admin ? {} : {where: {UserId: req.session.userId}, include: [Users]}
+  const where = req.session.admin ? {} : {where: {UserId: req.session.userId}}
   Orders.findAll(where)
   .then(ordersFound => {
     res.send(ordersFound)
