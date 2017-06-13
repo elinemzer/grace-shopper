@@ -22,7 +22,7 @@ export default function Login (props) {
           <hr />
           <h1 className="fancy-type form-title">Or</h1>
             <span className="input-group-btn">
-                <button onClick={props.googleLogin} className="btn btn-danger google-btn" type="submit">Login with Google</button>
+                <a href="/google"><button className="btn btn-danger google-btn" type="submit">Login with Google</button></a>
             </span>
 		    </div>
     <div className="col-md-2">
