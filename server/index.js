@@ -9,7 +9,10 @@ const Users = require('./models/users')
 const passport = require('passport');
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 
-const secrets = require('../secrets')
+
+if (PROCESS_ENV=='development'){
+  const secrets = require('../secrets')
+}
 
 //new sequelize session for auth
 const session = require('express-session');
