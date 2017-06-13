@@ -47,7 +47,7 @@ export default function Cart (props) {
       }
       </div>
       <div className="cart-footer">
-        <h2 className="fancy-type" id="cart-total">{`Total: $ ${totalPrice}`}</h2>
+        <h2 className="fancy-type" id="cart-total">{`Total: $ ${totalPrice.toFixed(2)}`}</h2>
          <Link to='/order'>
           <button onClick={checkoutHandler} className="btn btn-success checkout-btn"> Checkout</button>
         </Link>
