@@ -16,7 +16,7 @@ router.param('order', function(req, res, next, id){
 router.get('/', function (req, res, next){
   // const where = req.session.admin ? {} : {where: {UserId: req.session.userId}}
   // Orders.findAll(where)
-  Order.findAll()
+  Orders.findAll()
   .then(ordersFound => {
     res.send(ordersFound)
   })
