@@ -27,15 +27,8 @@ export default class Order extends Component {
 		this.onChangeState = this.onChangeState.bind(this);
 		this.onChangeZipcode = this.onChangeZipcode.bind(this);
 		this.submitAddressButton = this.submitAddressButton.bind(this);
-	}
-
-
-  calculateOrderTotal(order) {
-		let total = 0;
-		this.props.products && this.props.products.map(product => {
-			total += product.Product_order.price * product.Product_order.quantity
-		})
-		return total.toFixed(2);
+		this.onChangeDiscount = this.onChangeDiscount.bind(this);
+		this.submitDiscountButton = this.submitDiscountButton.bind(this)
 	}
 
 	editEmailClick() {this.setState({'editEmail': true});}
@@ -73,12 +66,34 @@ export default class Order extends Component {
 
 	onChangeZipcode(evt) {this.setState({'zipcode': evt.target.value})}
 
+	onChangeDiscount(evt) {this.setState({'discount': evt.target.value})}
+
+	calculateOrderTotal(order) {
+		let total = 0;
+		this.props.products && this.props.products.map(product => {
+			total += product.Product_order.price * product.Product_order.quantity
+		})
+		return total.toFixed(2);
+	}
+
+	submitDiscountButton(evt) {
+		evt.preventDefault();
+		if (this.state.discount.toUpperCase() === 'HOTGEOFF'){
+			console.log('discount: ', this.state.discount.toUpperCase())
+			let total = 0;
+			this.props.products && this.props.products.map(product => {
+				total += product.Product_order.price * product.Product_order.quantity
+			})
+			return (total / 2).toFixed(2);
+		}
+	}
+
+
 	render() {
 		const editStyle = {
 			fontSize: 12,
 			color: 'blue'
 		};
-
 		const user = this.props.user;
 
 		return(
@@ -152,6 +167,9 @@ export default class Order extends Component {
 											return (<li key={idx} className="list-group-item"><p><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title} </span><span className="col-md-4" style={{'textAlign': 'center'}}>Quantity: {product.Product_order.quantity}</span><span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
 										})
 									}
+									<li className="list-group-item">
+									<input id="discount" type="text" className="form-horizontal col-md-6" onChange={this.onChangeDiscount} aria-describedby="basic-addon1" />
+									<button className="btn btn-default" type="submit" onSubmit={this.submitDiscountButton}>Enter Discount Code</button></li>
 									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && this.calculateOrderTotal(this.props.order)} </p></li>
 								</ul>
 
