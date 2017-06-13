@@ -145,7 +145,7 @@ export default class Order extends Component {
 				  <div className="panel-body" style={{color: '#1c3151' }}>
 					{
 						this.props.order &&
-							
+
 								<ul className="list-group">
 								<li className="list-group-item"><h3>Order Placed On: {this.props.order && this.props.order.datePlaced} </h3></li>
 								  {this.props.products && this.props.products.map((product, idx) => {
@@ -154,7 +154,7 @@ export default class Order extends Component {
 									}
 									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && this.calculateOrderTotal(this.props.order)} </p></li>
 								</ul>
-						
+
 
 					}
     		</div>
