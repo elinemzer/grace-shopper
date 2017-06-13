@@ -135,10 +135,10 @@ export default class SingleUser extends Component {
 				</div>
 			</div>
 
-
+			<div className="row">
 			<div className="col-md-6">
 			<h2 className="fancy-type">Order History</h2>
-				<div className="panel panel-default account-details">
+				<div className="panel panel-default">
 				  <div className="panel-body" >
 					{
 						(user.Orders !== undefined && user.Orders.length) ? user.Orders.map((order, idx1) => {
@@ -160,6 +160,7 @@ export default class SingleUser extends Component {
 					}
     		</div>
     	</div>
+			</div>
 			</div>
 			</div>
 		</div>)
