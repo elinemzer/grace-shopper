@@ -193,8 +193,8 @@ router.put('/item/:itemId', function (req, res, next){
 
 // matches GET requests to /api/users/
 router.get('/', function (req, res, next){
-  const where = req.session.admin ? {} : {where:{id: req.session.userId}}
-  Users.findAll(where)
+  // const where = req.session.admin ? {} : {where:{id: req.session.userId}}
+  Users.findAll()
   .then(usersFound => res.send(usersFound))
   .catch(next)
 });
