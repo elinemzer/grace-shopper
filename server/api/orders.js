@@ -14,12 +14,9 @@ router.param('order', function(req, res, next, id){
 
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
-  const where = req.session.admin ? {} : {where: {UserId: req.session.userId}}
+  const where = req.session.admin ? {} : {where: {UserId: req.session.userId}, include: [Users]}
   Orders.findAll(where)
   .then(ordersFound => {
-    let order = ordersFound[0];
-    // console.log('orders found on api route: ', ordersFound)
-    // console.log(order.getUser());
     res.send(ordersFound)
   })
   .catch(next)
@@ -61,11 +58,11 @@ router.get('/users/:userId', function (req, res, next){
 });
 // matches PUT requests to /api/orders/:orderId
 router.put('/:orderId', function (req, res, next){
-
-
   if(req.session.admin){
-    req.order.update(req.body)
-      .then(orderUpdated => res.send(orderUpdated))
+    Orders.findById(req.params.orderId)
+    .then(foundOrder => {
+      foundOrder.update(req.body)
+    }).then(orderUpdated => res.send(orderUpdated))
       .catch(next)
   } else {res.status(401).send('Access Denied - Please log in as admin to view this order')}
 
