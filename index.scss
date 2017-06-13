@@ -40,6 +40,10 @@ $color-translucent: rgba(255, 255, 255, 0.3);
     text-transform: uppercase;
 }
 
+.uppercase {
+    text-transform: uppercase;
+}
+
 .fullscreen-bg {
     position: fixed;
     top: 0;
@@ -594,10 +598,15 @@ img {
     text-decoration: underline;
 }
 
+
 .account-details {
-    background-color: $color-translucent;
+    background-color: $color-translucent !important;
     color: white;
     box-shadow: 3px 3px 50px rgba(0,0,0, 0.2);
+}
+
+.inner-panel {
+    background-color: rgba(0,0,0, 0.0);
 }
 
 .account-btns {
@@ -619,4 +628,8 @@ img {
 
 .col-md-4 {
   font-size: 11px
+}
+
+.users-details:hover {
+    color: $color-yellow;
 }

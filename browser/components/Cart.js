@@ -29,7 +29,7 @@ export default function Cart (props) {
             <Link className="thumbnail" to={`/cart`}>
               <img src={ oneFish.imageUrl } />
               <div className="caption">
-                  <p id="product-tile-title">{ oneFish.title } ({ oneFish.region })</p>
+                  <p id="product-tile-title">{ oneFish.title }</p>
                   <p className="yellow" id="product-tile-price">${oneFish.price}</p>
               </div>
               <div className ='quantity-control'>

@@ -114,6 +114,10 @@ export default class Order extends Component {
 		};
 
 		const user = this.props.user;
+		if(this.props.order.datePlaced){
+			this.props.order.datePlaced = this.props.order.datePlaced.slice(0, (this.props.order.datePlaced.indexOf('T')))
+		}
+    
 		return(
 		<div className="default-container">
 		<div className="row">
@@ -127,14 +131,13 @@ export default class Order extends Component {
                 </div>
             }
 			<h2 className="fancy-type"> Shipping Details</h2>
-			<div className="panel panel-default">
-			  <div className="panel-body" style={{color: '#1c3151' }}>
-			  	{
-			  		user.firstName &&<h4>Name: {user.firstName} {user.lastName}</h4>
-			  	}
-
+			<div className="panel panel-default account-details">
+			  <div className="panel-body">
+			    <h4 className="inner-panel">Name: {user.firstName} {user.lastName}</h4>
 			    {
-
+			    	(!this.state.editEmail) ?
+			    	<h4>Email: {user.email} <span onClick={this.editEmailClick} className="edit"> edit </span> </h4>
+			    	:
 			    	<div>
 			    	<h4>Email: </h4>
 			    	<span className="input-group">
@@ -151,8 +154,15 @@ export default class Order extends Component {
 					</div>
 			    }
 			    {
-			    
-					 <div>
+
+			    	(!this.state.editAddress) ?
+			    	<div>
+				    	<h4>Shipping Address:  <span onClick={this.editAddressClick} className="edit"> edit </span> </h4>
+						    <h5> {user.address1} </h5>
+						    {(user.address2) ? <h5> {user.address2} </h5> : null}
+						    <h5> {user.city}, {user.state} {user.zipcode} </h5>
+				    </div>
+						: <div>
 					    	<h4>Shipping Address: </h4>
 					    	<span className="input-group">
 					    		<form onSubmit={ user.firstName? this.submitAddressButton : this.addShippingInfoButton} >
@@ -186,8 +196,8 @@ export default class Order extends Component {
 
 			<div className="col-md-6">
 			<h2 className="fancy-type">Your Order</h2>
-				<div className="panel panel-default">
-				  <div className="panel-body" style={{color: '#1c3151' }}>
+				<div className="panel account-details">
+				  <div className="panel-body">
 					{
 						this.props.order &&
 
