@@ -58,13 +58,11 @@ const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken,
   Users.findOne({where: { googleId: googleId  }})
     .then(function (user) {
       if (!user) {
-        return User.create({ name, email, googleId })
+        return Users.create({ name, email, googleId })
           .then(function (user) {
-            console.log(user)
             done(null, user);
           });
       } else {
-        console.log(user);
         done(null, user);
       }
     })
@@ -74,7 +72,14 @@ const strategy = new GoogleStrategy(googleConfig, function (token, refreshToken,
 // register our strategy with passport
 passport.use(strategy);
 
-app.get('/google', passport.authenticate('google', { scope: 'email' }));
+app.get('/google',  (req, res, next) => {
+   //res.send(req.user.dataValues)
+    if (req.query.return) {
+      console.log(req.query.return);
+    }
+    next();
+  },
+  passport.authenticate('google', { scope: 'email' }));
 
 app.get('/google/callback', passport.authenticate('google', {
   successRedirect: '/products',

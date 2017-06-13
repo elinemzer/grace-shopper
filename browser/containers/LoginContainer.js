@@ -57,7 +57,7 @@ class LoginContainer extends Component{
 	googleLogin (event) {
 		event.preventDefault()
 		this.props.googleLogin()
-		hashHistory.push('/products')
+		//hashHistory.push('/products')
 	}
 
 	loginUser (event) {
@@ -102,8 +102,10 @@ const mapDispatchToProps = function (dispatch) {
 			})
 		},
 		googleLogin: (user) => {
+			hashHistory.push('/google')
 			axios.get('/google')
 			.then((result) => {
+				console.log(result);
 				//return dispatch(loginUser(result.data))
 			})
 		},
