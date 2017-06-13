@@ -84,7 +84,7 @@ export default class SingleUser extends Component {
 		<div className="col-md-6">
 			<h2 className="fancy-type"> Account Details</h2>
 			<div className="panel panel-default account-details">
-			  <div className="panel-body">
+			  <div className="panel-body inner-panel">
 			    <h4>Name: {user.firstName} {user.lastName}</h4>
 			    {
 			    	(!this.state.editEmail) ?
@@ -139,21 +139,21 @@ export default class SingleUser extends Component {
 			<div className="col-md-6">
 			<h2 className="fancy-type">Order History</h2>
 				<div className="panel panel-default account-details">
-				  <div className="panel-body" >
+				  <div className="panel-body inner-panel" >
 					{
 						(user.Orders !== undefined && user.Orders.length) ? user.Orders.map((order, idx1) => {
 							return (
-								<ul key={idx1} className="list-group">
-								<li className="list-group-item"><h3>Order Placed On: {order.datePlaced.slice(0,10)} </h3></li>
+								<ul key={idx1} className="list-group inner-panel">
+								<li className="list-group-item inner-panel"><h3>Order Placed On: {order.datePlaced.slice(0,10)} </h3></li>
 								  {order.Products.map((product, idx) => {
-											return (<li key={idx} className="list-group-item"><p>
+											return (<li key={idx} className="list-group-item account-details"><p>
                       <Link to={`/products/${product.id}`}>
 											<span className="col-md-4">
 											{product.title}</span> </Link>
 											<span className="col-md-4">Quantity: {product.Product_order.quantity}</span><span className="col-md-4">Price: {product.Product_order.price}</span></p></li>)
 										})
 									}
-									<li className="list-group-item"><p>Order Total: ${this.calculateOrderTotal(order)} </p></li>
+									<li className="list-group-item inner-panel"><p>Order Total: ${this.calculateOrderTotal(order)} </p></li>
 								</ul>)
 						})
 						: <h4>No past orders!</h4>
