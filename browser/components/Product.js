@@ -79,9 +79,17 @@ export default class AllProducts extends React.Component  {
                 </div>
               }
 
-              <button onClick ={ this.cartClickHandler } className='btn btn-primary' id="product-add">
-                  <span className="glyphicon glyphicon-shopping-cart"/>
-              </button>
+              {
+                (fish.outOfStock) ? <div>
+                  <button onClick ={ this.cartClickHandler } className='btn btn-primary' id="product-add" disabled>
+                    <span className="glyphicon glyphicon-shopping-cart"/>
+                  </button> <span> Sorry, this item is out of stock!</span>
+                </div>
+                : <button onClick ={ this.cartClickHandler } className='btn btn-primary' id="product-add">
+                    <span className="glyphicon glyphicon-shopping-cart"/>
+                </button>
+              }
+
             </div>
         </div>
 

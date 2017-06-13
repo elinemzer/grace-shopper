@@ -12,7 +12,8 @@ export default class SingleProd extends Component {
 			notes: this.props.fish.description,
 			region: this.props.fish.region,
 			img: this.props.fish.imageUrl,
-			price: this.props.fish.price
+			price: this.props.fish.price,
+			outOfStock: this.props.fish.outOfStock
 		}
 		this.toggleEdit = this.toggleEdit.bind(this);
 		this.submitChanges = this.submitChanges.bind(this);
@@ -106,7 +107,8 @@ export default class SingleProd extends Component {
 								<li className="list-group-item container-fluid">Sample Image URL: <input type="text" className="form-control col-md-6" onChange={this.onChangeImg} defaultValue={prod.imageUrl} aria-describedby="basic-addon1" /></li>
 								<li className="list-group-item container-fluid">Price (USD): <input type="number" step="0.01" className="form-control col-md-10" onChange={this.onChangePrice} defaultValue={prod.price} aria-describedby="basic-addon1" /></li>
 								<li className="list-group-item container-fluid">
-									<button type='submit' className="btn btn-default">Save Changes</button><button className="btn btn-default" onClick={this.toggleEdit}>Cancel</button><button className="btn btn-default" onClick={this.outOfStock}>Out of Stock</button><button className="btn btn-danger" onClick={() => this.props.deleteProduct(prod.id)}>Delete</button>
+									<button type='submit' className="btn btn-default">Save Changes</button><button className="btn btn-default" onClick={this.toggleEdit}>Cancel</button><button className="btn btn-default" onClick={this.outOfStock}>{ (this.state.outOfStock) ? <span>Back In Stock</span> : <span>Out of Stock</span>}</button>
+									<button className="btn btn-danger" onClick={() => this.props.deleteProduct(prod.id)}>Delete</button>
 								</li>
 							</form>
 						</ul>
