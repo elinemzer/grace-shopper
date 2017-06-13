@@ -55,6 +55,7 @@ $color-translucent: rgba(255, 255, 255, 0.3);
     color: white;
     vertical-align: bottom !important;
     position: relative;
+    z-index: -1;
 }
 
 .fullscreen-bg__video {
@@ -583,6 +584,15 @@ img {
 
 
 /* USER ACCOUNT */
+
+.edit {
+    font-size: .7em;
+    color: $color-darkyellow;
+}
+
+.edit:hover {
+    text-decoration: underline;
+}
 
 .account-details {
     background-color: $color-translucent;
