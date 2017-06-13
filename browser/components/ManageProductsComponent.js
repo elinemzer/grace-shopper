@@ -51,7 +51,6 @@ export default class ManageProducts extends Component{
 
 	render() {
 		const products = this.props.products;
-		console.log(this.state);
 		return (
 			<div className="row default-container">
 				<h2 className="fancy-type" id="products-title">Manage Inventory

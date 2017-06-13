@@ -6,7 +6,7 @@ import { Link } from 'react-router';
 
 export default function Home (props) {
   const order = props.order
-  console.log(order)
+
   return(
     <div className="row default-container">
     <div key={order.id} className="col-md-12 text-center">
