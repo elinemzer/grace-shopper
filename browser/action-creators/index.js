@@ -203,10 +203,24 @@ export const updateProduct = (bodyObj, fishId) => {
       return axios.get(`/api/products`)
     }).then(allProducts => {
       dispatch(receiveProducts(allProducts.data))
-    })
-    .catch(console.log)
+    }).catch(console.log)
   }
 }
+
+export const callUpdateOrders = (orderId, bodyObj) => {
+  return dispatch => {
+    axios.put(`/api/orders/${orderId}`, bodyObj)
+    .then(updatedOrder => {
+      dispatch(receiveOrder(updatedOrder.data))
+    }).then(() => {
+      return axios.get(`/api/orders`)
+    }).then(allOrders => {
+      dispatch(receiveOrders(allOrders.data))
+    }).catch(console.log)
+  }
+}
+
+
 
 export const removeProduct = (fishId) => {
   return dispatch => {
@@ -233,6 +247,7 @@ export const addNewProduct = (bodyObj) => {
     }).catch(console.log)
   }
 }
+
 
 
 //sets state flashMessage to provided message, then flips back to empty string after 1 second
