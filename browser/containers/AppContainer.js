@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { hashHistory } from 'react-router';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'
 import AllProducts from '../components/AllProducts';
 import {connect} from 'react-redux';
 import { logoutUser, receiveProducts} from '../action-creators'
@@ -16,7 +17,6 @@ const mapStateToProps = function(state){
 const mapDispatchToProps = function(dispatch) {
   return {
     logoutUser: () => {
-      console.log('logout user clicked')
       axios.post('/api/login/logout')
       .then(() => {
         return dispatch(logoutUser())
@@ -71,6 +71,7 @@ class AppContainer extends Component {
 
           { this.props.children }
         </div>
+        <Footer />
       </div>
     )
   }

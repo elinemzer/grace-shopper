@@ -14,7 +14,7 @@ export default function Login (props) {
 					<p>Email</p>
 						<input id="a1" type="text" className="form-control col-md-2" onChange={props.handleEmail} aria-describedby="basic-addon1" />
 					<p>Password</p>
-						<input id="a2" type="text" className="form-control col-md-2" onChange={props.handlePassword} aria-describedby="basic-addon1" />
+						<input id="a2" type="password" className="form-control col-md-2" onChange={props.handlePassword} aria-describedby="basic-addon1" />
 					<span className="input-group-btn">
 					   	<button className="btn btn-default login-btn" type="submit">Sign In</button>
 				    </span>

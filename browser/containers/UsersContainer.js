@@ -2,19 +2,15 @@ import React, { Component } from 'react';
 import store from '../store'
 import {connect} from 'react-redux'
 import UserComponent from '../components/UserComponent'
-import {removeUser} from '../action-creators'
+import {removeUser, flashMessage} from '../action-creators'
 import axios from 'axios'
 
 const mapStateToProps = function(state) {
 	return {
 		users: state.users,
 		loggedInUser: state.loggedInUser,
-		setResetFlag: (userId) => {
-			axios.put(`/api/users/${userId}`)
-			.then( newUser => {
-				console.log(newUser);
-			});
-		}
+		flashMessage: state.flashMessage
+
 	};
 };
 
@@ -23,6 +19,18 @@ const mapDispatchToProps = function(dispatch) {
 		delete: (userId) => {
 			return dispatch(removeUser(userId));
 
+		},
+		setResetFlag: (userId) => {
+			axios.put(`/api/users/password/${userId}`)
+			.then( newUser => {
+				dispatch(flashMessage('Password Reset'))
+			});
+		},
+		makeAdmin: (userId) => {
+			axios.put(`/api/users/${userId}`, {isAdmin: true})
+			.then( newUser => {
+				dispatch(flashMessage('User Is Now Admin'))
+			});
 		}
 
 	};
