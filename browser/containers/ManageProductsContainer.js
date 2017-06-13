@@ -22,7 +22,6 @@ const mapDispatchToProps = function(dispatch) {
 			dispatch(removeProduct(fishId));
 		},
 		handleSubmitNewProduct: (bodyObj) => {
-			console.log('in handler!!! new info: ', bodyObj)
 			dispatch(addNewProduct(bodyObj))
 		}
 	};

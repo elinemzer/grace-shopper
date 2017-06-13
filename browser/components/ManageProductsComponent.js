@@ -99,7 +99,7 @@ export default class ManageProducts extends Component{
 				}
 				{
 					products && products.map(prod => {
-						return (<SingleProduct fish={prod} deleteProduct={this.props.deleteFish} updateFish={this.props.updateFish} />)
+						return (<SingleProduct fish={prod} outOfStock={this.props.outOfStock} deleteProduct={this.props.deleteFish} updateFish={this.props.updateFish} />)
 					})
 
 				}

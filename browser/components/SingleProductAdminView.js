@@ -21,6 +21,7 @@ export default class SingleProd extends Component {
 		this.onChangeImg = this.onChangeImg.bind(this);
 		this.onChangePrice = this.onChangePrice.bind(this);
 		this.onChangeRegion = this.onChangeRegion.bind(this);
+		this.outOfStock = this.outOfStock.bind(this);
 	}
 
 	toggleEdit() { this.setState({'editFish': !this.state.editFish}) }
@@ -33,7 +34,8 @@ export default class SingleProd extends Component {
 			description: this.state.notes,
 			region: this.state.region,
 			imageUrl: this.state.img,
-			price: this.state.price
+			price: this.state.price,
+			outOfStock: this.props.fish.outOfStock
 		}
 		this.props.updateFish(bodyObj, this.props.fish.id)
 	}
@@ -43,6 +45,20 @@ export default class SingleProd extends Component {
 	onChangeRegion(evt) { this.setState({'region': evt.target.value})}
 	onChangeImg(evt) { this.setState({'img': evt.target.value}) }
 	onChangePrice(evt) { this.setState({'price': evt.target.value}) }
+
+	outOfStock(evt) {
+		evt.preventDefault();
+		this.toggleEdit();
+		const bodyObj = {
+			title: this.state.name,
+			description: this.state.notes,
+			region: this.state.region,
+			imageUrl: this.state.img,
+			price: this.state.price,
+			outOfStock: !this.props.fish.outOfStock
+		}
+		this.props.updateFish(bodyObj, this.props.fish.id)
+	}
 
 	render() {
 		const editStyle = {
@@ -90,7 +106,7 @@ export default class SingleProd extends Component {
 								<li className="list-group-item container-fluid">Sample Image URL: <input type="text" className="form-control col-md-6" onChange={this.onChangeImg} defaultValue={prod.imageUrl} aria-describedby="basic-addon1" /></li>
 								<li className="list-group-item container-fluid">Price (USD): <input type="number" step="0.01" className="form-control col-md-10" onChange={this.onChangePrice} defaultValue={prod.price} aria-describedby="basic-addon1" /></li>
 								<li className="list-group-item container-fluid">
-									<button type='submit' className="btn btn-default">Save Changes</button><button className="btn btn-default" onClick={this.toggleEdit}>Cancel</button><button className="btn btn-danger" onClick={() => this.props.deleteProduct(prod.id)}>Delete</button>
+									<button type='submit' className="btn btn-default">Save Changes</button><button className="btn btn-default" onClick={this.toggleEdit}>Cancel</button><button className="btn btn-default" onClick={this.outOfStock}>Out of Stock</button><button className="btn btn-danger" onClick={() => this.props.deleteProduct(prod.id)}>Delete</button>
 								</li>
 							</form>
 						</ul>

@@ -114,8 +114,8 @@ export const flash = message =>({
 })
 
 
-
 /* ASYNC THUNK ACTION CREATORS */
+
 export const getUserById = userId => {
   return dispatch => {
     axios.get(`/api/users/${userId}`)
