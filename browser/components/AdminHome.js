@@ -11,6 +11,7 @@ export default function Home () {
         <Link to="/admin/users"><h5>Users<span className="glyphicon glyphicon-chevron-right" id="home-arrow" /></h5></Link>
         <Link to="/admin/products"><h5>Products<span className="glyphicon glyphicon-chevron-right" id="home-arrow" /></h5></Link>
         <Link to="/admin/orders"><h5>Orders<span className="glyphicon glyphicon-chevron-right" id="home-arrow" /></h5></Link>
+        <Link to="/admin/orderstats"><h5>Orders Stats<span className="glyphicon glyphicon-chevron-right" id="home-arrow" /></h5></Link>
       </div>
     </div>
   )

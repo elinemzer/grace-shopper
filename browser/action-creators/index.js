@@ -21,8 +21,14 @@ export const SUBMIT_ORDER = 'SUBMIT_ORDER'
 export const UPDATE_PRODUCT = 'UPDATE_PRODUCT'
 export const DELETE_PRODUCT = 'DELETE_PRODUCT'
 export const ADD_PRODUCT = 'ADD_PRODUCT'
+export const RECEIVE_PRODUCT_ORDERS = 'RECEIVE_PRODUCT_ORDERS'
 
 /* ACTION CREATORS */
+export const receiveProductOrders = productOrders =>({
+  type: RECEIVE_PRODUCT_ORDERS,
+  productOrders
+})
+
 export const submitOrder = order => ({
   type: SUBMIT_ORDER,
   order
@@ -226,7 +232,7 @@ export const removeProduct = (fishId) => {
   return dispatch => {
     axios.delete(`/api/products/${fishId}`)
     .then(deletedFish => {
-      disaptch(deleteProduct(deletedFish.data))
+      dispatch(deleteProduct(deletedFish.data))
     }).then(() => {
       return axios.get(`/api/products`)
     }).then(allProducts => {
@@ -247,6 +253,18 @@ export const addNewProduct = (bodyObj) => {
     }).catch(console.log)
   }
 }
+
+export const getProductOrders = () => {
+  return dispatch =>{
+      axios.get('/api/orders/productorders')
+  .then(productOrders =>{
+
+    dispatch(receiveProductOrders(productOrders.data))
+  }) 
+  }
+  }
+
+
 
 
 
