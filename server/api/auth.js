@@ -14,14 +14,14 @@ router.get('/me', (req, res, next) => {
 	.then((foundUser) => {
 	//if no user is found, simply send back the cart for permeation reasons
 		if(!foundUser){
-			console.log('oops', req.user)
+
 			if(req.session.cart)
 			res.send(req.session.cart)
 			else{res.send([])}
 		}
 	//othe
 		else {
-			console.log('found user', foundUser)
+
 			res.send(foundUser)}
 	}).catch(next);
 });

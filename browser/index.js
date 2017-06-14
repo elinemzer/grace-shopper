@@ -6,7 +6,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory, IndexRedirect, IndexRoute } from 'react-router'
 import store from './store';
-import {getProducts, receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
+import {getProductOrders, getProducts, receiveCart, getCartByUser, loginUser, receiveProducts, receiveUsers, getUsersOrders, receiveOrders, getUserById, getProductById, getOrderById, receiveReviews } from './action-creators'
 import scss from '../index.scss';
 import axios from 'axios';
 
@@ -22,7 +22,7 @@ import CartContainer from './containers/CartContainer'
 // import CheckoutContainer from './containers/CheckoutContainer'
 import LoginContainer from './containers/LoginContainer'
 import OrderContainer from './containers/OrderContainer'
-// import OrdersContainer from './containers/OrdersContainer'
+import OrderStatsContainer from './containers/OrderStatsContainer'
 import ProductContainer from './containers/ProductContainer'
 import ProductsContainer from './containers/ProductsContainer'
 import UserContainer from './containers/UserContainer'
@@ -71,6 +71,11 @@ const onOrderEnter = function (nextRouterState) {
   store.dispatch(getOrderById(orderId));
 }
 
+const onStatsEnter = function() {
+  console.log('entered stats')
+ store.dispatch(getProductOrders())
+}
+
 // const onCartEnter = function (nextRouterState) {
 //   const userId = nextRouterState.params.userId
 
@@ -98,6 +103,7 @@ ReactDOM.render(
         <Route path='/login' component={LoginContainer} />
         <Route path='/order' component={OrderContainer} />
         <Route path='/passwordreset' component={PasswordResetContainer} />
+        <Route path='/admin/orderstats' component={OrderStatsContainer} onEnter={onStatsEnter} />
   	</Route>
 	  </Router>
   </Provider>,

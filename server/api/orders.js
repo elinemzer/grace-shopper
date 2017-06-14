@@ -7,19 +7,26 @@ const Cart = require('../models/cart')
 const Promise = require('bluebird')
 
 //taking supplied order id and attaching product object to request
-router.param('order', function(req, res, next, id){
-  Orders.findById(id, { include: [Users] })
-  .then(order => {req.order = order})
-})
+// router.param('order', function(req, res, next, id){
+//   Orders.findById(id, { include: [Users] })
+//   .then(order => {req.order = order})
+// })
+
+router.get('/productorders', function (req, res, next){
+  console.log('in product orders route')
+  Product_Order.findAll()
+  .then( result =>{
+    console.log('found product orders', result)
+    res.send(result)
+  })
+});
+
 
 // matches GET requests to /api/orders/
 router.get('/', function (req, res, next){
   const where = req.session.admin ? {} : {where: {UserId: req.session.userId}}
   Orders.findAll(where)
   .then(ordersFound => {
-    let order = ordersFound[0];
-    // console.log('orders found on api route: ', ordersFound)
-    // console.log(order.getUser());
     res.send(ordersFound)
   })
   .catch(next)
@@ -132,6 +139,8 @@ router.put('/:orderId/info', function (req, res, next){
 
 
 });
+
+
 
 // matches DELETE requests to /api/orders/:orderId
 router.delete('/:orderId', function (req, res, next){
