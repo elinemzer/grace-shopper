@@ -211,9 +211,11 @@ export default class Order extends Component {
 										})
 									}
 									<li className="list-group-item inner-panel">
+									<label id="discount-label">Enter Promo Code:</label>
 										<form onSubmit={this.submitDiscountButton}>
+
                                     		<input id="discount" type="text" className="form-horizontal col-md-6" onChange={this.onChangeDiscount} aria-describedby="basic-addon1" />
-                                    		<button id="discount-btn" className="btn btn-default" type="submit">Enter Discount Code</button>
+                                    		<button id="discount-btn" className="btn btn-default" type="submit">Submit</button>
                                     	</form>
                                     </li>
 									<li className="list-group-item inner-panel" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && total} </p></li>
