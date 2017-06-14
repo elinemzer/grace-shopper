@@ -163,7 +163,7 @@ export const updateUser = (userId, bodyObj) => {
   return dispatch => {
     axios.put(`/api/users/${userId}`, bodyObj)
     .then(updatedUser => {
-      dispatch(receiveUser(updatedUser.data))
+      dispatch(getUserById(updatedUser.data[0]))
     }).then( () => {
       return axios.get(`/api/users`)
     }).then(foundUsers => {
