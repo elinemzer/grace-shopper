@@ -23,7 +23,7 @@ export default class SingleOrder extends Component {
 			<div key={order.id} className="account-details col-md-6 col-md-offset-3 text-center">
 		        <ul className="account-details list-group">
 		            <Link to={`/users/${order.UserId}`}>
-		                <li className="account-details list-group-item">Order Details: Order #{order.id} placed by {order.UserId}</li>
+		                <li className="account-details list-group-item">Order Details: Order #{order.id}</li>
 		            </Link>
 		                <li className="account-details list-group-item">Date Placed: {order.datePlaced.slice(0,10)}</li>
 		                <li className="account-details list-group-item">Status: 
