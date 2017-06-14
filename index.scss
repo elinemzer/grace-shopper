@@ -633,3 +633,28 @@ img {
 .users-details:hover {
     color: $color-yellow;
 }
+
+/* ORDER */
+
+#discount {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    height: 30px;
+}
+
+#discount-btn {
+    background: rgba(255, 255, 255, 0.6);
+    margin-left: 5px;
+    border-color: white;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Hind', sans-serif;
+    height: 30px;
+    text-align: left;
+}
+
+#discount-btn:hover {
+    color: $color-yellow;
+    box-shadow: inset 0px 0px 30px rgba(0,0,0,0.2);
+
+}

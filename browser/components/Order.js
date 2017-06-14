@@ -117,13 +117,13 @@ export default class Order extends Component {
 		if(this.props.order.datePlaced){
 			this.props.order.datePlaced = this.props.order.datePlaced.slice(0, (this.props.order.datePlaced.indexOf('T')))
 		}
-    
+
 		return(
 		<div className="default-container">
 		<div className="row">
 		<div className="col-md-6">
 			{
-   				user.firstName? 
+   				user.firstName?
    				''
    				:
                 <div className="alert alert-danger" role="alert">
@@ -212,7 +212,7 @@ export default class Order extends Component {
 									<li className="list-group-item">
 										<form onSubmit={this.submitDiscountButton}>
                                     		<input id="discount" type="text" className="form-horizontal col-md-6" onChange={this.onChangeDiscount} aria-describedby="basic-addon1" />
-                                    		<button className="btn btn-default" type="submit">Enter Discount Code</button>
+                                    		<button id="discount-btn" className="btn btn-default" type="submit">Enter Discount Code</button>
                                     	</form>
                                     </li>
 									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && total} </p></li>
