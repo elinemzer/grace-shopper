@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios'
+import { Link } from 'react-router'
 
 
 export default class Order extends Component {
@@ -115,7 +116,7 @@ export default class Order extends Component {
 
 		const user = this.props.user;
 		if(this.props.order.datePlaced){
-			this.props.order.datePlaced = this.props.order.datePlaced.slice(0, (this.props.order.datePlaced.indexOf('T')))
+			this.props.order.datePlaced = this.props.order.datePlaced.slice(0, 10)
 		}
     
 		return(
@@ -196,26 +197,26 @@ export default class Order extends Component {
 
 			<div className="col-md-6">
 			<h2 className="fancy-type">Your Order</h2>
-				<div className="panel account-details">
-				  <div className="panel-body">
+				<div className="panel panel-default account-details">
+				  <div className="panel-body inner-panel">
 					{
 						this.props.order &&
 
-								<ul className="list-group">
-									<li className="list-group-item"><h3>Order Placed On: {this.props.order.datePlaced && this.props.order.datePlaced.slice(0,10)} </h3></li>
+								<ul className="list-group inner-panel">
+									<li className="list-group-item inner-panel"><h3>Order Placed On: {this.props.order.datePlaced && this.props.order.datePlaced.slice(0,10)} </h3></li>
 								  	{this.props.products && this.props.products.map((product, idx) => {
-											return (<li key={idx} className="list-group-item"><p><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title} </span>
+											return (<li key={idx} className="list-group-item account-details"><Link to={`/products/${product.id}`}><span className="col-md-4" style={{'textAlign': 'left'}}>{product.title}</span></Link>
 														<span className="col-md-4" style={{'textAlign': 'center'}}>Quantity: {product.Product_order.quantity}</span>
-														<span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></p></li>)
+														<span className="col-md-4" style={{'textAlign': 'right'}}>Price: {product.Product_order.price}</span></li>)
 										})
 									}
-									<li className="list-group-item">
+									<li className="list-group-item inner-panel">
 										<form onSubmit={this.submitDiscountButton}>
-                                    		<input id="discount" type="text" className="form-horizontal col-md-6" onChange={this.onChangeDiscount} aria-describedby="basic-addon1" />
+                                    		<input id="discount" type="text" style={{color: "black"}}className="form-horizontal col-md-6" onChange={this.onChangeDiscount} aria-describedby="basic-addon1" />
                                     		<button className="btn btn-default" type="submit">Enter Discount Code</button>
                                     	</form>
                                     </li>
-									<li className="list-group-item" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && total} </p></li>
+									<li className="list-group-item inner-panel" style={{'textAlign': 'right'}}><p>Order Total: ${this.props.order.Products && total} </p></li>
 								</ul>
 
 
